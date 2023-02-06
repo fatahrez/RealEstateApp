@@ -3,6 +3,7 @@ package com.example.guryihii.hilt
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.guryihii.MainActivity
+import com.example.guryihii.PropertiesService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,7 +42,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesPropertiesService(retrofit: Retrofit): MainActivity.PropertiesService {
-        return retrofit.create(MainActivity.PropertiesService::class.java)
+    fun providesPropertiesService(retrofit: Retrofit): PropertiesService {
+        return retrofit.create(PropertiesService::class.java)
     }
 }
