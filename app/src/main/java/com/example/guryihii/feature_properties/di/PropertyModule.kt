@@ -7,7 +7,12 @@ import com.example.guryihii.feature_properties.data.remote.PropertyAPI
 import com.example.guryihii.feature_properties.data.repository.PropertyRepositoryImpl
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import com.example.guryihii.feature_properties.domain.usecases.GetAllProperties
+import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,11 +20,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
+@Module
+@InstallIn(SingletonComponent::class)
 object PropertyModule {
 
     @Provides
     @Singleton
-    fun providesGetAllPropertiesUseCase(repository: PropertyRepository): GetAllProperties {
+    fun providesGetAllPropertiesUseCase(
+        repository: PropertyRepository
+    ): GetAllProperties {
         return GetAllProperties(repository)
     }
 
@@ -27,7 +36,7 @@ object PropertyModule {
     @Singleton
     fun providesPropertyRepository(
         propertyAPI: PropertyAPI
-    ): PropertyRepositoryImpl {
+    ): PropertyRepository {
         return PropertyRepositoryImpl(propertyAPI)
     }
 
@@ -48,5 +57,10 @@ object PropertyModule {
             .client(okHttpClient)
             .build()
             .create(PropertyAPI::class.java)
+    }
+
+    @Provides
+    fun providesIODispatcher(): CoroutineDispatcher {
+        return Dispatchers.IO
     }
 }

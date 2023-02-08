@@ -1,5 +1,6 @@
 package com.example.guryihii.core.util
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -14,6 +15,7 @@ suspend fun <T> safeApiCall(
 ): Flow<ResultWrapper<T>> {
     return withContext(dispatcher) {
         flow {
+            emit(ResultWrapper.Loading)
             try {
                 emit(ResultWrapper.Success(apiCall.invoke()))
             } catch (throwable: Throwable) {

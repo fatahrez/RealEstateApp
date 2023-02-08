@@ -7,16 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.databinding.FragmentPropertyBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.count
 
 
+@AndroidEntryPoint
 class PropertyFragment : Fragment() {
     private var _binding: FragmentPropertyBinding? = null
     private val binding: FragmentPropertyBinding get() = _binding!!
 
     private val viewModel: PropertyListViewModel by viewModels()
 
-    val state = viewModel.state.value
+//    private val state = viewModel.state.value
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,19 +43,22 @@ class PropertyFragment : Fragment() {
     }
 
     private fun initViews() {
-        TODO("Not yet implemented")
+
     }
 
     private fun initListeners() {
-        TODO("Not yet implemented")
     }
 
     private fun observeViewState() {
-        if(state.isLoading) {
-            Log.i("TAG", "observeViewState: Loading")
+        lifecycleScope.launchWhenCreated {
+            viewModel.state.collect { state ->
+                if (state.isLoading) {
+                    Log.i("TAG", "observeViewState: loading")
+                } else {
+                    Log.i("TAG", "observeViewState: ${state.properties}")
+                }
+            }
         }
-
-        Log.i("TAG", "observeViewState: ${state.properties}")
     }
 
     companion object {

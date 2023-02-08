@@ -2,23 +2,17 @@ package com.example.guryihii
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.view.isGone
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import coil.load
 import com.example.guryihii.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Response
-import retrofit2.http.GET
-import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-   @Inject lateinit var propertiesService:PropertiesService
+//   @Inject lateinit var propertiesService: PropertiesService
 
    private val navController: NavController by lazy {
        val navHostFragment = supportFragmentManager

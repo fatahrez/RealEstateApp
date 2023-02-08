@@ -1,5 +1,6 @@
 package com.example.guryihii.feature_properties.data.repository
 
+import android.util.Log
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.core.util.safeApiCall
 import com.example.guryihii.feature_properties.data.remote.PropertyAPI
@@ -9,8 +10,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class PropertyRepositoryImpl(
+class PropertyRepositoryImpl @Inject constructor(
     private val apiService: PropertyAPI,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): PropertyRepository {
