@@ -2,8 +2,6 @@ package com.example.guryihii.hilt
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.guryihii.MainActivity
-import com.example.guryihii.PropertiesService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
