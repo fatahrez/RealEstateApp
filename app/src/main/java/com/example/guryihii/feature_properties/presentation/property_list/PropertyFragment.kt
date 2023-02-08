@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.guryihii.R
 import com.example.guryihii.databinding.FragmentPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +23,6 @@ class PropertyFragment : Fragment() {
     private val binding: FragmentPropertyBinding get() = _binding!!
 
     private val viewModel: PropertyListViewModel by viewModels()
-
-//    private val state = viewModel.state.value
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,7 +82,10 @@ class PropertyFragment : Fragment() {
     }
 
     private fun navToPropertyDetail(property: Property) {
-
+        val args = Bundle().apply {
+            putString("slug", property.slug)
+        }
+        findNavController().navigate(R.id.action_propertyFragment_to_propertyDetailFragment, args)
     }
     companion object {
 
