@@ -3,31 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/properties"
+        android:id="@+id/propertyFragment"
         android:title="@string/properties"
         android:enabled="true"
         android:icon="@drawable/round_home"/>
 
     <item
-        android:id="@+id/newProjects"
+        android:id="@+id/newProjectsFragment"
         android:title="@string/new_projects"
         android:enabled="true"
         android:icon="@drawable/img"/>
 
     <item
-        android:id="@+id/agents"
+        android:id="@+id/agentsFragment"
         android:title="@string/agents"
         android:enabled="true"
         android:icon="@drawable/img_1"/>
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:title="@string/profile"
         android:enabled="true"
         android:icon="@drawable/account_circle"/>
 
     <item
-        android:id="@+id/menu"
+        android:id="@+id/menuFragment"
         android:title="@string/menu"
         android:enabled="true"
         android:icon="@drawable/round_menu"/>

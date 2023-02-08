@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/propertyFragment">
+
+    <fragment
+        android:id="@+id/propertyFragment"
+        android:name="com.example.guryihii.PropertyFragment"
+        android:label="Property"
+        tools:layout="@layout/fragment_property" />
+    <fragment
+        android:id="@+id/newProjectsFragment"
+        android:name="com.example.guryihii.NewProjectsFragment"
+        android:label="New Projects"
+        tools:layout="@layout/fragment_new_projects" />
+    <fragment
+        android:id="@+id/agentsFragment"
+        android:name="com.example.guryihii.AgentsFragment"
+        android:label="Agents"
+        tools:layout="@layout/fragment_agents" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.guryihii.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.guryihii.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" />
+</navigation>

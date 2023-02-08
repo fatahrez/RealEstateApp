@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="4dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/corner_radius"
         app:cardElevation="8dp"
@@ -28,6 +32,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRound"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,26 +57,28 @@
                 android:layout_marginTop="16dp"
                 android:background="#5DAC89"
                 android:includeFontPadding="false"
-                android:textColor="@color/purple_700"
+                android:textColor="#311B92"
                 android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="@+id/propertyImageView"
                 app:layout_constraintTop_toBottomOf="@+id/propertyImageView"
                 tools:text="KSH. 4000000" />
 
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/favImageView"
+                android:id="@+id/favoriteImageView"
                 style="@style/Widget.Material3.Button.Icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_margin="6dp"
                 android:insetTop="0dp"
+
                 android:insetBottom="0dp"
                 app:icon="@drawable/fav"
                 app:iconGravity="textEnd"
                 app:iconSize="12dp"
-                app:layout_constraintEnd_toEndOf="@id/propertyImageView"
-                app:layout_constraintTop_toBottomOf="@+id/propertyImageView"
-                tools:ignore="DuplicateClickableBoundsCheck" />
+                app:layout_constraintEnd_toEndOf="@+id/propertyImageView"
+                app:layout_constraintTop_toBottomOf="@+id/propertyImageView" />
+
 
             <TextView
                 android:id="@+id/tvTitle"

@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.view.isGone
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import coil.load
 import com.example.guryihii.Epoxy.PropertyEpoxyController
 import com.example.guryihii.databinding.ActivityMainBinding
@@ -20,10 +26,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-   @Inject lateinit var propertiesService:PropertiesService
-
-   @Inject lateinit var propertyMapper: PropertyMapper
+    lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,27 +36,29 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
 
-        val controller = PropertyEpoxyController()
-        binding.epoxyRecyclerView.setController(controller)
 
-        lifecycleScope.launchWhenStarted {
-            val response : Response<NetworkProperties> = propertiesService.getAllProperties()
-            val domainProperty: List<Property> = response.body()!!.results.map{
-                propertyMapper.buildFrom(it)
-            }
-            controller.setData(domainProperty)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        setupActionBarWithNavController(navController)
 
-            if(domainProperty.isEmpty()){
-                Snackbar.make(binding.root, "Failed to fetch", Snackbar.LENGTH_LONG).show()
-            }
-        }
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(
+            navController = navController,
+            configuration = appBarConfiguration
+        )
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.navHostFragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+
     }
 
     private fun setupUI() {
 
     }
-
-
 
 }
 

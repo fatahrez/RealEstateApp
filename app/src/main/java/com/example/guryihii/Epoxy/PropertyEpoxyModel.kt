@@ -11,7 +11,7 @@ class PropertyEpoxyModel(
 ): ViewBindingKotlinModel<EpoxyModelPropertyItemBinding>(R.layout.epoxy_model_property_item) {
     override fun EpoxyModelPropertyItemBinding.bind() {
         //Load image
-        propertyImageView.load(data = property.profile_photo)
+        propertyImageView.load(data = property.photo1)
 
         tvTitle.text = property.title
         tvCity.text =property.city

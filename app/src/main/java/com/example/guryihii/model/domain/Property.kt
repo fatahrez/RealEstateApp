@@ -10,5 +10,6 @@ data class Property(
     val profile_photo: String,
     val slug: String,
     val street_address: String,
+    val photo1: String,
     val title: String,
 )
