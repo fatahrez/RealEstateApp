@@ -19,9 +19,6 @@
         android:name="com.example.guryihii.feature_properties.presentation.property_detail.PropertyDetailFragment"
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail">
-        <argument
-            android:name="slug"
-            app:argType="string" />
         <action
             android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />

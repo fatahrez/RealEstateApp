@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface PropertyRepository {
     suspend fun getAllProperties(): Flow<ResultWrapper<List<Property>>>
+
+    suspend fun getPropertyDetails(slug: String): Flow<ResultWrapper<Property>>
 }

@@ -7,6 +7,7 @@ import com.example.guryihii.feature_properties.data.remote.PropertyAPI
 import com.example.guryihii.feature_properties.data.repository.PropertyRepositoryImpl
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import com.example.guryihii.feature_properties.domain.usecases.GetAllProperties
+import com.example.guryihii.feature_properties.domain.usecases.GetPropertyDetails
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,6 +31,13 @@ object PropertyModule {
         repository: PropertyRepository
     ): GetAllProperties {
         return GetAllProperties(repository)
+    }
+
+    @Provides
+    fun providesGetPropertyDetailUseCase(
+        repository: PropertyRepository
+    ): GetPropertyDetails {
+        return GetPropertyDetails(repository)
     }
 
     @Provides
