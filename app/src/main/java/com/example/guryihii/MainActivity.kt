@@ -24,9 +24,14 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setupUI()
 
         refreshData()
         setupListeners()
+
+    }
+
+    private fun setupUI() {
 
     }
 
