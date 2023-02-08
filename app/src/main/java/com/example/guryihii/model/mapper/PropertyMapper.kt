@@ -18,7 +18,8 @@ class PropertyMapper @Inject constructor() {
             city = realEstateProperty.city,
             country = realEstateProperty.country,
             slug = realEstateProperty.slug,
-            photo1 = realEstateProperty.photo1
+            photo1 = realEstateProperty.photo1,
+            cover_photo = realEstateProperty.cover_photo
         )
     }
 }

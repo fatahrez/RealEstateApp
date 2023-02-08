@@ -12,4 +12,5 @@ data class Property(
     val street_address: String,
     val photo1: String,
     val title: String,
-)
+    val cover_photo: String,
+    )
