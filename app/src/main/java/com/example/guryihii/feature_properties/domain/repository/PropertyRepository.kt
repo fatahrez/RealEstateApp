@@ -5,5 +5,5 @@ import com.example.guryihii.feature_properties.domain.model.Property
 import kotlinx.coroutines.flow.Flow
 
 interface PropertyRepository {
-    fun getAllProperties(): Flow<ResultWrapper<List<Property>>>
+    suspend fun getAllProperties(): Flow<ResultWrapper<List<Property>>>
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class GetAllProperties(
     private val repository: PropertyRepository
 ) {
-    operator fun invoke(): Flow<ResultWrapper<List<Property>>> {
+    suspend operator fun invoke(): Flow<ResultWrapper<List<Property>>> {
         return repository.getAllProperties()
     }
 }
