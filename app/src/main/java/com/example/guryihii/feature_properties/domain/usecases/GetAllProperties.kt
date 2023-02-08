@@ -4,8 +4,9 @@ import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.model.Property
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GetAllProperties(
+class GetAllProperties @Inject constructor(
     private val repository: PropertyRepository
 ) {
     suspend operator fun invoke(): Flow<ResultWrapper<List<Property>>> {
