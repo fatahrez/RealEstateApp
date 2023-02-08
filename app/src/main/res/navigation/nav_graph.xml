@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/propertyFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.PropertyFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.property_list.PropertyFragment"
         android:label="fragment_property"
         tools:layout="@layout/fragment_property" />
 </navigation>
