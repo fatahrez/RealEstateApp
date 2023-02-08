@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.databinding.FragmentPropertyBinding
+import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.count
@@ -38,8 +39,10 @@ class PropertyFragment : Fragment() {
 
     private fun setupUI() {
         initViews()
+        val adapter = createAdapter()
+        setupRecyclerView(adapter)
         initListeners()
-        observeViewState()
+        observeViewState(adapter)
     }
 
     private fun initViews() {
@@ -49,18 +52,38 @@ class PropertyFragment : Fragment() {
     private fun initListeners() {
     }
 
-    private fun observeViewState() {
+    private fun observeViewState(adapter: PropertiesAdapter) {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading")
+                    binding.progressBar.visibility = View.VISIBLE
                 } else {
-                    Log.i("TAG", "observeViewState: ${state.properties}")
+                    binding.progressBar.visibility = View.GONE
+                    binding.noData.run {
+                        if (state.properties.isEmpty()) visibility = View.GONE else View.VISIBLE
+                    }
+                    adapter.submitList(state.properties)
                 }
             }
         }
     }
 
+    private fun setupRecyclerView(propertiesAdapter: PropertiesAdapter) {
+        binding.recyclerView.apply {
+            adapter = propertiesAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun  createAdapter(): PropertiesAdapter {
+        return PropertiesAdapter {
+            navToPropertyDetail(it)
+        }
+    }
+
+    private fun navToPropertyDetail(property: Property) {
+
+    }
     companion object {
 
     }
