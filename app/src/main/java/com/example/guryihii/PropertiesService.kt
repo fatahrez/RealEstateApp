@@ -1,5 +1,7 @@
 package com.example.guryihii
 
+import com.example.guryihii.model.network.NetworkProperties
+import com.example.guryihii.model.network.RealEstateProperty
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -6,7 +6,12 @@ import android.util.Log
 import androidx.core.view.isGone
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import com.example.guryihii.Epoxy.PropertyEpoxyController
 import com.example.guryihii.databinding.ActivityMainBinding
+import com.example.guryihii.model.domain.Property
+import com.example.guryihii.model.mapper.PropertyMapper
+import com.example.guryihii.model.network.NetworkProperties
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 import retrofit2.http.GET
@@ -18,44 +23,37 @@ class MainActivity : AppCompatActivity() {
 
    @Inject lateinit var propertiesService:PropertiesService
 
+   @Inject lateinit var propertyMapper: PropertyMapper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
+        setupUI()
 
-        refreshData()
-        setupListeners()
+        val controller = PropertyEpoxyController()
+        binding.epoxyRecyclerView.setController(controller)
 
-    }
-
-    private fun refreshData() {
         lifecycleScope.launchWhenStarted {
-            val response = propertiesService.getAllProperties()
-            binding.propertyImageView.load(
-                data = "https://plus.unsplash.com/premium_photo-1661883982941-50af7720a6ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-            ){
-                listener{request, result ->
-                    binding.productImageViewLoadingProgressBar.isGone = true
-                }
+            val response : Response<NetworkProperties> = propertiesService.getAllProperties()
+            val domainProperty: List<Property> = response.body()!!.results.map{
+                propertyMapper.buildFrom(it)
             }
-            Log.i("DATA", response.body()!!.toString())
+            controller.setData(domainProperty)
+
+            if(domainProperty.isEmpty()){
+                Snackbar.make(binding.root, "Failed to fetch", Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 
-    private fun setupListeners() {
-        var publishedStatus = false
-        binding.favImageView.setOnClickListener {
-            val imageRes = if (publishedStatus){
-                R.drawable.favourite
-            } else{
-                R.drawable.fav
-            }
-            binding.favImageView.setIconResource(imageRes)
-            publishedStatus = !publishedStatus
-        }
+    private fun setupUI() {
+
     }
+
+
 
 }
 

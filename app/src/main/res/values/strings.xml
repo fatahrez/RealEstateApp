@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Guryihii</string>
+    <string name="new_projects" />
+    <string name="properties" />
+    <string name="agents" />
+    <string name="profile" />
+    <string name="menu" />
 </resources>

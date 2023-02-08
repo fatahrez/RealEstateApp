@@ -1,6 +1,6 @@
-package com.example.guryihii
+package com.example.guryihii.model.network
 
-data class Result(
+data class RealEstateProperty(
     val advert_type: String,
     val bathrooms: String,
     val bedrooms: Int,
