@@ -6,117 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/cardView"-->
-<!--        android:layout_width="403dp"-->
-<!--        android:layout_height="274dp"-->
-<!--        app:cardBackgroundColor="@color/white"-->
-<!--        app:cardElevation="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <com.google.android.material.imageview.ShapeableImageView-->
-<!--                android:id="@+id/propertyImageView"-->
-<!--                android:layout_width="319dp"-->
-<!--                android:layout_height="179dp"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                tools:src="@tools:sample/backgrounds/scenic[2]" />-->
-
-<!--            <androidx.core.widget.ContentLoadingProgressBar-->
-<!--                android:id="@+id/productImageViewLoadingProgressBar"-->
-<!--                style="?android:attr/progressBarStyleSmall"-->
-<!--                android:layout_width="34dp"-->
-<!--                android:layout_height="34dp"-->
-<!--                android:indeterminateOnly="true"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/propertyImageView"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/propertyImageView"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/propertyImageView"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/propertyImageView" />-->
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvPrice"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:includeFontPadding="false"-->
-<!--                android:textColor="@color/purple_700"-->
-<!--                android:textSize="10sp"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/propertyImageView"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/propertyImageView"-->
-<!--                tools:text="KSH. 4000000" />-->
-
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/favImageView"-->
-<!--                style="@style/Widget.Material3.Button.Icon"-->
-<!--                android:layout_width="24dp"-->
-<!--                android:layout_height="24dp"-->
-<!--                android:layout_margin="6dp"-->
-<!--                android:insetTop="0dp"-->
-<!--                android:insetBottom="0dp"-->
-<!--                app:icon="@drawable/fav"-->
-<!--                app:iconGravity="textEnd"-->
-<!--                app:iconSize="12dp"-->
-<!--                app:layout_constraintEnd_toEndOf="@id/propertyImageView"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/propertyImageView"-->
-<!--                tools:ignore="DuplicateClickableBoundsCheck" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvTitle"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="24dp"-->
-<!--                android:text="TextView"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/tvCity"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/tvPrice" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvCity"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="TextView"-->
-<!--                app:layout_constraintBaseline_toBaselineOf="@+id/tvTitle"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/tvSlug"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/tvTitle" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvSlug"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="TextView"-->
-<!--                app:layout_constraintBaseline_toBaselineOf="@+id/tvCity"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/tvStreetAddress"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/tvCity" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvStreetAddress"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="TextView"-->
-<!--                app:layout_constraintBaseline_toBaselineOf="@+id/tvSlug"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/tvSlug" />-->
-
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    </com.google.android.material.card.MaterialCardView>-->
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_graph"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -138,6 +27,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
