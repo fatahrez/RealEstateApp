@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_properties.data.remote
+package com.example.guryihii.core.shared.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

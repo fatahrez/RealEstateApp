@@ -12,8 +12,7 @@ import com.example.guryihii.feature_properties.domain.model.Property
 
 class PropertiesAdapter(
     private val clickListener: (Property) -> Unit
-):
-    ListAdapter<Property, PropertiesAdapter.ViewHolder>(COMPARATOR) {
+): ListAdapter<Property, PropertiesAdapter.ViewHolder>(COMPARATOR) {
 
     private object COMPARATOR: DiffUtil.ItemCallback<Property>() {
         override fun areItemsTheSame(oldItem: Property, newItem: Property): Boolean {

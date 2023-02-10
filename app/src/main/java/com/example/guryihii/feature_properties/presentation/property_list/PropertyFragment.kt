@@ -11,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,11 +59,11 @@ class PropertyFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.visible()
                 } else {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.gone()
                     binding.noData.run {
-                        if (state.properties.isEmpty()) visibility = View.GONE else View.VISIBLE
+                        if (state.properties.isEmpty()) visible() else gone()
                     }
                     adapter.submitList(state.properties)
                 }

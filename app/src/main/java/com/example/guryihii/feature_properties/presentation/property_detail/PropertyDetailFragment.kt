@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.guryihii.core.util.Constants
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyDetailBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,8 +48,9 @@ class PropertyDetailFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading...")
+                    binding.progressBar.visible()
                 } else {
+                    binding.progressBar.gone()
                     showPropertyDetails(state.property)
                 }
             }

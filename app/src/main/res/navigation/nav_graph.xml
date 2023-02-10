@@ -23,4 +23,9 @@
             android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/agentListFragment"
+        android:name="com.example.guryihii.feature_agents.presentation.agent_list.AgentListFragment"
+        android:label="fragment_agent_list"
+        tools:layout="@layout/fragment_agent_list" />
 </navigation>

@@ -37,6 +37,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.propertyFragment, null)
                     true
                 }
+                R.id.agents -> {
+                    navController.navigate(R.id.agentListFragment, null)
+                    true
+                }
                 else -> {
                     false
                 }
