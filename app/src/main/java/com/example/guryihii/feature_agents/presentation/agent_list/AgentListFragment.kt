@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.R
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentAgentListBinding
 import com.example.guryihii.feature_agents.domain.model.Agent
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,8 +51,12 @@ class AgentListFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading ...")
+                    binding.progressBar.visible()
                 } else {
+                    binding.progressBar.gone()
+                    binding.noData.run {
+                        if (state.agents.isEmpty()) visible() else gone()
+                    }
                     adapter.submitList(state.agents)
                 }
             }
