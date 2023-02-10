@@ -28,4 +28,19 @@
         android:name="com.example.guryihii.feature_agents.presentation.agent_list.AgentListFragment"
         android:label="fragment_agent_list"
         tools:layout="@layout/fragment_agent_list" />
+    <fragment
+        android:id="@+id/newProjectsFragment2"
+        android:name="com.example.guryihii.feature_newProjects.NewProjectsFragment"
+        android:label="fragment_new_projects"
+        tools:layout="@layout/fragment_new_projects" />
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.guryihii.feature_profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/menuFragment2"
+        android:name="com.example.guryihii.feature_menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
 </navigation>

@@ -38,6 +38,18 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.agentListFragment, null)
                     true
                 }
+                R.id.newProjects -> {
+                    navController.navigate(R.id.newProjectsFragment2, null)
+                    true
+                }
+                R.id.profile -> {
+                    navController.navigate(R.id.profileFragment2, null)
+                    true
+                }
+                R.id.menu -> {
+                    navController.navigate(R.id.menuFragment2, null)
+                    true
+                }
                 else -> {
                     false
                 }
