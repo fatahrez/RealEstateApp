@@ -7,11 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.guryihii.R
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
