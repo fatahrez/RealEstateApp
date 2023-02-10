@@ -51,7 +51,7 @@ class AgentListFragment : Fragment() {
                 if (state.isLoading) {
                     Log.i("TAG", "observeViewState: loading ...")
                 } else {
-                    Log.i("TAG", "observeViewState: ${state.agents}")
+                    adapter.submitList(state.agents)
                 }
             }
         }

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.guryihii.databinding.ListItemAgentBinding
 import com.example.guryihii.feature_agents.domain.model.Agent
 
@@ -45,6 +46,7 @@ class AgentListAdapter(
         fun bindItem(agent: Agent) {
             with(binding) {
                 agentNameTextView.text = agent.firstName
+                profilePhotoImageView.load(agent.profilePhoto)
             }
         }
     }
