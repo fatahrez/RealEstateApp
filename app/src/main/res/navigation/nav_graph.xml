@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/newProjectDetailsFragment"
-        android:name="com.example.guryihii.NewProjectDetailsFragment"
+        android:name="com.example.guryihii.feature_newProjects.presentation.new_project_details.NewProjectDetailsFragment"
         android:label="fragment_new_project_details"
         tools:layout="@layout/fragment_new_project_details" >
         <action
