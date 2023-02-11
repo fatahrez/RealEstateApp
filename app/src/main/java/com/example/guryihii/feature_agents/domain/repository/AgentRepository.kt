@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AgentRepository {
     suspend fun getAllAgents(): Flow<ResultWrapper<List<Agent>>>
+
+    suspend fun getAgentDetails(id: Int): Flow<ResultWrapper<Agent>>
 }
