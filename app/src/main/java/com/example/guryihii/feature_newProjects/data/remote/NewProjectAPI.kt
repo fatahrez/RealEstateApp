@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface NewProjectAPI {
 
     @GET("properties/new_projects/all/")
-    fun getAllNewProjectsDTO(): List<NewProjectDTO>
+    suspend fun getAllNewProjectsDTO(): List<NewProjectDTO>
 }

@@ -4,6 +4,7 @@ import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_newProjects.domain.model.NewProject
 import com.example.guryihii.feature_newProjects.domain.repository.NewProjectRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 class GetAllNewProjects(
     private val repository: NewProjectRepository
