@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_newProjects
+package com.example.guryihii.feature_newProjects.presentation.new_project_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
