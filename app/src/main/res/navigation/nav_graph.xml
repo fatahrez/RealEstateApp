@@ -36,7 +36,11 @@
         android:id="@+id/newProjectsFragment2"
         android:name="com.example.guryihii.feature_newProjects.presentation.new_project_list.NewProjectsFragment"
         android:label="fragment_new_projects"
-        tools:layout="@layout/fragment_new_projects" />
+        tools:layout="@layout/fragment_new_projects" >
+        <action
+            android:id="@+id/action_newProjectsFragment2_to_newProjectDetailsFragment"
+            app:destination="@id/newProjectDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.example.guryihii.feature_profile.ProfileFragment"
@@ -60,5 +64,9 @@
         android:id="@+id/newProjectDetailsFragment"
         android:name="com.example.guryihii.NewProjectDetailsFragment"
         android:label="fragment_new_project_details"
-        tools:layout="@layout/fragment_new_project_details" />
+        tools:layout="@layout/fragment_new_project_details" >
+        <action
+            android:id="@+id/action_newProjectDetailsFragment_to_newProjectsFragment2"
+            app:destination="@id/newProjectsFragment2" />
+    </fragment>
 </navigation>
