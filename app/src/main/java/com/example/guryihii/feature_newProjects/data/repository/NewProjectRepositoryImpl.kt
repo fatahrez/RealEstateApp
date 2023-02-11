@@ -24,4 +24,5 @@ class NewProjectRepositoryImpl(
             Flow<ResultWrapper<NewProject>> = safeApiCall(ioDispatcher) {
         apiService.getNewProjectDetailsDTO(slug).toNewProject()
     }
+
 }
