@@ -79,6 +79,7 @@ class AgentListFragment : Fragment() {
 
     private fun navToAgentDetail(agent: Agent) {
         val bundle = Bundle()
+        bundle.putInt("agent_id", agent.id)
         view?.let {
             Navigation.findNavController(it)
                 .navigate(R.id.action_agentListFragment_to_agentDetailFragment, bundle)
