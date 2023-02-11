@@ -21,7 +21,7 @@ object NewProjectModule {
 
     @Provides
     @Singleton
-    fun providesGetAllNewProjectsUsecase(
+    fun providesGetAllNewProjectsUseCase(
         repository: NewProjectRepository
     ): GetAllNewProjects {
         return GetAllNewProjects(repository)
