@@ -67,7 +67,6 @@ class PropertyDetailFragment : Fragment() {
 
     private fun fetchData() {
         val slug = arguments?.getString("slug")
-        Log.i("TAG", "fetchData: $slug")
         if (slug != null) {
             viewModel.showPropertyDetail(slug)
         }

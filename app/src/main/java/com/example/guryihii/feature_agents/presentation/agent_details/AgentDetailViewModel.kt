@@ -19,7 +19,7 @@ class AgentDetailViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _state = MutableStateFlow(AgentDetailState())
-    private val state: StateFlow<AgentDetailState> get() = _state
+    val state: StateFlow<AgentDetailState> get() = _state
 
     fun showAgentDetails(id: Int) {
         viewModelScope.launch {
