@@ -8,4 +8,6 @@ interface NewProjectRepository {
 
     suspend fun getAllNewProjects(): Flow<ResultWrapper<List<NewProject>>>
 
+    suspend fun getNewProjectDetails(slug: String): Flow<ResultWrapper<NewProject>>
+
 }
