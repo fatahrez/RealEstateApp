@@ -19,4 +19,10 @@ class NewProjectRepositoryImpl(
             it.toNewProject()
         }
     }
+
+    override suspend fun getNewProjectDetails(slug: String):
+            Flow<ResultWrapper<NewProject>> = safeApiCall(ioDispatcher) {
+        apiService.getNewProjectDetailsDTO(slug).toNewProject()
+    }
+
 }

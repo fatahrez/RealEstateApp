@@ -13,9 +13,15 @@ class AgentRepositoryImpl(
     private val apiService: AgentAPI,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): AgentRepository {
-    override suspend fun getAllAgents(): Flow<ResultWrapper<List<Agent>>> = safeApiCall(ioDispatcher) {
+    override suspend fun getAllAgents(): Flow<ResultWrapper<List<Agent>>> =
+        safeApiCall(ioDispatcher) {
         apiService.getAgentsDTO().map {
             it.toAgent()
         }
+    }
+
+    override suspend fun getAgentDetails(id: Int): Flow<ResultWrapper<Agent>> =
+        safeApiCall(ioDispatcher) {
+        apiService.getAgentDetails(id).toAgent()
     }
 }

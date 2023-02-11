@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
@@ -64,7 +65,12 @@ class NewProjectsFragment : Fragment() {
     }
 
     private fun navToNewProjectDetails(newProject: NewProject) {
-
+        val bundle = Bundle()
+        bundle.putString("slug", newProject.slug)
+        view?.let {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_newProjectsFragment2_to_newProjectDetailsFragment, bundle)
+        }
     }
 
     private fun setupRecyclerView(newProjectListAdapter: NewProjectListAdapter) {

@@ -7,6 +7,7 @@ import com.example.guryihii.core.util.Constants
 import com.example.guryihii.feature_agents.data.remote.AgentAPI
 import com.example.guryihii.feature_agents.data.repository.AgentRepositoryImpl
 import com.example.guryihii.feature_agents.domain.repository.AgentRepository
+import com.example.guryihii.feature_agents.domain.usecases.GetAgentDetails
 import com.example.guryihii.feature_agents.domain.usecases.GetAllAgents
 import dagger.Module
 import dagger.Provides
@@ -28,6 +29,14 @@ object AgentModule {
         repository: AgentRepository
     ): GetAllAgents {
         return GetAllAgents(repository)
+    }
+    
+    @Provides
+    @Singleton
+    fun providesGetAllAgents(
+        repository: AgentRepository
+    ): GetAgentDetails {
+        return GetAgentDetails(repository)
     }
 
     @Provides

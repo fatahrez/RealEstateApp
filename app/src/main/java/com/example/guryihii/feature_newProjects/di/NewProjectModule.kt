@@ -6,6 +6,7 @@ import com.example.guryihii.feature_newProjects.data.remote.NewProjectAPI
 import com.example.guryihii.feature_newProjects.data.repository.NewProjectRepositoryImpl
 import com.example.guryihii.feature_newProjects.domain.repository.NewProjectRepository
 import com.example.guryihii.feature_newProjects.domain.usecases.GetAllNewProjects
+import com.example.guryihii.feature_newProjects.domain.usecases.GetNewProjectDetails
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +26,14 @@ object NewProjectModule {
         repository: NewProjectRepository
     ): GetAllNewProjects {
         return GetAllNewProjects(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetNewProjectUseCase(
+        repository: NewProjectRepository
+    ): GetNewProjectDetails {
+        return GetNewProjectDetails(repository)
     }
 
     @Provides

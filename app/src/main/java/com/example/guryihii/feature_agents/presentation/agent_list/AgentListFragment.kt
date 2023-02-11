@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
@@ -77,7 +78,12 @@ class AgentListFragment : Fragment() {
     }
 
     private fun navToAgentDetail(agent: Agent) {
-
+        val bundle = Bundle()
+        bundle.putInt("agent_id", agent.id)
+        view?.let {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_agentListFragment_to_agentDetailFragment, bundle)
+        }
     }
 
     companion object {

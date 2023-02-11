@@ -27,12 +27,20 @@
         android:id="@+id/agentListFragment"
         android:name="com.example.guryihii.feature_agents.presentation.agent_list.AgentListFragment"
         android:label="fragment_agent_list"
-        tools:layout="@layout/fragment_agent_list" />
+        tools:layout="@layout/fragment_agent_list" >
+        <action
+            android:id="@+id/action_agentListFragment_to_agentDetailFragment"
+            app:destination="@id/agentDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newProjectsFragment2"
         android:name="com.example.guryihii.feature_newProjects.presentation.new_project_list.NewProjectsFragment"
         android:label="fragment_new_projects"
-        tools:layout="@layout/fragment_new_projects" />
+        tools:layout="@layout/fragment_new_projects" >
+        <action
+            android:id="@+id/action_newProjectsFragment2_to_newProjectDetailsFragment"
+            app:destination="@id/newProjectDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.example.guryihii.feature_profile.ProfileFragment"
@@ -43,4 +51,22 @@
         android:name="com.example.guryihii.feature_menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/agentDetailFragment"
+        android:name="com.example.guryihii.feature_agents.presentation.agent_details.AgentDetailFragment"
+        android:label="fragment_agent_detail"
+        tools:layout="@layout/fragment_agent_detail" >
+        <action
+            android:id="@+id/action_agentDetailFragment_to_agentListFragment"
+            app:destination="@id/agentListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newProjectDetailsFragment"
+        android:name="com.example.guryihii.feature_newProjects.presentation.new_project_details.NewProjectDetailsFragment"
+        android:label="fragment_new_project_details"
+        tools:layout="@layout/fragment_new_project_details" >
+        <action
+            android:id="@+id/action_newProjectDetailsFragment_to_newProjectsFragment2"
+            app:destination="@id/newProjectsFragment2" />
+    </fragment>
 </navigation>
