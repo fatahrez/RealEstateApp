@@ -2,6 +2,7 @@ package com.example.guryihii
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         }
+
+        binding.navView.setNavigationItemSelectedListener(this)
     }
 
     private fun setupUI() {
@@ -67,10 +70,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.i("TAG", "onNavigationItemSelected: click 1")
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.END)
         when(item.itemId) {
-
+            R.id.sign_in -> {
+                Log.i("TAG", "onNavigationItemSelected: click 2")
+                navController.navigate(R.id.menuFragment2, null)
+            }
         }
         return true
     }
