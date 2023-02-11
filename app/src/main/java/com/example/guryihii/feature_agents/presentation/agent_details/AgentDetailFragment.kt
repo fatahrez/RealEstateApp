@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.guryihii.R
 import com.example.guryihii.databinding.FragmentAgentDetailBinding
 import com.example.guryihii.feature_agents.domain.model.Agent
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AgentDetailFragment : Fragment() {
 
     private var _binding: FragmentAgentDetailBinding? = null
@@ -41,6 +40,7 @@ class AgentDetailFragment : Fragment() {
 
     private fun fetchData() {
         val id = arguments?.getInt("agent_id")
+        Log.i("TAG", "fetchData: $id")
         if (id != null) {
             viewModel.showAgentDetails(id)
         }
