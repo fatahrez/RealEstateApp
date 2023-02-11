@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.R
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentNewProjectDetailsBinding
+import com.example.guryihii.feature_newProjects.domain.model.NewProject
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -50,10 +53,19 @@ class NewProjectDetailsFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading...")
+                    binding.progressBar.visible()
                 } else {
-                    Log.i("TAG", "observeViewState: ${state.newProject}")
+                    binding.progressBar.gone()
+                    showNewProjectDetails(state.newProject)
                 }
+            }
+        }
+    }
+
+    private fun showNewProjectDetails(newProject: NewProject?) {
+        with(binding) {
+            if (newProject != null) {
+                newProjectNameTextView.text = newProject.name
             }
         }
     }
