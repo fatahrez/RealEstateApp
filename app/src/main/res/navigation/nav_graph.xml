@@ -56,4 +56,9 @@
             android:id="@+id/action_agentDetailFragment_to_agentListFragment"
             app:destination="@id/agentListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/newProjectDetailsFragment"
+        android:name="com.example.guryihii.NewProjectDetailsFragment"
+        android:label="fragment_new_project_details"
+        tools:layout="@layout/fragment_new_project_details" />
 </navigation>
