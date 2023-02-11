@@ -27,7 +27,11 @@
         android:id="@+id/agentListFragment"
         android:name="com.example.guryihii.feature_agents.presentation.agent_list.AgentListFragment"
         android:label="fragment_agent_list"
-        tools:layout="@layout/fragment_agent_list" />
+        tools:layout="@layout/fragment_agent_list" >
+        <action
+            android:id="@+id/action_agentListFragment_to_agentDetailFragment"
+            app:destination="@id/agentDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newProjectsFragment2"
         android:name="com.example.guryihii.feature_newProjects.presentation.new_project_list.NewProjectsFragment"
@@ -43,4 +47,13 @@
         android:name="com.example.guryihii.feature_menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/agentDetailFragment"
+        android:name="com.example.guryihii.AgentDetailFragment"
+        android:label="fragment_agent_detail"
+        tools:layout="@layout/fragment_agent_detail" >
+        <action
+            android:id="@+id/action_agentDetailFragment_to_agentListFragment"
+            app:destination="@id/agentListFragment" />
+    </fragment>
 </navigation>
