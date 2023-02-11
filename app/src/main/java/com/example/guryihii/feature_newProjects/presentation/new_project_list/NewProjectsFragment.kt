@@ -12,6 +12,7 @@ import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentNewProjectsBinding
+import com.example.guryihii.feature_newProjects.domain.model.NewProject
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -38,7 +39,7 @@ class NewProjectsFragment : Fragment() {
     private fun setupUI() {
         val adapter = createAdapter()
         setupRecyclerView(adapter)
-        observeViewState()
+        observeViewState(adapter)
     }
 
     private fun observeViewState(adapter: NewProjectListAdapter) {
@@ -51,6 +52,7 @@ class NewProjectsFragment : Fragment() {
                     binding.noData.run {
                         if (state.newProjects.isEmpty()) visible() else gone()
                     }
+                    adapter.submitList(state.newProjects)
                 }
             }
         }
@@ -60,6 +62,10 @@ class NewProjectsFragment : Fragment() {
         return NewProjectListAdapter {
             navToNewProjectDetails(it)
         }
+    }
+
+    private fun navToNewProjectDetails(newProject: NewProject) {
+
     }
 
     private fun setupRecyclerView(newProjectListAdapter: NewProjectListAdapter) {

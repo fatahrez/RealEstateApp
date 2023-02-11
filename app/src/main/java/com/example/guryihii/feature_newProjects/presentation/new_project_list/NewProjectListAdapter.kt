@@ -43,7 +43,7 @@ class NewProjectListAdapter(
 
         fun bindItem(newProject: NewProject) {
             with(binding) {
-
+                newProjectNameTextView.text = newProject.name
             }
         }
 
