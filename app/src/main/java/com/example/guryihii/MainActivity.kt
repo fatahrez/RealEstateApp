@@ -2,14 +2,19 @@ package com.example.guryihii
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.guryihii.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
 
    private val navController: NavController by lazy {
@@ -47,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu -> {
-                    navController.navigate(R.id.menuFragment2, null)
+                    binding.drawerLayout.openDrawer(GravityCompat.END)
                     true
                 }
                 else -> {
@@ -59,6 +64,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
 
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawer.closeDrawer(GravityCompat.END)
+        when(item.itemId) {
+
+        }
+        return true
     }
 
 }
