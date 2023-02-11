@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".feature_properties.presentation.property_detail.PropertyDetailFragment">
 
-
     <ImageView
         android:id="@+id/propertyImageView"
         android:layout_width="0dp"

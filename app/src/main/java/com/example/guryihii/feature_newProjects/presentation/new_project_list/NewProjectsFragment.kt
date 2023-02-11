@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_agents.presentation.agent_list
+package com.example.guryihii.feature_newProjects.presentation.new_project_list
 
 import android.os.Bundle
 import android.util.Log
@@ -11,28 +11,23 @@ import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
-import com.example.guryihii.databinding.FragmentAgentListBinding
-import com.example.guryihii.feature_agents.domain.model.Agent
+import com.example.guryihii.databinding.FragmentNewProjectsBinding
+import com.example.guryihii.feature_newProjects.domain.model.NewProject
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class AgentListFragment : Fragment() {
-    private var _binding: FragmentAgentListBinding? = null
-    private val binding: FragmentAgentListBinding get() = _binding!!
+class NewProjectsFragment : Fragment() {
+    private var _binding: FragmentNewProjectsBinding? = null
+    private val binding: FragmentNewProjectsBinding get() = _binding!!
 
-    private val viewModel: AgentListViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    private val viewModel: NewProjectListViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentAgentListBinding.inflate(inflater, container, false)
+        _binding = FragmentNewProjectsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,37 +42,37 @@ class AgentListFragment : Fragment() {
         observeViewState(adapter)
     }
 
-    private fun observeViewState(adapter: AgentListAdapter) {
+    private fun observeViewState(adapter: NewProjectListAdapter) {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
-                if (state.isLoading) {
+                if(state.isLoading) {
                     binding.progressBar.visible()
                 } else {
                     binding.progressBar.gone()
                     binding.noData.run {
-                        if (state.agents.isEmpty()) visible() else gone()
+                        if (state.newProjects.isEmpty()) visible() else gone()
                     }
-                    adapter.submitList(state.agents)
+                    adapter.submitList(state.newProjects)
                 }
             }
         }
     }
 
-    private fun setupRecyclerView(agentsAdapter: AgentListAdapter) {
+    private fun createAdapter(): NewProjectListAdapter {
+        return NewProjectListAdapter {
+            navToNewProjectDetails(it)
+        }
+    }
+
+    private fun navToNewProjectDetails(newProject: NewProject) {
+
+    }
+
+    private fun setupRecyclerView(newProjectListAdapter: NewProjectListAdapter) {
         binding.recyclerView.apply {
-            adapter = agentsAdapter
+            adapter = newProjectListAdapter
             setHasFixedSize(true)
         }
-    }
-
-    private fun createAdapter(): AgentListAdapter {
-        return AgentListAdapter {
-            navToAgentDetail(it)
-        }
-    }
-
-    private fun navToAgentDetail(agent: Agent) {
-
     }
 
     companion object {

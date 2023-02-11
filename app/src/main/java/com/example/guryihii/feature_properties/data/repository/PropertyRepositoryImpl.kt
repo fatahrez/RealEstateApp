@@ -16,7 +16,8 @@ class PropertyRepositoryImpl @Inject constructor(
     private val apiService: PropertyAPI,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): PropertyRepository {
-    override suspend fun getAllProperties(): Flow<ResultWrapper<List<Property>>> = safeApiCall(ioDispatcher) {
+    override suspend fun getAllProperties():
+            Flow<ResultWrapper<List<Property>>> = safeApiCall(ioDispatcher) {
         apiService.getAllProperties().results.map {
             it.toProperty()
         }
