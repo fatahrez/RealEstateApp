@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentAgentDetailBinding
 import com.example.guryihii.feature_agents.domain.model.Agent
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +42,6 @@ class AgentDetailFragment : Fragment() {
 
     private fun fetchData() {
         val id = arguments?.getInt("agent_id")
-        Log.i("TAG", "fetchData: $id")
         if (id != null) {
             viewModel.showAgentDetails(id)
         }
@@ -50,9 +51,9 @@ class AgentDetailFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading...")
+                    binding.progressBar.visible()
                 } else {
-                    Log.i("TAG", "observeViewState: ${state.agent}")
+                    binding.progressBar.gone()
                     showAgentDetails(state.agent)
                 }
             }
@@ -62,7 +63,7 @@ class AgentDetailFragment : Fragment() {
     private fun showAgentDetails(agent: Agent?) {
         if (agent != null) {
             with(binding) {
-
+                agentNameTextView.text = agent.firstName
             }
         }
     }
