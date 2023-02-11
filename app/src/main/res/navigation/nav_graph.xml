@@ -49,7 +49,7 @@
         tools:layout="@layout/fragment_menu" />
     <fragment
         android:id="@+id/agentDetailFragment"
-        android:name="com.example.guryihii.AgentDetailFragment"
+        android:name="com.example.guryihii.feature_agents.presentation.agent_details.AgentDetailFragment"
         android:label="fragment_agent_detail"
         tools:layout="@layout/fragment_agent_detail" >
         <action

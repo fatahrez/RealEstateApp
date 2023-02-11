@@ -85,7 +85,6 @@ class PropertyFragment : Fragment() {
     }
 
     private fun navToPropertyDetail(property: Property) {
-        Log.i("TAG", "navToPropertyDetail: ${property.slug}")
         val bundle = Bundle()
         bundle.putString("slug", property.slug)
         view?.let {
