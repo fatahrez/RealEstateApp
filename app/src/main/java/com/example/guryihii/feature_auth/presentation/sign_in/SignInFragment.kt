@@ -35,8 +35,20 @@ class SignInFragment : Fragment() {
     }
 
     private fun setupUI() {
-        fetchData()
+//        fetchData()
         observeViewState()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        with(binding) {
+            signInButton.setOnClickListener {
+                val email = emailEditText.text.toString()
+                val password = passwordEditText.text.toString()
+                val user = User(email, password)
+                viewModel.signIn(user)
+            }
+        }
     }
 
     private fun fetchData() {
