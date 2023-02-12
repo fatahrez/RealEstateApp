@@ -62,12 +62,12 @@ object PropertyModule {
     fun providesOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authInterceptor: AuthInterceptor,
-//        authenticator: TokenAuthenticator
+        authenticator: TokenAuthenticator
     ): OkHttpClient {
         return HttpClient.setupOkHttpClient(
             httpLoggingInterceptor,
             authInterceptor,
-//            authenticator
+            authenticator
         )
     }
 

@@ -10,11 +10,12 @@ object HttpClient {
     fun setupOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         authInterceptor: AuthInterceptor,
-//        authenticator: TokenAuthenticator
+        authenticator: TokenAuthenticator
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-//            .authenticator(authenticator)
+            .addInterceptor(authInterceptor)
+            .authenticator(authenticator)
             .build()
     }
 }

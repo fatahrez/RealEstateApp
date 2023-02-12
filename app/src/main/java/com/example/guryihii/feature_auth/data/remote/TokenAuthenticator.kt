@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class TokenAuthenticator @Inject constructor(
     private val sharedPreferences: SharedPreferences,
-    private val authAPI: AuthAPI,
+    private val authApiHolder: AuthApiHolder,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
@@ -48,7 +48,7 @@ class TokenAuthenticator @Inject constructor(
     private suspend fun getUpdatedToken(): Flow<ResultWrapper<String>> = safeApiCall(ioDispatcher) {
         val refreshToken = sharedPreferences.getString("refresh_token", null)
         if (refreshToken != null) {
-            authAPI.postRefreshAccessToken(refreshToken)
+            authApiHolder.apiService().postRefreshAccessToken(refreshToken)
         } else {
             ""
         }
