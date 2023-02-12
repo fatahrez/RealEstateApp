@@ -7,9 +7,9 @@ data class UserDTO(
     val email: String,
     val password: String,
     val username: String?,
-    @SerializedName("access_token")
+    @SerializedName("access")
     val accessToken: String?,
-    @SerializedName("refresh_token")
+    @SerializedName("refresh")
     val refreshToken: String?,
     @SerializedName("first_name")
     val firstName: String?,

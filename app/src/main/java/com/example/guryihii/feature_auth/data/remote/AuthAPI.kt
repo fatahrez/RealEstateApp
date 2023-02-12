@@ -10,4 +10,7 @@ interface AuthAPI {
     @POST("users/login/")
     suspend fun postUserSignIn(@Body user: User): UserDTO
 
+    @POST("users/refresh")
+    suspend fun postRefreshAccessToken(@Body refreshToken: String): String
+
 }
