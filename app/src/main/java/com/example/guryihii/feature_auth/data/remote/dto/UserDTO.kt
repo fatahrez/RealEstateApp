@@ -4,16 +4,16 @@ import com.example.guryihii.feature_auth.domain.model.User
 import com.google.gson.annotations.SerializedName
 
 data class UserDTO(
-    val email: String,
-    val password: String,
-    val username: String?,
+    val email: String? = null,
+    val password: String? = null,
+    val username: String? = null,
     @SerializedName("access")
-    val accessToken: String?,
+    val accessToken: String? = null,
     @SerializedName("refresh")
-    val refreshToken: String?,
+    val refreshToken: String? = null,
     @SerializedName("first_name")
-    val firstName: String?,
-    val type: String?
+    val firstName: String? = null,
+    val type: String? = null
 ) {
     fun toUser(): User {
         return User(
