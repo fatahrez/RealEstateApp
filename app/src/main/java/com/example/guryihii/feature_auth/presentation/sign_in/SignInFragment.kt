@@ -52,8 +52,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun fetchData() {
-        val user = User("fatah2@gmail.com", password = "6674fatah")
-        viewModel.signIn(user)
+
     }
 
     private fun observeViewState() {
