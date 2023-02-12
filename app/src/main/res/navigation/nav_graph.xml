@@ -69,4 +69,9 @@
             android:id="@+id/action_newProjectDetailsFragment_to_newProjectsFragment2"
             app:destination="@id/newProjectsFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.guryihii.feature_auth.presentation.sign_in.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
 </navigation>
