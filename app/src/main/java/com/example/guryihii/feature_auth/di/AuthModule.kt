@@ -1,5 +1,7 @@
 package com.example.guryihii.feature_auth.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.feature_auth.data.remote.AuthAPI
 import com.example.guryihii.feature_auth.data.repository.AuthRepositoryImpl
@@ -8,6 +10,7 @@ import com.example.guryihii.feature_auth.domain.usecases.PostSignInUser
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -44,5 +47,11 @@ object AuthModule {
             .client(okHttpClient)
             .build()
             .create(AuthAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext appContext: Context): SharedPreferences {
+        return appContext.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
     }
 }
