@@ -1,8 +1,12 @@
 package com.example.guryihii.feature_properties.di
 
+import android.content.SharedPreferences
+import com.example.guryihii.core.shared.remote.AuthInterceptor
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.shared.remote.HttpClient
 import com.example.guryihii.core.shared.remote.HttpLogger
+import com.example.guryihii.feature_auth.data.remote.AuthAPI
+import com.example.guryihii.feature_auth.data.remote.TokenAuthenticator
 import com.example.guryihii.feature_properties.data.remote.PropertyAPI
 import com.example.guryihii.feature_properties.data.repository.PropertyRepositoryImpl
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
@@ -51,8 +55,20 @@ object PropertyModule {
     fun providesLoggingInterceptor(): HttpLoggingInterceptor = HttpLogger.create()
 
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return HttpClient.setupOkHttpClient(httpLoggingInterceptor)
+    fun providesAuthInterceptor(
+        sharedPreferences: SharedPreferences
+    ): AuthInterceptor = AuthInterceptor(sharedPreferences)
+    @Provides
+    fun providesOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authInterceptor: AuthInterceptor,
+        authenticator: TokenAuthenticator
+    ): OkHttpClient {
+        return HttpClient.setupOkHttpClient(
+            httpLoggingInterceptor,
+            authInterceptor,
+            authenticator
+        )
     }
 
     @Provides

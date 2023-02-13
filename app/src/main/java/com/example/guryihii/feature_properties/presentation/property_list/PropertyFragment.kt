@@ -1,5 +1,6 @@
 package com.example.guryihii.feature_properties.presentation.property_list
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
+import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyBinding
@@ -18,6 +20,7 @@ import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.count
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -26,6 +29,9 @@ class PropertyFragment : Fragment() {
     private val binding: FragmentPropertyBinding get() = _binding!!
 
     private val viewModel: PropertyListViewModel by viewModels()
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +55,7 @@ class PropertyFragment : Fragment() {
     }
 
     private fun initViews() {
-
+        Log.i("TAG", "initViews: ${sharedPreferences.getString(Constants.ACCESS_TOKEN, "meow")}")
     }
 
     private fun initListeners() {

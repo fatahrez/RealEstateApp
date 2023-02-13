@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setupUI()
 
-//        refreshData()
-//        setupListeners()
-
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.properties -> {
@@ -76,7 +73,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId) {
             R.id.sign_in -> {
                 Log.i("TAG", "onNavigationItemSelected: click 2")
-                navController.navigate(R.id.menuFragment2, null)
+                navController.navigate(R.id.signInFragment, null)
             }
         }
         return true
