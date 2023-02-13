@@ -1,6 +1,7 @@
 package com.example.guryihii.feature_auth.data.remote
 
 import android.content.SharedPreferences
+import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.core.util.safeApiCall
 import com.example.guryihii.feature_auth.domain.model.User
@@ -30,7 +31,7 @@ class TokenAuthenticator @Inject constructor(
                         is ResultWrapper.Success -> {
                             sharedPreferences
                                 .edit()
-                                .putString("access_token", result.value)
+                                .putString(Constants.ACCESS_TOKEN, result.value)
                                 .apply()
                             response.request.newBuilder()
                                 .header("Authorization", "Bearer ${result.value}")
@@ -46,7 +47,7 @@ class TokenAuthenticator @Inject constructor(
     }
 
     private suspend fun getUpdatedToken(): Flow<ResultWrapper<String>> = safeApiCall(ioDispatcher) {
-        val refreshToken = sharedPreferences.getString("refresh_token", null)
+        val refreshToken = sharedPreferences.getString(Constants.REFRESH_TOKEN, null)
         if (refreshToken != null) {
             authApiHolder.apiService().postRefreshAccessToken(refreshToken)
         } else {

@@ -8,4 +8,6 @@ interface AuthRepository {
 
     suspend fun postSignInUser(user: User): Flow<ResultWrapper<User>>
 
+    suspend fun postSignUpUser(user: User): Flow<ResultWrapper<User>>
+
 }
