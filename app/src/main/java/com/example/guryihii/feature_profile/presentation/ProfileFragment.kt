@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_profile
+package com.example.guryihii.feature_profile.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
