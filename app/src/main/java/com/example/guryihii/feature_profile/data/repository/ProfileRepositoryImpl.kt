@@ -15,6 +15,6 @@ class ProfileRepositoryImpl(
 ): ProfileRepository {
     override suspend fun getProfile(): Flow<ResultWrapper<Profile>>
     = safeApiCall(ioDispatchers) {
-        profileAPI.getProfile().toProfile()
+        profileAPI.getProfile().profile.toProfile()
     }
 }
