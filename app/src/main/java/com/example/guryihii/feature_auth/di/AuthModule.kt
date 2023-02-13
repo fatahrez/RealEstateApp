@@ -9,6 +9,7 @@ import com.example.guryihii.feature_auth.data.remote.TokenAuthenticator
 import com.example.guryihii.feature_auth.data.repository.AuthRepositoryImpl
 import com.example.guryihii.feature_auth.domain.repository.AuthRepository
 import com.example.guryihii.feature_auth.domain.usecases.PostSignInUser
+import com.example.guryihii.feature_auth.domain.usecases.PostSignUpUser
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,18 +35,19 @@ object AuthModule {
 
     @Provides
     @Singleton
+    fun providesPostSignUpUserUseCase(
+        authRepository: AuthRepository
+    ): PostSignUpUser {
+        return PostSignUpUser(authRepository)
+    }
+
+    @Provides
+    @Singleton
     fun providesAuthRepository(
         authAPI: AuthAPI
     ): AuthRepository {
         return AuthRepositoryImpl(authAPI)
     }
-
-//    @Provides
-//    @Singleton
-//    fun providesTokenAuthenticator(
-//        authAPI: AuthAPI,
-//        sharedPreferences: SharedPreferences
-//    ): TokenAuthenticator = TokenAuthenticator(sharedPreferences, authAPI)
 
     @Provides
     @Singleton
