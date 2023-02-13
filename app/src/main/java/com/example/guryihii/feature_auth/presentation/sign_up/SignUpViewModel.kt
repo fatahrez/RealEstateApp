@@ -20,7 +20,7 @@ class SignUpViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _state = MutableStateFlow(SignUpState())
-    private val state: StateFlow<SignUpState> get() = _state
+    val state: StateFlow<SignUpState> get() = _state
 
     fun signUpUser(user: User) {
         viewModelScope.launch {

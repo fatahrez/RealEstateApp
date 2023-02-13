@@ -1,13 +1,19 @@
 package com.example.guryihii.feature_auth.presentation.sign_up
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentSignUpBinding
+import com.example.guryihii.feature_auth.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
@@ -36,11 +42,34 @@ class SignUpFragment : Fragment() {
     }
 
     private fun observeViewState() {
-        TODO("Not yet implemented")
+        lifecycleScope.launchWhenCreated {
+            viewModel.state.collect { state ->
+                if(state.isLoading) {
+                    binding.progressBar.visible()
+                } else {
+                    binding.progressBar.gone()
+                    Log.i("TAG", "observeViewState: ${state.user}")
+                }
+            }
+        }
     }
 
     private fun initListeners() {
-        TODO("Not yet implemented")
+        with(binding) {
+            signUpButton.setOnClickListener {
+                val firstName = firstNameEditText.text.toString()
+                val email = emailEditText.text.toString()
+                val password = passwordEditText.text.toString()
+
+                val user = User(
+                    firstName = firstName,
+                    email = email,
+                    password = password,
+                    type = "INDIVIDUAL"
+                )
+                viewModel.signUpUser(user)
+            }
+        }
     }
 
     companion object {
