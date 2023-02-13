@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.guryihii.feature_profile.ProfileFragment"
+        android:name="com.example.guryihii.feature_profile.presentation.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
