@@ -1,11 +1,14 @@
 package com.example.guryihii.feature_auth.data.remote
 
+import javax.inject.Inject
+
 class AuthApiHolder() {
     companion object {
 
     }
-    private lateinit var authAPI: AuthAPI
+    @Inject
+    lateinit var authAPI: Lazy<AuthAPI>
     fun apiService(): AuthAPI {
-        return authAPI
+        return authAPI.value
     }
 }
