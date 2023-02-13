@@ -17,4 +17,9 @@ class AuthRepositoryImpl(
             Flow<ResultWrapper<User>> = safeApiCall(ioDispatcher) {
         apiService.postUserSignIn(user).toUser()
     }
+
+    override suspend fun postSignUpUser(user: User): Flow<ResultWrapper<User>>
+    = safeApiCall(ioDispatcher) {
+        apiService.postUserSignUp(user).toUser()
+    }
 }
