@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.core.util.Constants
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentSignInBinding
 import com.example.guryihii.feature_auth.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,8 +68,9 @@ class SignInFragment() : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading...")
+                    binding.progressBar.visible()
                 } else {
+                    binding.progressBar.gone()
                     sharedPreferences.edit {
                         putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
                         putString(Constants.REFRESH_TOKEN, state.user?.refreshToken)
