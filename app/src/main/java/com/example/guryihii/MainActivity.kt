@@ -1,5 +1,6 @@
 package com.example.guryihii
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,14 +10,20 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.guryihii.core.util.Constants
+import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
    private val navController: NavController by lazy {
        val navHostFragment = supportFragmentManager
@@ -29,6 +36,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val view = binding.root
         setContentView(view)
 
+        val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
+        if (token != null) {
+            val tokenDecoder = Jwt(token)
+            Log.i("TAG", "onCreate: ${tokenDecoder.getUserData().role}")
+        }
         setupUI()
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
