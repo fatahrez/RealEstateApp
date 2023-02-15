@@ -75,6 +75,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.i("TAG", "onNavigationItemSelected: click 2")
                 navController.navigate(R.id.signInFragment, null)
             }
+//            R.id.sign_up -> {
+//
+//            }
         }
         return true
     }
