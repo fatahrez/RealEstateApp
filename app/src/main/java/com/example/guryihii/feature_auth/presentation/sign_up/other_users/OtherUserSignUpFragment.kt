@@ -1,14 +1,19 @@
 package com.example.guryihii.feature_auth.presentation.sign_up.other_users
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.R
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentOtherUserSignUpBinding
+import com.example.guryihii.feature_auth.domain.model.User
 import com.example.guryihii.feature_auth.presentation.sign_up.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +40,41 @@ class OtherUserSignUpFragment : Fragment() {
 
     private fun setupUI() {
         initViews()
+        initListeners()
+        observeViewState()
+    }
+
+    private fun observeViewState() {
+        lifecycleScope.launchWhenCreated {
+            viewModel.state.collect { state ->
+                if(state.isLoading) {
+                    binding.progressBar.visible()
+                } else {
+                    binding.progressBar.gone()
+                    Log.i("TAG", "observeViewState: ${state.user}")
+                }
+            }
+        }
+    }
+
+    private fun initListeners() {
+        with(binding) {
+            signUpButton.setOnClickListener {
+                val firstName = firstNameEditText.text.toString()
+                val email = emailEditText.text.toString()
+                val password = passwordEditText.text.toString()
+                val userType = userTypeSpinners.selectedItem.toString()
+
+                Log.i("TAG", "initListeners: $userType")
+                val user = User(
+                    firstName = firstName,
+                    email = email,
+                    password = password,
+                    type = userType
+                )
+                viewModel.signUpUser(user)
+            }
+        }
     }
 
     private fun initViews() {
