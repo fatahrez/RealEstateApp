@@ -23,10 +23,7 @@ class TokenAuthenticator @Inject constructor(
 ): Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         return runBlocking {
-            Log.i("TAG", "authenticate: here")
-            Log.i("TAG", "authenticate: ${response.code}")
             if (response.code == 401) {
-                Log.i("TAG", "authenticate: hereeeeee")
                 val refreshToken = sharedPreferences.getString(Constants.REFRESH_TOKEN, "")
                 val updatedAccessToken = refreshToken?.let { refreshAccessToken(it).access }
                 response.request.newBuilder()

@@ -13,4 +13,14 @@
     <string name="email">Email</string>
     <string name="first_name">First Name</string>
     <string name="sign_up">Sign Up</string>
+    <string name="sign_up_as">Sign Up as ...</string>
+    <string name="individual">Individual</string>
+    <string name="other_sign_up">Other Sign Up</string>
+    <string name="log_out">Log out</string>
+
+    <string-array name="userTypes">
+        <item>SELLER</item>
+        <item>AGENT</item>
+        <item>PROJECTBUILDER</item>
+    </string-array>
 </resources>

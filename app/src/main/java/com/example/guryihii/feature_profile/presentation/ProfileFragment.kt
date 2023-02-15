@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
     private fun showProfile(profile: Profile?) {
         with(binding) {
             if (profile != null) {
-                textView.text = profile.email
+//                textView.text = profile.email
             }
         }
     }

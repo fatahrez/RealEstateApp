@@ -8,5 +8,15 @@
             android:id="@+id/sign_in"
             android:icon="@drawable/account_circle"
             android:title="@string/sign_in"/>
+
+        <item
+            android:id="@+id/sign_up"
+            android:icon="@drawable/account_circle"
+            android:title="@string/sign_up"/>
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/account_circle"
+            android:title="@string/log_out"/>
     </group>
 </menu>

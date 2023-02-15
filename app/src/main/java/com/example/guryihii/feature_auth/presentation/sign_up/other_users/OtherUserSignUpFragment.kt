@@ -1,28 +1,27 @@
-package com.example.guryihii.feature_auth.presentation.sign_up
+package com.example.guryihii.feature_auth.presentation.sign_up.other_users
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
-import com.example.guryihii.databinding.FragmentSignUpBinding
+import com.example.guryihii.databinding.FragmentOtherUserSignUpBinding
 import com.example.guryihii.feature_auth.domain.model.User
+import com.example.guryihii.feature_auth.presentation.sign_up.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class SignUpFragment : Fragment() {
+class OtherUserSignUpFragment : Fragment() {
 
-    private var _binding: FragmentSignUpBinding? = null
-    private val binding: FragmentSignUpBinding get() = _binding!!
+    private var _binding: FragmentOtherUserSignUpBinding? = null
+    private val binding: FragmentOtherUserSignUpBinding get() = _binding!!
 
     private val viewModel: SignUpViewModel by viewModels()
 
@@ -30,7 +29,7 @@ class SignUpFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        _binding = FragmentOtherUserSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,6 +39,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setupUI() {
+        initViews()
         initListeners()
         observeViewState()
     }
@@ -59,26 +59,38 @@ class SignUpFragment : Fragment() {
 
     private fun initListeners() {
         with(binding) {
-            otherUserSignUpButton.setOnClickListener {
-                findNavController().navigate(R.id.otherUserSignUpFragment)
-            }
             signUpButton.setOnClickListener {
                 val firstName = firstNameEditText.text.toString()
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
+                val userType = userTypeSpinners.selectedItem.toString()
 
+                Log.i("TAG", "initListeners: $userType")
                 val user = User(
                     firstName = firstName,
                     email = email,
                     password = password,
-                    type = "INDIVIDUAL"
+                    type = userType
                 )
                 viewModel.signUpUser(user)
             }
         }
     }
 
-    companion object {
+    private fun initViews() {
+        with(binding) {
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.userTypes,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                userTypeSpinners.adapter = adapter
+            }
+        }
 
+    }
+
+    companion object {
     }
 }
