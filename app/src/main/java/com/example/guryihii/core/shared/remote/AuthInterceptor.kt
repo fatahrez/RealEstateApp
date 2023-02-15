@@ -1,7 +1,6 @@
 package com.example.guryihii.core.shared.remote
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.example.guryihii.core.util.Constants
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -16,7 +15,6 @@ class AuthInterceptor @Inject constructor(
         return if (token.isNullOrEmpty()) {
             chain.proceed(request)
         } else {
-            Log.i("TAG", "intercept: $token")
             val newRequest = request.newBuilder().header(
                 "Authorization", "Bearer $token"
             ).build()

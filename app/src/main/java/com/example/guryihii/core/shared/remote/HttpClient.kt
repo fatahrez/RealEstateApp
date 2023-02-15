@@ -1,8 +1,5 @@
 package com.example.guryihii.core.shared.remote
 
-import android.content.SharedPreferences
-import com.example.guryihii.feature_auth.data.remote.AuthAPI
-import com.example.guryihii.feature_auth.data.remote.TokenAuthenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
