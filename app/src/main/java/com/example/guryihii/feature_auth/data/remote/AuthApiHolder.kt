@@ -7,8 +7,8 @@ class AuthApiHolder() {
 
     }
     @Inject
-    lateinit var authAPI: Lazy<AuthAPI>
+    lateinit var authAPI: AuthAPI
     fun apiService(): AuthAPI {
-        return authAPI.value
+        return authAPI
     }
 }

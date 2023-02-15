@@ -5,8 +5,7 @@ import com.example.guryihii.core.shared.remote.AuthInterceptor
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.shared.remote.HttpClient
 import com.example.guryihii.core.shared.remote.HttpLogger
-import com.example.guryihii.feature_auth.data.remote.AuthAPI
-import com.example.guryihii.feature_auth.data.remote.TokenAuthenticator
+import com.example.guryihii.core.shared.remote.TokenAuthenticator
 import com.example.guryihii.feature_properties.data.remote.PropertyAPI
 import com.example.guryihii.feature_properties.data.repository.PropertyRepositoryImpl
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
