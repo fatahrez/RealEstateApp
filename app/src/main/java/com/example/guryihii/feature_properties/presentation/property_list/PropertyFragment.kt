@@ -55,7 +55,7 @@ class PropertyFragment : Fragment() {
     }
 
     private fun initViews() {
-        Log.i("TAG", "initViews: ${sharedPreferences.getString(Constants.ACCESS_TOKEN, "meow")}")
+
     }
 
     private fun initListeners() {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.core.content.edit
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -88,8 +89,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.sign_up -> {
                 navController.navigate(R.id.signUpFragment, null)
             }
+            R.id.logout -> {
+                logout()
+            }
         }
         return true
+    }
+
+    private fun logout() {
+        sharedPreferences.edit {
+            putString(Constants.ACCESS_TOKEN, null)
+            putString(Constants.REFRESH_TOKEN, null)
+        }
+//        navController.navigate(R.id.)
+        binding.drawerLayout.closeDrawer(GravityCompat.END)
     }
 
 }

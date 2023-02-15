@@ -44,7 +44,6 @@ class SignInFragment() : Fragment() {
     }
 
     private fun setupUI() {
-//        fetchData()
         observeViewState()
         initListeners()
     }
@@ -58,10 +57,6 @@ class SignInFragment() : Fragment() {
                 viewModel.signIn(user)
             }
         }
-    }
-
-    private fun fetchData() {
-
     }
 
     private fun observeViewState() {
