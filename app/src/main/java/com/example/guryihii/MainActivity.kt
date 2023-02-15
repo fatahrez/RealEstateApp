@@ -79,17 +79,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Log.i("TAG", "onNavigationItemSelected: click 1")
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.END)
         when(item.itemId) {
             R.id.sign_in -> {
-                Log.i("TAG", "onNavigationItemSelected: click 2")
                 navController.navigate(R.id.signInFragment, null)
             }
-//            R.id.sign_up -> {
-//
-//            }
+            R.id.sign_up -> {
+                navController.navigate(R.id.signUpFragment, null)
+            }
         }
         return true
     }
