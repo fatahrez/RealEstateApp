@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentSignUpBinding
@@ -56,6 +59,9 @@ class SignUpFragment : Fragment() {
 
     private fun initListeners() {
         with(binding) {
+            otherUserSignUpButton.setOnClickListener {
+                findNavController().navigate(R.id.otherUserSignUpFragment)
+            }
             signUpButton.setOnClickListener {
                 val firstName = firstNameEditText.text.toString()
                 val email = emailEditText.text.toString()

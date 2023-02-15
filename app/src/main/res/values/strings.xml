@@ -17,4 +17,10 @@
     <string name="individual">Individual</string>
     <string name="other_sign_up">Other Sign Up</string>
     <string name="log_out">Log out</string>
+
+    <string-array name="userTypes">
+        <item>SELLER</item>
+        <item>AGENT</item>
+        <item>PROJECTBUILDER</item>
+    </string-array>
 </resources>
