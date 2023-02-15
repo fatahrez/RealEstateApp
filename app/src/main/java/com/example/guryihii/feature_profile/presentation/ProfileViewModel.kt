@@ -20,10 +20,6 @@ class ProfileViewModel @Inject constructor(
     private val _state = MutableStateFlow(ProfileState())
     val state: StateFlow<ProfileState> get() = _state
 
-    init {
-        showProfile()
-    }
-
     fun showProfile(){
         viewModelScope.launch {
             getProfile().collect { result ->
