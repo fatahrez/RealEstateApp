@@ -1,7 +1,6 @@
 package com.example.guryihii.core.shared.remote
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.example.guryihii.core.util.Constants
 import okhttp3.Interceptor
 import okhttp3.Response

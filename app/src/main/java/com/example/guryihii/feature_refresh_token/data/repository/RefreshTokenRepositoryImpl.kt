@@ -11,8 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RefreshTokenRepositoryImpl @Inject constructor(
-    private val refreshTokenApi: RefreshTokenApi,
-    private val ioDispatchers: CoroutineDispatcher = Dispatchers.IO
+    private val refreshTokenApi: RefreshTokenApi
 ): RefreshTokenRepository {
     override suspend fun refreshToken(token: String): Token {
         return refreshTokenApi.refreshToken(token).toToken()

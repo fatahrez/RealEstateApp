@@ -2,14 +2,11 @@ package com.example.guryihii.core.shared.remote
 
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.core.content.edit
 import com.example.guryihii.core.util.Constants
-import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_refresh_token.data.repository.RefreshTokenRepositoryImpl
+import com.example.guryihii.feature_refresh_token.domain.model.Token
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okhttp3.Authenticator
@@ -31,7 +28,7 @@ class TokenAuthenticator @Inject constructor(
             if (response.code == 401) {
                 Log.i("TAG", "authenticate: hereeeeee")
                 val refreshToken = sharedPreferences.getString(Constants.REFRESH_TOKEN, "")
-                val updatedAccessToken = refreshToken?.let { refreshAccessToken(it) }
+                val updatedAccessToken = refreshToken?.let { refreshAccessToken(it).access }
                 response.request.newBuilder()
                     .header("Authorization", "Bearer $updatedAccessToken")
                     .build()
@@ -42,7 +39,7 @@ class TokenAuthenticator @Inject constructor(
 
     }
 
-    private suspend fun refreshAccessToken(refreshToken: String): String
+    private suspend fun refreshAccessToken(refreshToken: String): Token
     = withContext(ioDispatcher){
         val repository = repositoryProvider.get()
         repository.refreshToken(refreshToken)
