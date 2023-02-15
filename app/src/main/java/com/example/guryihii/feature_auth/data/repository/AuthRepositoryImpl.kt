@@ -15,11 +15,11 @@ class AuthRepositoryImpl(
 ): AuthRepository {
     override suspend fun postSignInUser(user: User):
             Flow<ResultWrapper<User>> = safeApiCall(ioDispatcher) {
-        apiService.postUserSignIn(user).toUser()
+        apiService.postUserSignIn(user.toUserDTO()).toUser()
     }
 
     override suspend fun postSignUpUser(user: User): Flow<ResultWrapper<User>>
     = safeApiCall(ioDispatcher) {
-        apiService.postUserSignUp(user).toUser()
+        apiService.postUserSignUp(user.toUserDTO()).toUser()
     }
 }
