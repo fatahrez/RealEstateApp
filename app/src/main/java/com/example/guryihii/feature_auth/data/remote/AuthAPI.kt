@@ -15,8 +15,4 @@ interface AuthAPI {
     @POST("users/")
     suspend fun postUserSignUp(@Body user: User): UserDTO
 
-    @POST("users/refresh/")
-    suspend fun postRefreshAccessToken(@Field("refresh") refreshToken: String): String
-
-
 }

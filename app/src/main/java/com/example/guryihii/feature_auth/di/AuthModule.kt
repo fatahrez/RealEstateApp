@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.feature_auth.data.remote.AuthAPI
-import com.example.guryihii.feature_auth.data.remote.AuthApiHolder
 import com.example.guryihii.feature_auth.data.repository.AuthRepositoryImpl
 import com.example.guryihii.feature_auth.domain.repository.AuthRepository
 import com.example.guryihii.feature_auth.domain.usecases.PostSignInUser
@@ -46,10 +45,6 @@ object AuthModule {
     ): AuthRepository {
         return AuthRepositoryImpl(authAPI)
     }
-
-    @Provides
-    @Singleton
-    fun providesAuthApiHolder(): AuthApiHolder = AuthApiHolder()
 
     @Provides
     @Singleton
