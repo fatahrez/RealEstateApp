@@ -21,7 +21,6 @@ class Jwt(private val token: String) {
     }
 
     fun getUserData(): JwtPayload {
-        gson.toJson(userData, Jwt::class.java)
         return gson.fromJson(userData, JwtPayload::class.java)
     }
 
