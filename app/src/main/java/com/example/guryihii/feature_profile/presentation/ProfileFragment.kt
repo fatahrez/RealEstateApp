@@ -1,17 +1,17 @@
 package com.example.guryihii.feature_profile.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.guryihii.R
+import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentProfileBinding
+import com.example.guryihii.feature_profile.domain.model.Profile
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -35,17 +35,31 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupUI() {
+        initViews()
         observeViewState()
+    }
+
+    private fun initViews() {
+
     }
 
     private fun observeViewState() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
-                    Log.i("TAG", "observeViewState: loading....")
+                    binding.progressBar2.visible()
                 } else {
-                    Log.i("TAG", "observeViewState: ${state.profile}")
+                    binding.progressBar2.gone()
+                    showProfile(state.profile)
                 }
+            }
+        }
+    }
+
+    private fun showProfile(profile: Profile?) {
+        with(binding) {
+            if (profile != null) {
+                textView.text = profile.email
             }
         }
     }
