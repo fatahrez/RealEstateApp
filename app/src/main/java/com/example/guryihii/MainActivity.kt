@@ -39,10 +39,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
         if (token != null) {
             val tokenDecoder = Jwt(token)
+            Log.i("TAG", "onCreate: $token")
+            Log.i("TAG", "onCreate: ${tokenDecoder.getUserData()}")
             val navGraphId = when(tokenDecoder.getUserData().role) {
                 Constants.INDIVIDUAL_SIGN_UP -> R.navigation.nav_graph
                 Constants.AGENT_SIGN_UP -> R.navigation.agent_nav_graph
                 Constants.SELLER_SIGN_UP -> R.navigation.seller_nav_graph
+                Constants.PROJECTBUILDER_SIGN_UP -> R.navigation.project_builder_nav_graph
                 else -> R.navigation.nav_graph
             }
 
@@ -50,6 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Constants.INDIVIDUAL_SIGN_UP -> R.menu.bottom_navigation_menu
                 Constants.AGENT_SIGN_UP -> R.menu.agent_bottom_navigation_menu
                 Constants.SELLER_SIGN_UP -> R.menu.seller_bottom_navigation_menu
+                Constants.PROJECTBUILDER_SIGN_UP -> R.menu.project_builder_navigation_menu
                 else -> R.menu.bottom_navigation_menu
             }
 
