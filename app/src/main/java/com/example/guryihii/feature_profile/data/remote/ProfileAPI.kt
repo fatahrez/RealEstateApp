@@ -12,7 +12,7 @@ interface ProfileAPI {
     @GET("profile/me/")
     suspend fun getProfile(): ProfileResponseWrapper
 
-    @PATCH("profile/update/{username}")
+    @PATCH("profile/update/{username}/")
     suspend fun updateProfile(
         @Path("username") username: String,
         @Body profile: ProfileDTO

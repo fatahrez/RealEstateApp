@@ -59,11 +59,13 @@ class OtherUserSignUpFragment : Fragment() {
                     binding.progressBar.visible()
                 } else {
                     binding.progressBar.gone()
-                    sharedPreferences.edit {
-                        putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
-                        putString(Constants.REFRESH_TOKEN, state.user?.refreshToken)
+                    if (state.user != null) {
+                        sharedPreferences.edit {
+                            putString(Constants.ACCESS_TOKEN, state.user.accessToken)
+                            putString(Constants.REFRESH_TOKEN, state.user.refreshToken)
+                        }
+                        findNavController().navigate(R.id.updateProfileFragment, null)
                     }
-                    findNavController().navigate(R.id.updateProfileFragment, null)
                 }
             }
         }

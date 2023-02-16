@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentUpdateProfileBinding
 import com.example.guryihii.feature_profile.domain.model.Profile
+import com.example.guryihii.feature_profile.presentation.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -28,9 +31,10 @@ class UpdateProfileFragment : Fragment() {
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
-    private var gender: String? = "M"
+    private var gender: String? = "Male"
 
     private val viewModel: UpdateProfileViewModel by viewModels()
+    private val getProfileViewModel: ProfileViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,35 +49,53 @@ class UpdateProfileFragment : Fragment() {
     }
 
     private fun setupUI() {
+        fetchData()
         initListeners()
         observeViewState()
     }
 
+    private fun fetchData() {
+        getProfileViewModel.showProfile()
+    }
+
     private fun observeViewState() {
+        lifecycleScope.launchWhenCreated {
+            getProfileViewModel.state.collect { state ->
+                if (state.isLoading) {
+                    binding.progressBar.visible()
+                } else {
+                    binding.progressBar.gone()
+                    if (state.profile != null) {
+                        updateProfile(state.profile.username)
+                    }
+                }
+            }
+        }
+
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
                     binding.progressBar.visible()
                 } else {
                     binding.progressBar.gone()
+                    findNavController().navigate(R.id.propertyFragment, null)
                 }
             }
         }
     }
 
-    private fun initListeners() {
+    private fun updateProfile(username: String?) {
         with(binding) {
             updateProfileButton.setOnClickListener {
-                val username = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
                 val phoneNumber = phoneNumberEditText.text.toString()
                 val aboutMe = aboutMeEditText.text.toString()
                 val license = realEstateLicenseEditText.text.toString()
                 maleRadioButton.isChecked = true
                 maleRadioButton.setOnCheckedChangeListener { _, isChecked ->
                     gender = if (isChecked) {
-                        "M"
+                        "Male"
                     } else {
-                        "F"
+                        "Female"
                     }
                 }
                 val userGender = if (gender != null) {
@@ -88,14 +110,19 @@ class UpdateProfileFragment : Fragment() {
                     aboutMe = aboutMe,
                     license = license,
                     gender = userGender,
-                    country = country,
+                    country = country.lowercase(),
                     city = city
                 )
                 if (username != null) {
                     viewModel.updateUserProfile(username, profile)
                 }
+
             }
         }
+    }
+
+    private fun initListeners() {
+
     }
 
     companion object {

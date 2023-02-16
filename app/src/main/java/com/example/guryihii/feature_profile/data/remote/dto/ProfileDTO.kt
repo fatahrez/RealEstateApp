@@ -15,8 +15,8 @@ data class ProfileDTO(
     val profilePhoto: String? = null,
     @SerializedName("about_me")
     val aboutMe: String,
-    val license: String?,
-    val gender: String,
+    val license: String? = null,
+    val gender: String? = null,
     val country: String,
     val city: String,
     val rating: Any? = null,
