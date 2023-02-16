@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_profile.presentation
+package com.example.guryihii.feature_profile.presentation.profile
 
 import android.content.SharedPreferences
 import android.os.Bundle

@@ -43,9 +43,13 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.guryihii.feature_profile.presentation.ProfileFragment"
+        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_updateProfileFragment"
+            app:destination="@id/updateProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menuFragment2"
         android:name="com.example.guryihii.feature_menu.MenuFragment"
@@ -83,5 +87,18 @@
         android:id="@+id/otherUserSignUpFragment"
         android:name="com.example.guryihii.feature_auth.presentation.sign_up.other_users.OtherUserSignUpFragment"
         android:label="fragment_other_user_sign_up"
-        tools:layout="@layout/fragment_other_user_sign_up" />
+        tools:layout="@layout/fragment_other_user_sign_up" >
+        <action
+            android:id="@+id/action_otherUserSignUpFragment_to_updateProfileFragment"
+            app:destination="@id/updateProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateProfileFragment"
+        android:name="com.example.guryihii.feature_profile.presentation.update_profile.UpdateProfileFragment"
+        android:label="fragment_update_profile"
+        tools:layout="@layout/fragment_update_profile" >
+        <action
+            android:id="@+id/action_updateProfileFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+    </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_profile.presentation
+package com.example.guryihii.feature_profile.presentation.profile
 
 import com.example.guryihii.feature_profile.domain.model.Profile
 
