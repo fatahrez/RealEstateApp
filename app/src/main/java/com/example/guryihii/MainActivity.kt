@@ -23,9 +23,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity()
-//    , NavigationView.OnNavigationItemSelectedListener
-{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
 
     @Inject
@@ -61,6 +59,35 @@ class MainActivity : AppCompatActivity()
             val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
             bottomNavigationView.inflateMenu(menuResId)
             bottomNavigationView.setupWithNavController(navController)
+
+            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.properties -> {
+                        navController.navigate(R.id.propertyFragment, null)
+                        true
+                    }
+                    R.id.agents -> {
+                        navController.navigate(R.id.agentListFragment, null)
+                        true
+                    }
+                    R.id.newProjects -> {
+                        navController.navigate(R.id.newProjectsFragment2, null)
+                        true
+                    }
+                    R.id.profile -> {
+                        navController.navigate(R.id.profileFragment2, null)
+                        true
+                    }
+                    R.id.menu -> {
+                        binding.drawerLayout.openDrawer(GravityCompat.END)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+            binding.navView.setNavigationItemSelectedListener(this)
         } else {
             val navGraphId = R.navigation.nav_graph
             val menuResId = R.menu.bottom_navigation_menu
@@ -72,7 +99,62 @@ class MainActivity : AppCompatActivity()
             val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
             bottomNavigationView.inflateMenu(menuResId)
             bottomNavigationView.setupWithNavController(navController)
+
+            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.properties -> {
+                        navController.navigate(R.id.propertyFragment, null)
+                        true
+                    }
+                    R.id.agents -> {
+                        navController.navigate(R.id.agentListFragment, null)
+                        true
+                    }
+                    R.id.newProjects -> {
+                        navController.navigate(R.id.newProjectsFragment2, null)
+                        true
+                    }
+                    R.id.profile -> {
+                        navController.navigate(R.id.profileFragment2, null)
+                        true
+                    }
+                    R.id.menu -> {
+                        binding.drawerLayout.openDrawer(GravityCompat.END)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+            binding.navView.setNavigationItemSelectedListener(this)
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawer.closeDrawer(GravityCompat.END)
+
+        when(item.itemId) {
+            R.id.sign_in -> {
+                navController.navigate(R.id.signInFragment, null)
+            }
+            R.id.sign_up -> {
+                navController.navigate(R.id.signUpFragment, null)
+            }
+            R.id.logout -> {
+                logout()
+            }
+        }
+        return true
+    }
+
+    private fun logout() {
+        sharedPreferences.edit {
+            putString(Constants.ACCESS_TOKEN, null)
+            putString(Constants.REFRESH_TOKEN, null)
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.END)
     }
 }
 
