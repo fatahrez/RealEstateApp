@@ -40,7 +40,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
         if (token != null) {
             val tokenDecoder = Jwt(token)
-            Log.i("TAG", "onCreate: ${tokenDecoder.getUserData().role}")
+            binding.navView.menu.findItem(R.id.logout).isVisible = true
+            binding.navView.menu.findItem(R.id.sign_in).isVisible = false
+            binding.navView.menu.findItem(R.id.sign_up).isVisible = false
+        } else {
+            binding.navView.menu.findItem(R.id.logout).isVisible = false
+            binding.navView.menu.findItem(R.id.sign_in).isVisible = true
+            binding.navView.menu.findItem(R.id.sign_up).isVisible = true
         }
         setupUI()
 
@@ -82,6 +88,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.END)
+
         when(item.itemId) {
             R.id.sign_in -> {
                 navController.navigate(R.id.signInFragment, null)
