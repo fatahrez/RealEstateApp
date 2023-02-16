@@ -3,19 +3,19 @@ package com.example.guryihii.feature_profile.domain.model
 import com.example.guryihii.feature_profile.data.remote.dto.ProfileDTO
 
 data class Profile(
-    val username: String,
-    val firstName: String,
-    val email: String,
-    val id: Int,
+    val username: String? = null,
+    val firstName: String? = null,
+    val email: String? = null,
+    val id: Int? = null,
     val phoneNumber: String,
-    val profilePhoto: String,
+    val profilePhoto: String? = null,
     val aboutMe: String,
     val license: String?,
     val gender: String,
     val country: String,
     val city: String,
-    val rating: Any?,
-    val numReviews: Int
+    val rating: Any? = null,
+    val numReviews: Int? = null
 ) {
     fun toProfileDTO(): ProfileDTO {
         return ProfileDTO(

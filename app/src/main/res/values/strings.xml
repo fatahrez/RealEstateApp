@@ -13,10 +13,21 @@
     <string name="email">Email</string>
     <string name="first_name">First Name</string>
     <string name="sign_up">Sign Up</string>
-    <string name="sign_up_as">Sign Up as ...</string>
+    <string name="sign_up_as">Sign Up as …</string>
     <string name="individual">Individual</string>
     <string name="other_sign_up">Other Sign Up</string>
     <string name="log_out">Log out</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="about_me">About Me</string>
+    <string name="real_estate_license">Real Estate License</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="others">Others</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="complete_your_profile">Complete your profile</string>
+    <string name="update_profile">Update Profile</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
