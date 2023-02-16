@@ -42,12 +42,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val navGraphId = when(tokenDecoder.getUserData().role) {
                 Constants.INDIVIDUAL_SIGN_UP -> R.navigation.nav_graph
                 Constants.AGENT_SIGN_UP -> R.navigation.agent_nav_graph
+                Constants.SELLER_SIGN_UP -> R.navigation.seller_nav_graph
                 else -> R.navigation.nav_graph
             }
 
             val menuResId = when(tokenDecoder.getUserData().role) {
                 Constants.INDIVIDUAL_SIGN_UP -> R.menu.bottom_navigation_menu
                 Constants.AGENT_SIGN_UP -> R.menu.agent_bottom_navigation_menu
+                Constants.SELLER_SIGN_UP -> R.menu.seller_bottom_navigation_menu
                 else -> R.menu.bottom_navigation_menu
             }
 
@@ -82,12 +84,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         binding.drawerLayout.openDrawer(GravityCompat.END)
                         true
                     }
+                    R.id.seller_posts -> {
+                        navController.navigate(R.id.propertyFragment, null)
+                        true
+                    }
                     else -> {
                         false
                     }
                 }
             }
             binding.navView.setNavigationItemSelectedListener(this)
+            binding.navView.menu.findItem(R.id.logout).isVisible = true
+            binding.navView.menu.findItem(R.id.sign_in).isVisible = false
+            binding.navView.menu.findItem(R.id.sign_up).isVisible = false
         } else {
             val navGraphId = R.navigation.nav_graph
             val menuResId = R.menu.bottom_navigation_menu
@@ -128,6 +137,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
             binding.navView.setNavigationItemSelectedListener(this)
+            binding.navView.menu.findItem(R.id.logout).isVisible = false
+            binding.navView.menu.findItem(R.id.sign_in).isVisible = true
+            binding.navView.menu.findItem(R.id.sign_up).isVisible = true
         }
     }
 

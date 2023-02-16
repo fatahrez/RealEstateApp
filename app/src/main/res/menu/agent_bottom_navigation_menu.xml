@@ -5,4 +5,27 @@
         android:title="@string/properties"
         android:enabled="true"
         android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/seller_posts"
+        android:title="@string/seller_posts"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/buyer_request"
+        android:title="@string/buyer_request"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:enabled="true"
+        android:icon="@drawable/account_circle"/>
+
+    <item
+        android:id="@+id/menu"
+        android:title="@string/menu"
+        android:enabled="true"
+        android:icon="@drawable/menu"/>
 </menu>

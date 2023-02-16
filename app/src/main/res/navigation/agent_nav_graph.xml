@@ -23,4 +23,9 @@
             android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
