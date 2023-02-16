@@ -26,11 +26,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
-   private val navController: NavController by lazy {
-       val navHostFragment = supportFragmentManager
-           .findFragmentById(R.id.nav_graph) as NavHostFragment
-       navHostFragment.navController
-   }
+   private val navController: NavController
+//   by lazy {
+//       val navHostFragment = supportFragmentManager
+//           .findFragmentById(R.id.nav_graph) as NavHostFragment
+//       navHostFragment.navController
+//   }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,8 +39,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(view)
 
         val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
+        navController
+
         if (token != null) {
-            val tokenDecoder = Jwt(token)
             binding.navView.menu.findItem(R.id.logout).isVisible = true
             binding.navView.menu.findItem(R.id.sign_in).isVisible = false
             binding.navView.menu.findItem(R.id.sign_up).isVisible = false
@@ -49,6 +51,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             binding.navView.menu.findItem(R.id.sign_up).isVisible = true
         }
         setupUI()
+
+//        binding.bottomNavigation.menu.setGroupVisible()
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
@@ -108,7 +112,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             putString(Constants.ACCESS_TOKEN, null)
             putString(Constants.REFRESH_TOKEN, null)
         }
-//        navController.navigate(R.id.)
         binding.drawerLayout.closeDrawer(GravityCompat.END)
     }
 
