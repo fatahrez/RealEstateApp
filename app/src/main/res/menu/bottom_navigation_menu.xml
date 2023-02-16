@@ -2,52 +2,34 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
-        android:id="@+id/group_individual_user"
-        android:checkableBehavior="single"
-        android:visible="true">
+    <item
+        android:id="@+id/properties"
+        android:title="@string/properties"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
 
-        <item
-            android:id="@+id/properties"
-            android:title="@string/properties"
-            android:enabled="true"
-            android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/newProjects"
+        android:title="@string/new_projects"
+        android:enabled="true"
+        android:icon="@drawable/construction"/>
 
-        <item
-            android:id="@+id/newProjects"
-            android:title="@string/new_projects"
-            android:enabled="true"
-            android:icon="@drawable/construction"/>
+    <item
+        android:id="@+id/agents"
+        android:title="@string/agents"
+        android:enabled="true"
+        android:icon="@drawable/handshake"/>
 
-        <item
-            android:id="@+id/agents"
-            android:title="@string/agents"
-            android:enabled="true"
-            android:icon="@drawable/handshake"/>
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:enabled="true"
+        android:icon="@drawable/account_circle"/>
 
-        <item
-            android:id="@+id/profile"
-            android:title="@string/profile"
-            android:enabled="true"
-            android:icon="@drawable/account_circle"/>
-
-        <item
-            android:id="@+id/menu"
-            android:title="@string/menu"
-            android:enabled="true"
-            android:icon="@drawable/menu"/>
-
-    </group>
-
-    <group
-        android:id="@+id/group_agent"
-        android:checkableBehavior="single"
-        android:visible="false">
-        <item
-            android:id="@+id/properti"
-            android:title="@string/properties"
-            android:enabled="true"
-            android:icon="@drawable/home"/>
-    </group>
+    <item
+        android:id="@+id/menu"
+        android:title="@string/menu"
+        android:enabled="true"
+        android:icon="@drawable/menu"/>
 
 </menu>
