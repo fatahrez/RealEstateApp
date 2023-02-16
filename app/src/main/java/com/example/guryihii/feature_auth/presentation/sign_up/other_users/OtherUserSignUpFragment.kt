@@ -1,27 +1,35 @@
 package com.example.guryihii.feature_auth.presentation.sign_up.other_users
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
+import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentOtherUserSignUpBinding
 import com.example.guryihii.feature_auth.domain.model.User
 import com.example.guryihii.feature_auth.presentation.sign_up.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class OtherUserSignUpFragment : Fragment() {
 
     private var _binding: FragmentOtherUserSignUpBinding? = null
     private val binding: FragmentOtherUserSignUpBinding get() = _binding!!
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel: SignUpViewModel by viewModels()
 
@@ -51,7 +59,11 @@ class OtherUserSignUpFragment : Fragment() {
                     binding.progressBar.visible()
                 } else {
                     binding.progressBar.gone()
-                    Log.i("TAG", "observeViewState: ${state.user}")
+                    sharedPreferences.edit {
+                        putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
+                        putString(Constants.REFRESH_TOKEN, state.user?.refreshToken)
+                    }
+                    findNavController().navigate(R.id.updateProfileFragment, null)
                 }
             }
         }
