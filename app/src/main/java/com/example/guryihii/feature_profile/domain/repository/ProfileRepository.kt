@@ -8,4 +8,6 @@ interface ProfileRepository {
 
     suspend fun getProfile(): Flow<ResultWrapper<Profile>>
 
+    suspend fun updateProfile(username: String, profile: Profile): Flow<ResultWrapper<String>>
+
 }

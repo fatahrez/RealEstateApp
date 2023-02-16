@@ -5,6 +5,7 @@ import com.example.guryihii.feature_profile.data.remote.ProfileAPI
 import com.example.guryihii.feature_profile.data.repository.ProfileRepositoryImpl
 import com.example.guryihii.feature_profile.domain.repository.ProfileRepository
 import com.example.guryihii.feature_profile.domain.usecases.GetProfile
+import com.example.guryihii.feature_profile.domain.usecases.UpdateProfile
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +25,14 @@ object ProfileModule {
         profileRepository: ProfileRepository
     ): GetProfile {
         return GetProfile(profileRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUpdateProfileUseCase(
+        profileRepository: ProfileRepository
+    ): UpdateProfile {
+        return UpdateProfile(profileRepository)
     }
 
     @Provides
