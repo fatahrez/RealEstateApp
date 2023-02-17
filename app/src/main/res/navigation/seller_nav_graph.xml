@@ -20,12 +20,24 @@
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail" >
         <action
-            android:id="@+id/action_propertyDetailFragment2_to_propertyFragment"
+            android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
+        <action
+            android:id="@+id/action_propertyDetailFragment_to_postPropertyFragment"
+            app:destination="@id/postPropertyFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/postPropertyFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.post_property.PostPropertyFragment"
+        android:label="fragment_post_property"
+        tools:layout="@layout/fragment_post_property" >
+        <action
+            android:id="@+id/action_postPropertyFragment_to_propertyDetailFragment"
+            app:destination="@id/propertyDetailFragment" />
+    </fragment>
 </navigation>
