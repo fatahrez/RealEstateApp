@@ -10,6 +10,7 @@ import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.guryihii.MainActivity
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
@@ -69,6 +70,10 @@ class SignInFragment() : Fragment() {
                     sharedPreferences.edit {
                         putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
                         putString(Constants.REFRESH_TOKEN, state.user?.refreshToken)
+                    }
+                    if (sharedPreferences.getString(Constants.ACCESS_TOKEN, null) != null) {
+                        val mainActivity = requireActivity() as MainActivity
+                        mainActivity.updateNavigation()
                     }
                 }
             }

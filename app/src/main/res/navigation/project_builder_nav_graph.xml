@@ -11,7 +11,7 @@
         android:label="fragment_property"
         tools:layout="@layout/fragment_property" >
         <action
-            android:id="@+id/action_propertyFragment_to_propertyDetailFragment2"
+            android:id="@+id/action_propertyFragment_to_propertyDetailFragment"
             app:destination="@id/propertyDetailFragment" />
     </fragment>
     <fragment
@@ -25,7 +25,7 @@
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail" >
         <action
-            android:id="@+id/action_propertyDetailFragment2_to_propertyFragment"
+            android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
     </fragment>
 </navigation>
