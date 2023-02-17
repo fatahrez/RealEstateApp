@@ -1,8 +1,10 @@
 package com.example.guryihii.feature_properties.presentation.post_property
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -91,6 +93,12 @@ class PostPropertyFragment : Fragment() {
 
     private fun initListeners() {
         with(binding) {
+            coverPhotoEditText.setOnClickListener {
+                pickPhoto()
+            }
+            coverPhotoTextInputLayout.setOnClickListener {
+                pickPhoto()
+            }
             postPropertyButton.setOnClickListener {
                 val advertType = advertTypeSpinner.selectedItem.toString()
                 val bathrooms = bathroomsEditText.text.toString()
@@ -162,7 +170,13 @@ class PostPropertyFragment : Fragment() {
 
     }
 
+    private fun pickPhoto() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_CODE_PICK_PHOTO)
+    }
+
     companion object {
         const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 1
+        const val REQUEST_CODE_PICK_PHOTO = 1
     }
 }
