@@ -27,4 +27,9 @@ class PropertyRepositoryImpl @Inject constructor(
         safeApiCall(ioDispatcher) {
         apiService.getPropertyDetail(slug).toProperty()
     }
+
+    override suspend fun postProperty(property: Property): Flow<ResultWrapper<Property>> =
+        safeApiCall(ioDispatcher){
+        apiService.postProperty(property.toPropertyDTO()).toProperty()
+    }
 }
