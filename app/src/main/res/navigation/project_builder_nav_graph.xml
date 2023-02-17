@@ -25,7 +25,7 @@
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail" >
         <action
-            android:id="@+id/action_propertyDetailFragment2_to_propertyFragment"
+            android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
     </fragment>
 </navigation>
