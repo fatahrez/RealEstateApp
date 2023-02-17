@@ -8,6 +8,12 @@
         android:icon="@drawable/home"/>
 
     <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:enabled="true"
+        android:icon="@drawable/account_circle"/>
+
+    <item
         android:id="@+id/menu"
         android:title="@string/menu"
         android:enabled="true"

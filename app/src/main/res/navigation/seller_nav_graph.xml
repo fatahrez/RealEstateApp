@@ -9,5 +9,23 @@
         android:id="@+id/propertyFragment"
         android:name="com.example.guryihii.feature_properties.presentation.property_list.PropertyFragment"
         android:label="fragment_property"
-        tools:layout="@layout/fragment_property" />
+        tools:layout="@layout/fragment_property" >
+        <action
+            android:id="@+id/action_propertyFragment_to_propertyDetailFragment22"
+            app:destination="@id/propertyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyDetailFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.property_detail.PropertyDetailFragment"
+        android:label="fragment_property_detail"
+        tools:layout="@layout/fragment_property_detail" >
+        <action
+            android:id="@+id/action_propertyDetailFragment2_to_propertyFragment2"
+            app:destination="@id/propertyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
