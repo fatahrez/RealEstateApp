@@ -8,4 +8,6 @@ interface PropertyRepository {
     suspend fun getAllProperties(): Flow<ResultWrapper<List<Property>>>
 
     suspend fun getPropertyDetails(slug: String): Flow<ResultWrapper<Property>>
+
+    suspend fun postProperty(property: Property): Flow<ResultWrapper<Property>>
 }
