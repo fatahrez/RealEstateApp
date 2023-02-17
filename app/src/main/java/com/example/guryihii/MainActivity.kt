@@ -165,6 +165,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    fun updateNavigationDrawer() {
+        if(sharedPreferences.getString(Constants.ACCESS_TOKEN, null) != null) {
+
+        } else {
+            binding.navView.setNavigationItemSelectedListener(this)
+            binding.navView.menu.findItem(R.id.logout).isVisible = false
+            binding.navView.menu.findItem(R.id.sign_in).isVisible = true
+            binding.navView.menu.findItem(R.id.sign_up).isVisible = true
+        }
+    }
+
     private fun logout() {
         sharedPreferences.edit {
             putString(Constants.ACCESS_TOKEN, null)
