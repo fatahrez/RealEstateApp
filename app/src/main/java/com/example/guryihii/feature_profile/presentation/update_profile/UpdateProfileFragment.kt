@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.guryihii.MainActivity
 import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
@@ -78,6 +79,10 @@ class UpdateProfileFragment : Fragment() {
                     binding.progressBar.visible()
                 } else {
                     binding.progressBar.gone()
+                    if (sharedPreferences.getString(Constants.ACCESS_TOKEN, null) != null) {
+                        val mainActivity = requireActivity() as MainActivity
+                        mainActivity.updateNavigation()
+                    }
                     findNavController().navigate(R.id.propertyFragment, null)
                 }
             }
