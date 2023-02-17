@@ -55,37 +55,42 @@ class PostPropertyFragment : Fragment() {
     }
 
     private fun initListeners() {
-        val property = Property(
-            "FOR_SALE",
-            "3.5",
-            6,
-            "Nairobi",
-            "kenya",
-            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
-            "The villa is an incredible opportunity to own a stunning home within the prestigious vipingo ridge.\n" +
-                    "\n" +
-                    "the design of the villa is influenced by arabic and swahili contemporary themes that combines a sociable neighbourhood atmosphere with superior lifestyle facilities. it features a fully furnished large open plan living area and lounge which looks out to the beautiful scenery of the garden. adjoining the living room is dining room which is accompanied by an open-plan kitchen with built-in modern appliances. also on the ground floor is a 2 large ensuite bedrooms with balconies. ",
-            1,
-            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
-            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
-            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
-            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
-            "100.00",
-            "1220-00100",
-            "10000",
-            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
-            12,
-            "HOUSE",
-            true,
-            "hsdshfjkd",
-            "skjgsg",
-            "ngara",
-            "4 bedroom ngara",
-            4,
-            1,
-            2
-        )
-        viewModel.postSellerProperty(property)
+        with(binding) {
+            postPropertyButton.setOnClickListener {
+//                val advertType =
+            }
+        }
+//        val property = Property(
+//            "For Sale",
+//            "3.5",
+//            6,
+//            "Nairobi",
+//            "kenya",
+//            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
+//            "The villa is an incredible opportunity to own a stunning home within the prestigious vipingo ridge.\n" +
+//                    "\n" +
+//                    "the design of the villa is influenced by arabic and swahili contemporary themes that combines a sociable neighbourhood atmosphere with superior lifestyle facilities. it features a fully furnished large open plan living area and lounge which looks out to the beautiful scenery of the garden. adjoining the living room is dining room which is accompanied by an open-plan kitchen with built-in modern appliances. also on the ground floor is a 2 large ensuite bedrooms with balconies. ",
+//            1,
+//            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
+//            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
+//            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
+//            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
+//            "100.00",
+//            "1220-00100",
+//            "10000",
+//            "/mediafiles/bc3cbfda-4f47-4fb6-86b9-2da5996ae483-0.jpg.webp",
+//            12,
+//            "House",
+//            true,
+//            "hsdshfjkd",
+//            "skjgsg",
+//            "ngara",
+//            "4 bedroom ngara",
+//            4,
+//            1,
+//            2
+//        )
+//        viewModel.postSellerProperty(property)
     }
 
     companion object {

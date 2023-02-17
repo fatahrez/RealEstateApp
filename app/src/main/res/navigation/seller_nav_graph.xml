@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_propertyFragment_to_propertyDetailFragment"
             app:destination="@id/propertyDetailFragment" />
+        <action
+            android:id="@+id/action_propertyFragment_to_postPropertyFragment"
+            app:destination="@id/postPropertyFragment" />
     </fragment>
     <fragment
         android:id="@+id/propertyDetailFragment"
@@ -22,9 +25,6 @@
         <action
             android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
-        <action
-            android:id="@+id/action_propertyDetailFragment_to_postPropertyFragment"
-            app:destination="@id/postPropertyFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
@@ -37,7 +37,7 @@
         android:label="fragment_post_property"
         tools:layout="@layout/fragment_post_property" >
         <action
-            android:id="@+id/action_postPropertyFragment_to_propertyDetailFragment"
-            app:destination="@id/propertyDetailFragment" />
+            android:id="@+id/action_postPropertyFragment_to_propertyFragment"
+            app:destination="@id/propertyFragment" />
     </fragment>
 </navigation>

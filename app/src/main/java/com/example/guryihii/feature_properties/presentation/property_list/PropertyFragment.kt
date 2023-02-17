@@ -69,7 +69,7 @@ class PropertyFragment : Fragment() {
         with(binding) {
             floatingActionButton.setOnClickListener {
                 findNavController().navigate(
-                    R.id.action_propertyDetailFragment_to_postPropertyFragment,
+                    R.id.action_propertyFragment_to_postPropertyFragment,
                     null
                 )
             }
