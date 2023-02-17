@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/agent_nav_graph"
+    app:startDestination="@id/propertyFragment">
+
+    <fragment
+        android:id="@+id/propertyFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.property_list.PropertyFragment"
+        android:label="fragment_property"
+        tools:layout="@layout/fragment_property" >
+        <action
+            android:id="@+id/action_propertyFragment_to_propertyDetailFragment"
+            app:destination="@id/propertyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyDetailFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.property_detail.PropertyDetailFragment"
+        android:label="fragment_property_detail"
+        tools:layout="@layout/fragment_property_detail" >
+        <action
+            android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
+            app:destination="@id/propertyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

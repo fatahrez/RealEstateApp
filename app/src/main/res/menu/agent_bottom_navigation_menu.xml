@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/properties"
         android:title="@string/properties"
         android:enabled="true"
         android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/seller_posts"
+        android:title="@string/seller_posts"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
 
     <item
-        android:id="@+id/newProjects"
-        android:title="@string/new_projects"
+        android:id="@+id/buyer_request"
+        android:title="@string/buyer_request"
         android:enabled="true"
-        android:icon="@drawable/construction"/>
-
-    <item
-        android:id="@+id/agents"
-        android:title="@string/agents"
-        android:enabled="true"
-        android:icon="@drawable/handshake"/>
+        android:icon="@drawable/home"/>
 
     <item
         android:id="@+id/profile"
@@ -31,5 +28,4 @@
         android:title="@string/menu"
         android:enabled="true"
         android:icon="@drawable/menu"/>
-
 </menu>

@@ -28,6 +28,8 @@
     <string name="city">City</string>
     <string name="complete_your_profile">Complete your profile</string>
     <string name="update_profile">Update Profile</string>
+    <string name="seller_posts">Seller Posts</string>
+    <string name="buyer_request">Requests</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
