@@ -54,4 +54,17 @@
         <item>AGENT</item>
         <item>PROJECTBUILDER</item>
     </string-array>
+
+    <string-array name="advertType">
+        <item>For Sale</item>
+        <item>For Rent</item>
+    </string-array>
+
+    <string-array name="propertyType">
+        <item>House</item>
+        <item>Apartment</item>
+        <item>Office</item>
+        <item>Commercial</item>
+        <item>Other</item>
+    </string-array>
 </resources>

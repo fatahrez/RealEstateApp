@@ -1,10 +1,14 @@
 package com.example.guryihii.feature_properties.presentation.post_property
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,11 +21,19 @@ import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class PostPropertyFragment : Fragment() {
-
     private var _binding: FragmentPostPropertyBinding? = null
     private val binding: FragmentPostPropertyBinding get() = _binding!!
 
     private val viewModel: PostPropertyViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (ContextCompat.checkSelfPermission(requireContext(),
+            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            REQUEST_CODE_READ_EXTERNAL_STORAGE)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +50,31 @@ class PostPropertyFragment : Fragment() {
     }
 
     private fun setupUI() {
+        initViews()
         initListeners()
         observeViewState()
+    }
+
+    private fun initViews() {
+        with(binding) {
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.advertType,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                advertTypeSpinner.adapter = adapter
+            }
+
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.propertyType,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                propertyTypeSpinner.adapter = adapter
+            }
+        }
     }
 
     private fun observeViewState() {
@@ -57,7 +92,25 @@ class PostPropertyFragment : Fragment() {
     private fun initListeners() {
         with(binding) {
             postPropertyButton.setOnClickListener {
-//                val advertType =
+                val advertType = advertTypeSpinner.selectedItem.toString()
+                val bathrooms = bathroomsEditText.text.toString()
+                val bedrooms = bedroomsEditText.text
+                val city = cityEditText.text.toString()
+                val country = countryEditText.text.toString().lowercase()
+//                val coverPhoto
+                val description = descriptionEditText.text.toString()
+//                val photo1 =
+//                val photo2
+//                val photo3
+//                val photo4
+                val plotArea = plotAreaEditText.text.toString()
+                val postalCode = postalCodeEditText.text.toString()
+                val price = priceEditText.text.toString()
+                val propertyNumber = propertyNumberEditText.text.toString()
+                val propertyType = propertyTypeSpinner.selectedItem.toString()
+                val streetAddress = streetAddressEditText.text.toString()
+                val title = titleEditText.text.toString()
+                val totalFloors = totalFloorsEditText.text
             }
         }
 //        val property = Property(
@@ -93,7 +146,23 @@ class PostPropertyFragment : Fragment() {
 //        viewModel.postSellerProperty(property)
     }
 
-    companion object {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_READ_EXTERNAL_STORAGE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+            } else {
+
+            }
+        }
+
+    }
+
+    companion object {
+        const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 1
     }
 }
