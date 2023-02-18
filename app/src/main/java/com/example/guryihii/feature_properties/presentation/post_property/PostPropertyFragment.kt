@@ -21,6 +21,11 @@ import com.example.guryihii.databinding.FragmentPostPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 
 @AndroidEntryPoint
@@ -119,17 +124,77 @@ class PostPropertyFragment : Fragment() {
             }
 
             postPropertyButton.setOnClickListener {
+                val contentResolver = requireContext().contentResolver
+
                 val advertType = advertTypeSpinner.selectedItem.toString()
                 val bathrooms = bathroomsEditText.text.toString()
-                val bedrooms = bedroomsEditText.text
+                val bedrooms = bedroomsEditText.text.toString().toInt()
                 val city = cityEditText.text.toString()
                 val country = countryEditText.text.toString().lowercase()
-//                val coverPhoto
+
+                val coverPhotoInputStream = contentResolver.openInputStream(selectedUris[0])
+                val coverPhotoBytes = coverPhotoInputStream?.readBytes()
+                val coverPhotoRequestFile = coverPhotoBytes?.let { it1 ->
+                    RequestBody
+                        .create("multipart/form-data".toMediaTypeOrNull(), it1)
+                }
+                val coverPhoto = coverPhotoRequestFile?.let { it1 ->
+                    MultipartBody.Part.createFormData("file", "filename",
+                        it1
+                    )
+                }
+
+
                 val description = descriptionEditText.text.toString()
-//                val photo1 =
-//                val photo2
-//                val photo3
-//                val photo4
+
+                val photo1InputStream = contentResolver.openInputStream(selectedUris[1])
+                val photo1Bytes = photo1InputStream?.readBytes()
+                val photo1RequestFile = photo1Bytes?.let { it1 ->
+                    RequestBody
+                        .create("multipart/form-data".toMediaTypeOrNull(), it1)
+                }
+                val photo1 = photo1RequestFile?.let { it1 ->
+                    MultipartBody.Part.createFormData("file", "filename",
+                        it1
+                    )
+                }
+
+                val photo2InputStream = contentResolver.openInputStream(selectedUris[1])
+                val photo2Bytes = photo2InputStream?.readBytes()
+                val photo2RequestFile = photo2Bytes?.let { it1 ->
+                    RequestBody
+                        .create("multipart/form-data".toMediaTypeOrNull(), it1)
+                }
+                val photo2 = photo2RequestFile?.let { it1 ->
+                    MultipartBody.Part.createFormData("file", "filename",
+                        it1
+                    )
+                }
+
+                val photo3InputStream = contentResolver.openInputStream(selectedUris[1])
+                val photo3Bytes = photo3InputStream?.readBytes()
+                val photo3RequestFile = photo3Bytes?.let { it1 ->
+                    RequestBody
+                        .create("multipart/form-data".toMediaTypeOrNull(), it1)
+                }
+                val photo3 = photo3RequestFile?.let { it1 ->
+                    MultipartBody.Part.createFormData("file", "filename",
+                        it1
+                    )
+                }
+
+                val photo4InputStream = contentResolver.openInputStream(selectedUris[1])
+                val photo4Bytes = photo4InputStream?.readBytes()
+                val photo4RequestFile = photo4Bytes?.let { it1 ->
+                    RequestBody
+                        .create("multipart/form-data".toMediaTypeOrNull(), it1)
+                }
+                val photo4 = photo4RequestFile?.let { it1 ->
+                    MultipartBody.Part.createFormData("file", "filename",
+                        it1
+                    )
+                }
+
                 val plotArea = plotAreaEditText.text.toString()
                 val postalCode = postalCodeEditText.text.toString()
                 val price = priceEditText.text.toString()
@@ -137,8 +202,34 @@ class PostPropertyFragment : Fragment() {
                 val propertyType = propertyTypeSpinner.selectedItem.toString()
                 val streetAddress = streetAddressEditText.text.toString()
                 val title = titleEditText.text.toString()
-                val totalFloors = totalFloorsEditText.text
+                val totalFloors = totalFloorsEditText.text.toString().toInt()
+
+                if (coverPhoto != null && photo1 != null && photo2 != null
+                    && photo3 != null && photo4 != null) {
+                    viewModel.postSellerProperty(
+                        advertType,
+                        bathrooms,
+                        bedrooms,
+                        city,
+                        country,
+                        coverPhoto,
+                        description,
+                        photo1,
+                        photo2,
+                        photo3,
+                        photo4,
+                        plotArea,
+                        postalCode,
+                        price,
+                        propertyNumber,
+                        propertyType,
+                        streetAddress,
+                        title,
+                        totalFloors
+                    )
+                }
             }
+
         }
 //        val property = Property(
 //            "For Sale",

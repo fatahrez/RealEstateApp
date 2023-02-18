@@ -27,6 +27,7 @@ suspend fun <T> safeApiCall(
                         emit(ResultWrapper.GenericError(code, errorResponse))
                     }
                     else -> {
+                        Log.i("TAG", "safeApiCall: ${throwable.message}")
                         val errorResponse = ErrorResponse(
                             "Couldn't reach server, check your internet connection.",
                             null
