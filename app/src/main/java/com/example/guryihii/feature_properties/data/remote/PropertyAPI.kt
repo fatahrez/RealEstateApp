@@ -15,6 +15,9 @@ interface PropertyAPI {
     @GET("properties/details/{slug}")
     suspend fun getPropertyDetail(@Path("slug") slug: String): PropertyDTO
 
+
     @POST("properties/create/")
-    suspend fun postProperty(@Body propertyDTO: PropertyDTO): PropertyDTO
+    suspend fun postProperty(
+        @Body propertyDTO: PropertyDTO
+    ): PropertyDTO
 }

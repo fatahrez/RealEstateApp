@@ -72,20 +72,11 @@
                 android:hint="@string/country" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/coverPhotoTextInputLayout"
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            tools:layout_editor_absoluteX="1dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/coverPhotoEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/cover_photo"
-                android:focusable="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/coverPhotoImageView"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/cover_photo" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="409dp"
@@ -100,57 +91,29 @@
                 android:hint="@string/description" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            tools:layout_editor_absoluteX="1dp">
+        <ImageView
+            android:id="@+id/photo1ImageView"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/cover_photo" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/photo1EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/photo_1" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/photo2ImageView"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/cover_photo" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            tools:layout_editor_absoluteX="1dp">
+        <ImageView
+            android:id="@+id/photo3ImageView"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/cover_photo" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/photo2EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/photo_2" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            tools:layout_editor_absoluteX="1dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/photo3EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/photo_3" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            tools:layout_editor_absoluteX="1dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/photo4EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/photo_4" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/photo4ImageView"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/cover_photo" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="409dp"

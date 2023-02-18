@@ -1,8 +1,10 @@
 package com.example.guryihii.feature_properties.presentation.post_property
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -27,6 +29,8 @@ class PostPropertyFragment : Fragment() {
     private val binding: FragmentPostPropertyBinding get() = _binding!!
 
     private val viewModel: PostPropertyViewModel by viewModels()
+
+    private val selectedUris = mutableListOf<Uri>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,12 +97,27 @@ class PostPropertyFragment : Fragment() {
 
     private fun initListeners() {
         with(binding) {
-            coverPhotoEditText.setOnClickListener {
+
+            coverPhotoImageView.setOnClickListener {
                 pickPhoto()
             }
-            coverPhotoTextInputLayout.setOnClickListener {
+
+            photo1ImageView.setOnClickListener {
                 pickPhoto()
             }
+
+            photo2ImageView.setOnClickListener {
+                pickPhoto()
+            }
+
+            photo3ImageView.setOnClickListener {
+                pickPhoto()
+            }
+
+            photo4ImageView.setOnClickListener {
+                pickPhoto()
+            }
+
             postPropertyButton.setOnClickListener {
                 val advertType = advertTypeSpinner.selectedItem.toString()
                 val bathrooms = bathroomsEditText.text.toString()
@@ -154,29 +173,33 @@ class PostPropertyFragment : Fragment() {
 //        viewModel.postSellerProperty(property)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_READ_EXTERNAL_STORAGE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-            } else {
+        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val uri = data?.data
+            if (uri != null) {
+                selectedUris.add(uri)
 
+                when(selectedUris.size) {
+                    1 -> binding.coverPhotoImageView.setImageURI(uri)
+                    2 -> binding.photo1ImageView.setImageURI(uri)
+                    3 -> binding.photo2ImageView.setImageURI(uri)
+                    4 -> binding.photo3ImageView.setImageURI(uri)
+                    5 -> binding.photo4ImageView.setImageURI(uri)
+                }
             }
         }
-
     }
 
     private fun pickPhoto() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, REQUEST_CODE_PICK_PHOTO)
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_CODE)
     }
 
     companion object {
         const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 1
-        const val REQUEST_CODE_PICK_PHOTO = 1
+        const val PICK_IMAGE_REQUEST_CODE = 1
     }
 }
