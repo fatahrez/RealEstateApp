@@ -25,7 +25,8 @@ interface PropertyAPI {
     @POST("properties/create/")
     suspend fun postProperty(
         @Field("advert_type") advertType: String,
-        @Field("bathrooms") bathrooms: Int,
+        @Field("bathrooms") bathrooms: String,
+        @Field("bedrooms") bedrooms: Int,
         @Field("city") city: String,
         @Field("country") country: String,
         @Part("cover_photo") coverPhoto: MultipartBody.Part,
