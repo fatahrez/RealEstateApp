@@ -1,8 +1,13 @@
 package com.example.guryihii.core.workers
 
 import android.content.Context
+import android.net.Uri
+import android.util.Log
+import androidx.work.CoroutineWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.example.guryihii.core.util.MultiPartUtil
+import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.usecases.PostProperty
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -13,12 +18,12 @@ import javax.inject.Inject
 class UploadPropertyWorker(
     private val context: Context,
     workerParams: WorkerParameters
-): Worker(context, workerParams) {
+): CoroutineWorker(context, workerParams) {
 
     @Inject
     lateinit var postProperty: PostProperty
 
-    override fun doWork(): Result {
+    override suspend fun doWork(): Result {
         val inputData = inputData
 
         val advertType = inputData.getString("advertType")
@@ -41,69 +46,68 @@ class UploadPropertyWorker(
         val title = inputData.getString("title")
         val totalFloors = inputData.getInt("totalFloors", 0)
 
-        val contentResolver = applicationContext.contentResolver
+        val coverPhoto = MultiPartUtil.loadFileFromContentResolver(
+            applicationContext,
+            Uri.parse(coverPhotoUri)
+        )
 
-        val coverPhotoInputStream = contentResolver.openInputStream(selectedUris[0]) ?: throw FileNotFoundException("File not found: $fileUri")
-        val coverPhotoBytes = coverPhotoInputStream?.readBytes()
-        val coverPhotoRequestFile = coverPhotoBytes?.let { it1 ->
-            RequestBody
-                .create("multipart/form-data".toMediaTypeOrNull(), it1)
-        }
-        val coverPhoto = coverPhotoRequestFile?.let { it1 ->
-            MultipartBody.Part.createFormData("file", "filename",
-                it1
-            )
-        }
+        val photo1 = MultiPartUtil.loadFileFromContentResolver(
+            applicationContext,
+            Uri.parse(photo1Uri)
+        )
 
-        val photo1InputStream = contentResolver.openInputStream(selectedUris[1])
-        val photo1Bytes = photo1InputStream?.readBytes()
-        val photo1RequestFile = photo1Bytes?.let { it1 ->
-            RequestBody
-                .create("multipart/form-data".toMediaTypeOrNull(), it1)
-        }
-        val photo1 = photo1RequestFile?.let { it1 ->
-            MultipartBody.Part.createFormData("file", "filename",
-                it1
-            )
-        }
+        val photo2 = MultiPartUtil.loadFileFromContentResolver(
+            applicationContext,
+            Uri.parse(photo2Uri)
+        )
 
-        val photo2InputStream = contentResolver.openInputStream(selectedUris[1])
-        val photo2Bytes = photo2InputStream?.readBytes()
-        val photo2RequestFile = photo2Bytes?.let { it1 ->
-            RequestBody
-                .create("multipart/form-data".toMediaTypeOrNull(), it1)
-        }
-        val photo2 = photo2RequestFile?.let { it1 ->
-            MultipartBody.Part.createFormData("file", "filename",
-                it1
-            )
-        }
+        val photo3 = MultiPartUtil.loadFileFromContentResolver(
+            applicationContext,
+            Uri.parse(photo3Uri)
+        )
 
-        val photo3InputStream = contentResolver.openInputStream(selectedUris[1])
-        val photo3Bytes = photo3InputStream?.readBytes()
-        val photo3RequestFile = photo3Bytes?.let { it1 ->
-            RequestBody
-                .create("multipart/form-data".toMediaTypeOrNull(), it1)
-        }
-        val photo3 = photo3RequestFile?.let { it1 ->
-            MultipartBody.Part.createFormData("file", "filename",
-                it1
-            )
-        }
+        val photo4 = MultiPartUtil.loadFileFromContentResolver(
+            applicationContext,
+            Uri.parse(photo4Uri)
+        )
 
-        val photo4InputStream = contentResolver.openInputStream(selectedUris[1])
-        val photo4Bytes = photo4InputStream?.readBytes()
-        val photo4RequestFile = photo4Bytes?.let { it1 ->
-            RequestBody
-                .create("multipart/form-data".toMediaTypeOrNull(), it1)
+        postProperty(
+            advertType!!,
+            bathrooms!!,
+            bedrooms,
+            city!!,
+            country!!,
+            coverPhoto,
+            description!!,
+            photo1,
+            photo2,
+            photo3,
+            photo4,
+            plotArea!!,
+            postalCode!!,
+            price!!,
+            propertyNumber!!,
+            propertyType!!,
+            streetAddress!!,
+            title!!,
+            totalFloors
+        ).collect { result ->
+            when(result) {
+                is ResultWrapper.Success -> {
+                    Log.i("TAG", "doWork: upload ${result.value}")
+                }
+                is ResultWrapper.Loading -> {
+                    Log.i("TAG", "doWork: loading ...")
+                }
+                is ResultWrapper.NetworkError -> {
+                    Log.e("TAG", "doWork: network error")
+                }
+                is ResultWrapper.GenericError -> {
+                    Log.e("TAG", "doWork: ${result.error}", )
+                }
+            }
         }
-        val photo4 = photo4RequestFile?.let { it1 ->
-            MultipartBody.Part.createFormData("file", "filename",
-                it1
-            )
-        }
-
-        val uploadData = postProperty()
+        return Result.success()
     }
 
 }

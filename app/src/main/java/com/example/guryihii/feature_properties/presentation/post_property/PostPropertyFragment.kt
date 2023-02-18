@@ -126,8 +126,6 @@ class PostPropertyFragment : Fragment() {
             }
 
             postPropertyButton.setOnClickListener {
-                val contentResolver = requireContext().contentResolver
-
                 val advertType = advertTypeSpinner.selectedItem.toString()
                 val bathrooms = bathroomsEditText.text.toString()
                 val bedrooms = bedroomsEditText.text.toString().toInt()
