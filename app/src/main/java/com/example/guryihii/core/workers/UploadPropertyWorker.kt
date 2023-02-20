@@ -27,7 +27,6 @@ class UploadPropertyWorker @AssistedInject constructor(
 ): CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
-        Log.i("TAG", "doWork: here")
         val inputData = inputData
 
         val advertType = inputData.getString("advertType")
@@ -55,6 +54,7 @@ class UploadPropertyWorker @AssistedInject constructor(
             Uri.parse(coverPhotoUri),
             "cover_photo"
         )
+
 
         val photo1 = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,

@@ -2,6 +2,7 @@ package com.example.guryihii.core.util
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -21,6 +22,10 @@ object MultiPartUtil {
             "image/*".toMediaTypeOrNull(),
             fileInputStream.readBytes()
         )
-        return MultipartBody.Part.createFormData("file", "filename", requestBody)
+        val mimeType = contentResolver.getType(fileUri)
+        val parts = mimeType?.split("/")
+        val fileExtension = fileUri.lastPathSegment + "." + (parts?.get(1) ?: "jpeg")
+        Log.i("TAG", "loadFileFromContentResolver: $fileExtension")
+        return MultipartBody.Part.createFormData(fileName, fileExtension, requestBody)
     }
 }
