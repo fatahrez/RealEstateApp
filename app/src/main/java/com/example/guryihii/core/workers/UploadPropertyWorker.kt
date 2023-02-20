@@ -3,31 +3,35 @@ package com.example.guryihii.core.workers
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.guryihii.core.util.MultiPartUtil
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.usecases.PostProperty
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import okhttp3.MediaType.Companion.parse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.FileNotFoundException
 import javax.inject.Inject
 
-class UploadPropertyWorker(
-    private val context: Context,
-    workerParams: WorkerParameters
+@HiltWorker
+class UploadPropertyWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val postProperty: PostProperty
 ): CoroutineWorker(context, workerParams) {
 
-    @Inject
-    lateinit var postProperty: PostProperty
-
     override suspend fun doWork(): Result {
+        Log.i("TAG", "doWork: here")
         val inputData = inputData
 
         val advertType = inputData.getString("advertType")
-        val bathrooms = inputData.getString("bathrooms")
+        val bathrooms = inputData.getString("bathrooms")!!.trim().toInt()
         val bedrooms = inputData.getInt("bedrooms", 0)
         val city = inputData.getString("city")
         val country = inputData.getString("country")
@@ -37,10 +41,10 @@ class UploadPropertyWorker(
         val photo2Uri = inputData.getString("photo2")
         val photo3Uri = inputData.getString("photo3")
         val photo4Uri = inputData.getString("photo4")
-        val plotArea = inputData.getString("plotArea")
+        val plotArea = inputData.getString("plotArea")!!.trim().toInt()
         val postalCode = inputData.getString("postalCode")
-        val price = inputData.getString("price")
-        val propertyNumber = inputData.getString("propertyNumber")
+        val price = inputData.getString("price")!!.trim().toInt()
+        val propertyNumber = inputData.getInt("propertyNumber", 0)
         val propertyType = inputData.getString("propertyType")
         val streetAddress = inputData.getString("streetAddress")
         val title = inputData.getString("title")
@@ -48,35 +52,48 @@ class UploadPropertyWorker(
 
         val coverPhoto = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,
-            Uri.parse(coverPhotoUri)
+            Uri.parse(coverPhotoUri),
+            "cover_photo"
         )
 
         val photo1 = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,
-            Uri.parse(photo1Uri)
+            Uri.parse(photo1Uri),
+            "photo1"
         )
 
         val photo2 = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,
-            Uri.parse(photo2Uri)
+            Uri.parse(photo2Uri),
+            "photo2"
         )
 
         val photo3 = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,
-            Uri.parse(photo3Uri)
+            Uri.parse(photo3Uri),
+            "photo3"
         )
 
         val photo4 = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,
-            Uri.parse(photo4Uri)
+            Uri.parse(photo4Uri),
+            "photo4"
         )
 
+        val countryRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), country!!)
+        val countryPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "country",
+            null,
+            countryRequestBody
+        )
+
+
         postProperty(
-            advertType!!,
+            "For Sale",
             bathrooms!!,
             bedrooms,
             city!!,
-            country!!,
+            countryPart,
             coverPhoto,
             description!!,
             photo1,
@@ -86,12 +103,13 @@ class UploadPropertyWorker(
             plotArea!!,
             postalCode!!,
             price!!,
-            propertyNumber!!,
-            propertyType!!,
+            propertyNumber,
+            "House",
             streetAddress!!,
             title!!,
             totalFloors
         ).collect { result ->
+            Log.i("TAG", "result $result")
             when(result) {
                 is ResultWrapper.Success -> {
                     Log.i("TAG", "doWork: upload ${result.value}")

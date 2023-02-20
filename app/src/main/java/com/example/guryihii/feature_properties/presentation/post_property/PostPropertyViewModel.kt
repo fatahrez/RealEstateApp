@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,20 +26,20 @@ class PostPropertyViewModel @Inject constructor(
 
     fun postSellerProperty(
         advertType: String,
-        bathrooms: String,
+        bathrooms: Int,
         bedrooms: Int,
         city: String,
-        country: String,
+        country: MultipartBody.Part,
         coverPhoto: MultipartBody.Part,
         description: String,
         photo1: MultipartBody.Part,
         photo2: MultipartBody.Part,
         photo3: MultipartBody.Part,
         photo4: MultipartBody.Part,
-        plotArea: String,
+        plotArea: Int,
         postalCode: String,
-        price: String,
-        propertyNumber: String,
+        price: Int,
+        propertyNumber: Int,
         propertyType: String,
         streetAddress: String,
         title: String,

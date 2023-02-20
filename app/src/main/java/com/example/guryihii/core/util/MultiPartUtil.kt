@@ -11,7 +11,8 @@ import java.io.FileNotFoundException
 object MultiPartUtil {
     fun loadFileFromContentResolver(
         context: Context,
-        fileUri: Uri
+        fileUri: Uri,
+        fileName: String
     ): MultipartBody.Part {
         val contentResolver = context.contentResolver
         val fileInputStream = contentResolver.openInputStream(fileUri) ?: throw

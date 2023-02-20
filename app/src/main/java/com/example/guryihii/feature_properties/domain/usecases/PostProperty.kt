@@ -5,6 +5,7 @@ import com.example.guryihii.feature_properties.domain.model.Property
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class PostProperty(
     private val propertyRepository: PropertyRepository
@@ -12,20 +13,20 @@ class PostProperty(
 
     suspend operator fun invoke(
         advertType: String,
-        bathrooms: String,
+        bathrooms: Int,
         bedrooms: Int,
         city: String,
-        country: String,
+        country: MultipartBody.Part,
         coverPhoto: MultipartBody.Part,
         description: String,
         photo1: MultipartBody.Part,
         photo2: MultipartBody.Part,
         photo3: MultipartBody.Part,
         photo4: MultipartBody.Part,
-        plotArea: String,
+        plotArea: Int,
         postalCode: String,
-        price: String,
-        propertyNumber: String,
+        price: Int,
+        propertyNumber: Int,
         propertyType: String,
         streetAddress: String,
         title: String,

@@ -126,6 +126,7 @@ class PostPropertyFragment : Fragment() {
             }
 
             postPropertyButton.setOnClickListener {
+                Log.i("TAG", "initListeners: post buton")
                 val advertType = advertTypeSpinner.selectedItem.toString()
                 val bathrooms = bathroomsEditText.text.toString()
                 val bedrooms = bedroomsEditText.text.toString().toInt()
@@ -135,7 +136,7 @@ class PostPropertyFragment : Fragment() {
                 val plotArea = plotAreaEditText.text.toString()
                 val postalCode = postalCodeEditText.text.toString()
                 val price = priceEditText.text.toString()
-                val propertyNumber = propertyNumberEditText.text.toString()
+                val propertyNumber = propertyNumberEditText.text.toString().toInt()
                 val propertyType = propertyTypeSpinner.selectedItem.toString()
                 val streetAddress = streetAddressEditText.text.toString()
                 val title = titleEditText.text.toString()
@@ -156,7 +157,7 @@ class PostPropertyFragment : Fragment() {
                     .putString("plotArea", plotArea)
                     .putString("postalCode", postalCode)
                     .putString("price", price)
-                    .putString("propertyNumber", propertyNumber)
+                    .putInt("propertyNumber", propertyNumber)
                     .putString("propertyType", propertyType)
                     .putString("streetAddress", streetAddress)
                     .putString("title", title)
