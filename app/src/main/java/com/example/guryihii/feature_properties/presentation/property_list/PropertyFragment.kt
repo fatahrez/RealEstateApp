@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
@@ -55,10 +56,24 @@ class PropertyFragment : Fragment() {
     }
 
     private fun initViews() {
-
+        val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
+        if (token != null) {
+            val loggedInUser = Jwt(token).getUserData().role
+            if (loggedInUser == Constants.SELLER_SIGN_UP) {
+                binding.floatingActionButton.visible()
+            }
+        }
     }
 
     private fun initListeners() {
+        with(binding) {
+            floatingActionButton.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_propertyFragment_to_postPropertyFragment,
+                    null
+                )
+            }
+        }
     }
 
     private fun observeViewState(adapter: PropertiesAdapter) {

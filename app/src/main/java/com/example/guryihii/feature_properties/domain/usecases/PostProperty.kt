@@ -1,17 +1,17 @@
-package com.example.guryihii.feature_properties.domain.repository
+package com.example.guryihii.feature_properties.domain.usecases
 
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.model.Property
+import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-interface PropertyRepository {
-    suspend fun getAllProperties(): Flow<ResultWrapper<List<Property>>>
+class PostProperty(
+    private val propertyRepository: PropertyRepository
+) {
 
-    suspend fun getPropertyDetails(slug: String): Flow<ResultWrapper<Property>>
-
-    suspend fun postProperty(
+    suspend operator fun invoke(
         advertType: MultipartBody.Part,
         bathrooms: Int,
         bedrooms: Int,
@@ -31,5 +31,28 @@ interface PropertyRepository {
         streetAddress: String,
         title: String,
         totalFloors: Int
-    ): Flow<ResultWrapper<Property>>
+    ): Flow<ResultWrapper<Property>> {
+        return propertyRepository.postProperty(
+            advertType,
+            bathrooms,
+            bedrooms,
+            city,
+            country,
+            coverPhoto,
+            description,
+            photo1,
+            photo2,
+            photo3,
+            photo4,
+            plotArea,
+            postalCode,
+            price,
+            propertyNumber,
+            propertyType,
+            streetAddress,
+            title,
+            totalFloors
+        )
+    }
+
 }

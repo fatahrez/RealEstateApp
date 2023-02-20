@@ -1,6 +1,5 @@
 package com.example.guryihii.feature_properties.data.repository
 
-import android.util.Log
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.core.util.safeApiCall
 import com.example.guryihii.feature_properties.data.remote.PropertyAPI
@@ -9,7 +8,8 @@ import com.example.guryihii.feature_properties.domain.repository.PropertyReposit
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class PropertyRepositoryImpl @Inject constructor(
@@ -26,5 +26,50 @@ class PropertyRepositoryImpl @Inject constructor(
     override suspend fun getPropertyDetails(slug: String): Flow<ResultWrapper<Property>> =
         safeApiCall(ioDispatcher) {
         apiService.getPropertyDetail(slug).toProperty()
+    }
+
+    override suspend fun postProperty(
+        advertType: MultipartBody.Part,
+        bathrooms: Int,
+        bedrooms: Int,
+        city: String,
+        country: MultipartBody.Part,
+        coverPhoto: MultipartBody.Part,
+        description: String,
+        photo1: MultipartBody.Part,
+        photo2: MultipartBody.Part,
+        photo3: MultipartBody.Part,
+        photo4: MultipartBody.Part,
+        plotArea: Int,
+        postalCode: String,
+        price: Int,
+        propertyNumber: Int,
+        propertyType: MultipartBody.Part,
+        streetAddress: String,
+        title: String,
+        totalFloors: Int
+    ): Flow<ResultWrapper<Property>> =
+        safeApiCall(ioDispatcher){
+        apiService.postProperty(
+            advertType,
+            bathrooms,
+            bedrooms,
+            city,
+            country,
+            coverPhoto,
+            description,
+            photo1,
+            photo2,
+            photo3,
+            photo4,
+            plotArea,
+            postalCode,
+            price,
+            propertyNumber,
+            propertyType,
+            streetAddress,
+            title,
+            totalFloors
+        ).toProperty()
     }
 }

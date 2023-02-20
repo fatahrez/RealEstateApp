@@ -1,12 +1,22 @@
 package com.example.guryihii
 
 import android.app.Application
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import androidx.work.WorkManager
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
-class GuryihiApplication: Application() {
+class GuryihiApplication: Application(), Configuration.Provider {
+    @Inject lateinit var workerFactory: HiltWorkerFactory
     override fun onCreate() {
         super.onCreate()
-        //Todo
+//        WorkManager.initialize(this, Configuration.Builder().build())
     }
+
+    override fun getWorkManagerConfiguration() =
+        Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
 }

@@ -30,10 +30,41 @@
     <string name="update_profile">Update Profile</string>
     <string name="seller_posts">Seller Posts</string>
     <string name="buyer_request">Requests</string>
+    <string name="post_property">Post Property</string>
+    <string name="total_floors">Total Floors</string>
+    <string name="title">Title</string>
+    <string name="street_address">Street Address</string>
+    <string name="property_type">Property Type</string>
+    <string name="property_number">Property Number</string>
+    <string name="price">Price</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="plot_area">Plot Area</string>
+    <string name="photo_4">Photo 4</string>
+    <string name="photo_3">Photo 3</string>
+    <string name="photo_2">Photo 2</string>
+    <string name="photo_1">Photo 1</string>
+    <string name="description">Description</string>
+    <string name="cover_photo">Cover Photo</string>
+    <string name="bedrooms">Bedrooms</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="advert_type">Advert Type</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
         <item>AGENT</item>
         <item>PROJECTBUILDER</item>
+    </string-array>
+
+    <string-array name="advertType">
+        <item>For Sale</item>
+        <item>For Rent</item>
+    </string-array>
+
+    <string-array name="propertyType">
+        <item>House</item>
+        <item>Apartment</item>
+        <item>Office</item>
+        <item>Commercial</item>
+        <item>Other</item>
     </string-array>
 </resources>

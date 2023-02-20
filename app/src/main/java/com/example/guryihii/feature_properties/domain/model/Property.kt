@@ -1,5 +1,7 @@
 package com.example.guryihii.feature_properties.domain.model
 
+import com.example.guryihii.feature_properties.data.remote.dto.PropertyDTO
+
 data class Property(
     val advertType: String,
     val bathrooms: String,
@@ -27,4 +29,35 @@ data class Property(
     val totalFloors: Int,
     val user: Int,
     val views: Int
-)
+) {
+    fun toPropertyDTO(): PropertyDTO {
+        return PropertyDTO(
+            advertType = advertType,
+            bathrooms = bathrooms,
+            bedrooms = bedrooms,
+            city = city,
+            country = country,
+            coverPhoto = coverPhoto,
+            description = description,
+            id = id,
+            photo1 = photo1,
+            photo2 = photo2,
+            photo3 = photo3,
+            photo4 = photo4,
+            plotArea = plotArea,
+            postalCode = postalCode,
+            price = price,
+            profilePhoto = profilePhoto,
+            propertyNumber = propertyNumber,
+            propertyType = propertyType,
+            publishedStatus = publishedStatus,
+            refCode = refCode,
+            slug = slug,
+            streetAddress = streetAddress,
+            title = title,
+            totalFloors = totalFloors,
+            user = user,
+            views = views
+        )
+    }
+}
