@@ -114,6 +114,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         navController.navigate(R.id.propertyFragment, null)
                         true
                     }
+                    R.id.my_properties -> {
+                        navController.navigate(R.id.sellerPropertiesFragment, null)
+                        true
+                    }
                     else -> {
                         false
                     }

@@ -8,6 +8,12 @@
         android:icon="@drawable/home"/>
 
     <item
+        android:id="@+id/my_properties"
+        android:title="@string/my_properties"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
+
+    <item
         android:id="@+id/profile"
         android:title="@string/profile"
         android:enabled="true"

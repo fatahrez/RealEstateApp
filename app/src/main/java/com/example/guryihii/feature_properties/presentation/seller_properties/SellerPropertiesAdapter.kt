@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_properties.presentation.property_list
+package com.example.guryihii.feature_properties.presentation.seller_properties
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.guryihii.core.util.Constants
-import com.example.guryihii.databinding.ListItemPropertyBinding
+import com.example.guryihii.databinding.ListItemSellerPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 
-class PropertiesAdapter(
+class SellerPropertiesAdapter(
     private val clickListener: (Property) -> Unit
-): ListAdapter<Property, PropertiesAdapter.ViewHolder>(COMPARATOR) {
+):  ListAdapter<Property, SellerPropertiesAdapter.ViewHolder>(COMPARATOR){
 
     private object COMPARATOR: DiffUtil.ItemCallback<Property>() {
         override fun areItemsTheSame(oldItem: Property, newItem: Property): Boolean {
@@ -27,7 +27,7 @@ class PropertiesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ListItemPropertyBinding.inflate(
+            ListItemSellerPropertyBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -42,13 +42,12 @@ class PropertiesAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: ListItemPropertyBinding
+        private val binding: ListItemSellerPropertyBinding
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(property: Property) {
             with(binding) {
-                propertyTitle.text = property.title
-                propertyImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
+                coverPhotoImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
             }
         }
     }
