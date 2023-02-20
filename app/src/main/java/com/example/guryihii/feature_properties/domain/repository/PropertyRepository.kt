@@ -32,4 +32,6 @@ interface PropertyRepository {
         title: String,
         totalFloors: Int
     ): Flow<ResultWrapper<Property>>
+
+    suspend fun getSellerProperties(): Flow<ResultWrapper<List<Property>>>
 }
