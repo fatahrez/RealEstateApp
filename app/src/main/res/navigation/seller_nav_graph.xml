@@ -40,4 +40,9 @@
             android:id="@+id/action_postPropertyFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/sellerPropertiesFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.seller_properties.SellerPropertiesFragment"
+        android:label="fragment_seller_properties"
+        tools:layout="@layout/fragment_seller_properties" />
 </navigation>

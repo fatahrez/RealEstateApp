@@ -11,6 +11,7 @@ import com.example.guryihii.feature_properties.data.repository.PropertyRepositor
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import com.example.guryihii.feature_properties.domain.usecases.GetAllProperties
 import com.example.guryihii.feature_properties.domain.usecases.GetPropertyDetails
+import com.example.guryihii.feature_properties.domain.usecases.GetSellerProperties
 import com.example.guryihii.feature_properties.domain.usecases.PostProperty
 import dagger.Module
 import dagger.Provides
@@ -37,6 +38,7 @@ object PropertyModule {
     }
 
     @Provides
+    @Singleton
     fun providesGetPropertyDetailUseCase(
         repository: PropertyRepository
     ): GetPropertyDetails {
@@ -44,10 +46,19 @@ object PropertyModule {
     }
 
     @Provides
+    @Singleton
     fun providesPostPropertyUseCase(
         repository: PropertyRepository
     ): PostProperty {
         return PostProperty(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetSellerPropertiesUseCase(
+        repository: PropertyRepository
+    ): GetSellerProperties {
+        return GetSellerProperties(repository)
     }
 
     @Provides

@@ -48,6 +48,7 @@
     <string name="bedrooms">Bedrooms</string>
     <string name="bathrooms">Bathrooms</string>
     <string name="advert_type">Advert Type</string>
+    <string name="my_properties">My Properties</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

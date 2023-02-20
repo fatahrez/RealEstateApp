@@ -42,4 +42,7 @@ interface PropertyAPI {
         @Part("title") title: String,
         @Part("total_floors") totalFloors: Int,
     ): PropertyDTO
+
+    @GET("properties/agents/")
+    suspend fun getSellerProperties(): PropertiesWrapper
 }

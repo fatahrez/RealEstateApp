@@ -72,4 +72,11 @@ class PropertyRepositoryImpl @Inject constructor(
             totalFloors
         ).toProperty()
     }
+
+    override suspend fun getSellerProperties(): Flow<ResultWrapper<List<Property>>>
+    = safeApiCall(ioDispatcher) {
+        apiService.getSellerProperties().results.map {
+            it.toProperty()
+        }
+    }
 }
