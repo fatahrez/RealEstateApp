@@ -87,9 +87,23 @@ class UploadPropertyWorker @AssistedInject constructor(
             countryRequestBody
         )
 
+        val advertTypeRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), advertType!!)
+        val advertTypePart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "advert_type",
+            null,
+            advertTypeRequestBody
+        )
+
+        val propertyTypeRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), propertyType!!)
+        val propertyTypePart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "property_type",
+            null,
+            propertyTypeRequestBody
+        )
+
 
         postProperty(
-            "For Sale",
+            advertTypePart,
             bathrooms!!,
             bedrooms,
             city!!,
@@ -104,7 +118,7 @@ class UploadPropertyWorker @AssistedInject constructor(
             postalCode!!,
             price!!,
             propertyNumber,
-            "House",
+            propertyTypePart,
             streetAddress!!,
             title!!,
             totalFloors

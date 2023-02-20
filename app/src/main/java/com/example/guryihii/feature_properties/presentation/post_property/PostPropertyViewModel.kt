@@ -25,7 +25,7 @@ class PostPropertyViewModel @Inject constructor(
     val state: StateFlow<PostPropertyState> get() = _state
 
     fun postSellerProperty(
-        advertType: String,
+        advertType: MultipartBody.Part,
         bathrooms: Int,
         bedrooms: Int,
         city: String,
@@ -40,7 +40,7 @@ class PostPropertyViewModel @Inject constructor(
         postalCode: String,
         price: Int,
         propertyNumber: Int,
-        propertyType: String,
+        propertyType: MultipartBody.Part,
         streetAddress: String,
         title: String,
         totalFloors: Int

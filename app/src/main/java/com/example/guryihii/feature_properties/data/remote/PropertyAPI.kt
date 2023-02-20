@@ -22,7 +22,7 @@ interface PropertyAPI {
     @POST("properties/create/")
     @Multipart
     suspend fun postProperty(
-        @Part("advert_type") advertType: String,
+        @Part advertType: MultipartBody.Part,
         @Part("bathrooms") bathrooms: Int,
         @Part("bedrooms") bedrooms: Int,
         @Part("city") city: String,
@@ -37,7 +37,7 @@ interface PropertyAPI {
         @Part("postal_code") postalCode: String,
         @Part("price") price: Int,
         @Part("property_number") propertyNumber: Int,
-        @Part("property_type") propertyType: String,
+        @Part propertyType: MultipartBody.Part,
         @Part("street_address") streetAddress: String,
         @Part("title") title: String,
         @Part("total_floors") totalFloors: Int,

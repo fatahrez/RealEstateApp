@@ -12,7 +12,7 @@ interface PropertyRepository {
     suspend fun getPropertyDetails(slug: String): Flow<ResultWrapper<Property>>
 
     suspend fun postProperty(
-        advertType: String,
+        advertType: MultipartBody.Part,
         bathrooms: Int,
         bedrooms: Int,
         city: String,
@@ -27,7 +27,7 @@ interface PropertyRepository {
         postalCode: String,
         price: Int,
         propertyNumber: Int,
-        propertyType: String,
+        propertyType: MultipartBody.Part,
         streetAddress: String,
         title: String,
         totalFloors: Int

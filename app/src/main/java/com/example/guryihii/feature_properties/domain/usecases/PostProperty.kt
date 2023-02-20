@@ -12,7 +12,7 @@ class PostProperty(
 ) {
 
     suspend operator fun invoke(
-        advertType: String,
+        advertType: MultipartBody.Part,
         bathrooms: Int,
         bedrooms: Int,
         city: String,
@@ -27,7 +27,7 @@ class PostProperty(
         postalCode: String,
         price: Int,
         propertyNumber: Int,
-        propertyType: String,
+        propertyType: MultipartBody.Part,
         streetAddress: String,
         title: String,
         totalFloors: Int

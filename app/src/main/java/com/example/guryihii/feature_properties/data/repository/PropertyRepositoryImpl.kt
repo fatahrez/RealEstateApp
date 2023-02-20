@@ -29,7 +29,7 @@ class PropertyRepositoryImpl @Inject constructor(
     }
 
     override suspend fun postProperty(
-        advertType: String,
+        advertType: MultipartBody.Part,
         bathrooms: Int,
         bedrooms: Int,
         city: String,
@@ -44,7 +44,7 @@ class PropertyRepositoryImpl @Inject constructor(
         postalCode: String,
         price: Int,
         propertyNumber: Int,
-        propertyType: String,
+        propertyType: MultipartBody.Part,
         streetAddress: String,
         title: String,
         totalFloors: Int
