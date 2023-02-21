@@ -44,5 +44,23 @@
         android:id="@+id/sellerPropertiesFragment"
         android:name="com.example.guryihii.feature_properties.presentation.seller_properties.SellerPropertiesFragment"
         android:label="fragment_seller_properties"
-        tools:layout="@layout/fragment_seller_properties" />
+        tools:layout="@layout/fragment_seller_properties" >
+        <action
+            android:id="@+id/action_sellerPropertiesFragment_to_sellerPropertyDetailFragment"
+            app:destination="@id/sellerPropertyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellerPropertyDetailFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.seller_property_detail.SellerPropertyDetailFragment"
+        android:label="fragment_seller_property_detail"
+        tools:layout="@layout/fragment_seller_property_detail" >
+        <action
+            android:id="@+id/action_sellerPropertyDetailFragment_to_sellerPropertyUpdateFragment"
+            app:destination="@id/sellerPropertyUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellerPropertyUpdateFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.update_property.SellerPropertyUpdateFragment"
+        android:label="fragment_seller_property_update"
+        tools:layout="@layout/fragment_seller_property_update" />
 </navigation>

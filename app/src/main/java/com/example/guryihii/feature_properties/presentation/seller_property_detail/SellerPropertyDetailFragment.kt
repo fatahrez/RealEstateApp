@@ -1,7 +1,6 @@
-package com.example.guryihii.feature_properties.presentation.property_detail
+package com.example.guryihii.feature_properties.presentation.seller_property_detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,27 +8,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
-import com.example.guryihii.databinding.FragmentPropertyDetailBinding
+import com.example.guryihii.databinding.FragmentSellerPropertyDetailBinding
 import com.example.guryihii.feature_properties.domain.model.Property
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class PropertyDetailFragment : Fragment() {
 
-    private var _binding: FragmentPropertyDetailBinding? = null
-    private val binding: FragmentPropertyDetailBinding get() = _binding!!
+class SellerPropertyDetailFragment : Fragment() {
 
-    private val viewModel: PropertyDetailViewModel by viewModels()
+    private var _binding: FragmentSellerPropertyDetailBinding? = null
+    private val binding: FragmentSellerPropertyDetailBinding get() = _binding!!
+
+    private val viewModel: SellerPropertyDetailVM by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentPropertyDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentSellerPropertyDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

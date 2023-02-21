@@ -76,7 +76,12 @@ class SellerPropertiesFragment : Fragment() {
     }
 
     private fun navToSellerPropertiesAdapter(property: Property) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        bundle.putString("slug", property.slug)
+        findNavController().navigate(
+            R.id.action_sellerPropertiesFragment_to_sellerPropertyDetailFragment,
+            bundle
+        )
     }
 
     private fun initViews() {
