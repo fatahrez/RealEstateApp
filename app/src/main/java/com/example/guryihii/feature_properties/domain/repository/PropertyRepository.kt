@@ -58,4 +58,8 @@ interface PropertyRepository {
         totalFloors: Int? = null,
         user: Int
     ): Flow<ResultWrapper<Property>>
+
+    suspend fun deleteProperty(
+        slug: String
+    ): Flow<ResultWrapper<Property>>
 }

@@ -51,6 +51,7 @@
     <string name="my_properties">My Properties</string>
     <string name="update_property">Update Property</string>
     <string name="update">Update</string>
+    <string name="delete_property">Delete Property</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

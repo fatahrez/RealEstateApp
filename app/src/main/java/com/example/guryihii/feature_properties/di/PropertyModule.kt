@@ -60,6 +60,14 @@ object PropertyModule {
 
     @Provides
     @Singleton
+    fun providesDeletePropertyUseCase(
+        repository: PropertyRepository
+    ): DeleteProperty {
+        return DeleteProperty(repository)
+    }
+
+    @Provides
+    @Singleton
     fun providesUpdateProperty(
         repository: PropertyRepository
     ): UpdateProperty {

@@ -40,4 +40,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/propertyImageView" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/deletePropertyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/delete_property"
+        android:backgroundTint="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/updatePropertyButton"
+        app:layout_constraintTop_toBottomOf="@+id/propertyImageView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
