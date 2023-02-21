@@ -18,7 +18,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.work.*
 import com.example.guryihii.R
-import com.example.guryihii.core.workers.UploadPropertyWorker
+import com.example.guryihii.workers.UploadPropertyWorker
 import com.example.guryihii.databinding.FragmentPostPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
@@ -126,7 +126,6 @@ class PostPropertyFragment : Fragment() {
             }
 
             postPropertyButton.setOnClickListener {
-                Log.i("TAG", "initListeners: post buton")
                 val advertType = advertTypeSpinner.selectedItem.toString()
                 val bathrooms = bathroomsEditText.text.toString()
                 val bedrooms = bedroomsEditText.text.toString().toInt()

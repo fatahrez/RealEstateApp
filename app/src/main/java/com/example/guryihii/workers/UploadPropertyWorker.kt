@@ -1,4 +1,4 @@
-package com.example.guryihii.core.workers
+package com.example.guryihii.workers
 
 import android.content.Context
 import android.net.Uri
@@ -104,7 +104,7 @@ class UploadPropertyWorker @AssistedInject constructor(
 
         postProperty(
             advertTypePart,
-            bathrooms!!,
+            bathrooms,
             bedrooms,
             city!!,
             countryPart,
@@ -114,9 +114,9 @@ class UploadPropertyWorker @AssistedInject constructor(
             photo2,
             photo3,
             photo4,
-            plotArea!!,
+            plotArea,
             postalCode!!,
-            price!!,
+            price,
             propertyNumber,
             propertyTypePart,
             streetAddress!!,
