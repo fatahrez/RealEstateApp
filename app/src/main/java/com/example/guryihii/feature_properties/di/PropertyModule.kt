@@ -9,10 +9,7 @@ import com.example.guryihii.core.shared.remote.TokenAuthenticator
 import com.example.guryihii.feature_properties.data.remote.PropertyAPI
 import com.example.guryihii.feature_properties.data.repository.PropertyRepositoryImpl
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
-import com.example.guryihii.feature_properties.domain.usecases.GetAllProperties
-import com.example.guryihii.feature_properties.domain.usecases.GetPropertyDetails
-import com.example.guryihii.feature_properties.domain.usecases.GetSellerProperties
-import com.example.guryihii.feature_properties.domain.usecases.PostProperty
+import com.example.guryihii.feature_properties.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,6 +56,14 @@ object PropertyModule {
         repository: PropertyRepository
     ): GetSellerProperties {
         return GetSellerProperties(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUpdateProperty(
+        repository: PropertyRepository
+    ): UpdateProperty {
+        return UpdateProperty(repository)
     }
 
     @Provides

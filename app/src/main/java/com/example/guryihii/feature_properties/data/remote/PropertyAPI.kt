@@ -7,6 +7,7 @@ import okhttp3.RequestBody
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -40,9 +41,32 @@ interface PropertyAPI {
         @Part propertyType: MultipartBody.Part,
         @Part("street_address") streetAddress: String,
         @Part("title") title: String,
-        @Part("total_floors") totalFloors: Int,
+        @Part("total_floors") totalFloors: Int
     ): PropertyDTO
 
     @GET("properties/agents/")
     suspend fun getSellerProperties(): PropertiesWrapper
+
+    @PUT("properties/update/{slug}/")
+    suspend fun updateProperty(
+        @Part advertType: MultipartBody.Part? = null,
+        @Part("bathrooms") bathrooms: Int? = null,
+        @Part("bedrooms") bedrooms: Int? = null,
+        @Part("city") city: String? = null,
+        @Part country: MultipartBody.Part? = null,
+        @Part cover_photo: MultipartBody.Part? = null,
+        @Part("description") description: String? = null,
+        @Part photo1: MultipartBody.Part? = null,
+        @Part photo2: MultipartBody.Part? = null,
+        @Part photo3: MultipartBody.Part? = null,
+        @Part photo4: MultipartBody.Part? = null,
+        @Part("plot_area") plotArea: Int? = null,
+        @Part("postal_code") postalCode: String? = null,
+        @Part("price") price: Int? = null,
+        @Part("property_number") propertyNumber: Int? = null,
+        @Part propertyType: MultipartBody.Part? = null,
+        @Part("street_address") streetAddress: String? = null,
+        @Part("title") title: String? = null,
+        @Part("total_floors") totalFloors: Int? = null
+    ): PropertyDTO
 }
