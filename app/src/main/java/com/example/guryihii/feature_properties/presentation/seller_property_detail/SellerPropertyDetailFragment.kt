@@ -58,6 +58,17 @@ class SellerPropertyDetailFragment : Fragment() {
                     )
                 }
             }
+
+            deletePropertyButton.setOnClickListener {
+                val property = viewModel.state.value.property
+                if (property != null) {
+                    viewModel.deleteSellerProperty(property.slug)
+                    findNavController().navigate(
+                        R.id.action_sellerPropertyDetailFragment_to_sellerPropertiesFragment
+                    )
+                }
+            }
+
         }
     }
 

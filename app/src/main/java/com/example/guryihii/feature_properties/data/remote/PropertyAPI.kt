@@ -74,7 +74,7 @@ interface PropertyAPI {
         @Part("user") user: Int
     ): PropertyDTO
 
-    @DELETE("properties/delete/{slug}")
+    @DELETE("properties/delete/{slug}/")
     suspend fun deleteProperty(
         @Path("slug") slug: String
     ): PropertyDTO
