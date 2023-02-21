@@ -48,7 +48,9 @@ interface PropertyAPI {
     suspend fun getSellerProperties(): PropertiesWrapper
 
     @PUT("properties/update/{slug}/")
+    @Multipart
     suspend fun updateProperty(
+        @Path("slug") slug: String,
         @Part advertType: MultipartBody.Part? = null,
         @Part("bathrooms") bathrooms: Int? = null,
         @Part("bedrooms") bedrooms: Int? = null,
@@ -67,6 +69,7 @@ interface PropertyAPI {
         @Part propertyType: MultipartBody.Part? = null,
         @Part("street_address") streetAddress: String? = null,
         @Part("title") title: String? = null,
-        @Part("total_floors") totalFloors: Int? = null
+        @Part("total_floors") totalFloors: Int? = null,
+        @Part("user") user: Int
     ): PropertyDTO
 }

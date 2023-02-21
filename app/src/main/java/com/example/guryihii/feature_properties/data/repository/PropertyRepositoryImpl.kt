@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Part
 import javax.inject.Inject
 
 class PropertyRepositoryImpl @Inject constructor(
@@ -81,6 +82,7 @@ class PropertyRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateProperty(
+        slug: String,
         advertType: MultipartBody.Part?,
         bathrooms: Int?,
         bedrooms: Int?,
@@ -99,9 +101,11 @@ class PropertyRepositoryImpl @Inject constructor(
         propertyType: MultipartBody.Part?,
         streetAddress: String?,
         title: String?,
-        totalFloors: Int?
+        totalFloors: Int?,
+        user: Int
     ): Flow<ResultWrapper<Property>> = safeApiCall(ioDispatcher) {
         apiService.updateProperty(
+            slug,
             advertType,
             bathrooms,
             bedrooms,
@@ -120,7 +124,8 @@ class PropertyRepositoryImpl @Inject constructor(
             propertyType,
             streetAddress,
             title,
-            totalFloors
+            totalFloors,
+            user
         ).toProperty()
     }
 }

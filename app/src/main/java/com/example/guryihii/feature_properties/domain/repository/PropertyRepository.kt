@@ -36,6 +36,7 @@ interface PropertyRepository {
     suspend fun getSellerProperties(): Flow<ResultWrapper<List<Property>>>
 
     suspend fun updateProperty(
+        slug: String,
         advertType: MultipartBody.Part? = null,
         bathrooms: Int? = null,
         bedrooms: Int? = null,
@@ -54,6 +55,7 @@ interface PropertyRepository {
         propertyType: MultipartBody.Part? = null,
         streetAddress: String? = null,
         title: String? = null,
-        totalFloors: Int? = null
+        totalFloors: Int? = null,
+        user: Int
     ): Flow<ResultWrapper<Property>>
 }

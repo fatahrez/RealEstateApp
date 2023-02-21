@@ -11,6 +11,7 @@ class UpdateProperty(
 ) {
 
     suspend operator fun invoke(
+        slug: String,
         advertType: MultipartBody.Part? = null,
         bathrooms: Int? = null,
         bedrooms: Int? = null,
@@ -29,9 +30,11 @@ class UpdateProperty(
         propertyType: MultipartBody.Part? = null,
         streetAddress: String? = null,
         title: String? = null,
-        totalFloors: Int? = null
+        totalFloors: Int? = null,
+        user: Int
     ): Flow<ResultWrapper<Property>> {
         return repository.updateProperty(
+            slug,
             advertType,
             bathrooms,
             bedrooms,
@@ -50,7 +53,8 @@ class UpdateProperty(
             propertyType,
             streetAddress,
             title,
-            totalFloors
+            totalFloors,
+            user
         )
     }
 
