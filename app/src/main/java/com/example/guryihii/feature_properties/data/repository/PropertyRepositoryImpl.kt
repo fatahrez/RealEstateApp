@@ -128,4 +128,9 @@ class PropertyRepositoryImpl @Inject constructor(
             user
         ).toProperty()
     }
+
+    override suspend fun deleteProperty(slug: String): Flow<ResultWrapper<Property>> =
+        safeApiCall(ioDispatcher) {
+        apiService.deleteProperty(slug).toProperty()
+    }
 }

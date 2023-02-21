@@ -4,6 +4,7 @@ import com.example.guryihii.feature_properties.data.remote.dto.PropertiesWrapper
 import com.example.guryihii.feature_properties.data.remote.dto.PropertyDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -72,4 +73,10 @@ interface PropertyAPI {
         @Part("total_floors") totalFloors: Int? = null,
         @Part("user") user: Int
     ): PropertyDTO
+
+    @DELETE("properties/delete/{slug}")
+    suspend fun deleteProperty(
+        @Path("slug") slug: String
+    ): PropertyDTO
+
 }
