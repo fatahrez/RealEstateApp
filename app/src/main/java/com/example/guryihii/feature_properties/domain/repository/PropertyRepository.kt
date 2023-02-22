@@ -2,6 +2,7 @@ package com.example.guryihii.feature_properties.domain.repository
 
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.model.Property
+import com.example.guryihii.feature_properties.domain.model.PropertyListing
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -62,4 +63,9 @@ interface PropertyRepository {
     suspend fun deleteProperty(
         slug: String
     ): Flow<ResultWrapper<Property>>
+
+
+    suspend fun postPropertyListing(
+        property: String
+    ): Flow<ResultWrapper<PropertyListing>>
 }
