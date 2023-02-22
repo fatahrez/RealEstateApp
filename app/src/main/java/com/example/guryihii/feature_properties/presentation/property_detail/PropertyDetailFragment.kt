@@ -1,5 +1,6 @@
 package com.example.guryihii.feature_properties.presentation.property_detail
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,16 +12,20 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyDetailBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PropertyDetailFragment : Fragment() {
 
     private var _binding: FragmentPropertyDetailBinding? = null
     private val binding: FragmentPropertyDetailBinding get() = _binding!!
+
+    @Inject lateinit var sharedPreferences: SharedPreferences
 
     private val viewModel: PropertyDetailViewModel by viewModels()
 
@@ -40,7 +45,28 @@ class PropertyDetailFragment : Fragment() {
 
     private fun setupUI() {
         fetchData()
+        initViews()
+        initListeners()
         observeViewState()
+    }
+
+    private fun initListeners() {
+        binding.createPropertyListingBtn.setOnClickListener {
+            val property = viewModel.state.value.property
+            if (property != null) {
+                viewModel.postAgentPropertyListing(property.slug)
+            }
+        }
+    }
+
+    private fun initViews() {
+        val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
+        if (token != null) {
+            val user = Jwt(token).getUserData().role
+            if (user == Constants.AGENT_SIGN_UP) {
+                binding.createPropertyListingBtn.visible()
+            }
+        }
     }
 
     private fun observeViewState() {
@@ -51,6 +77,16 @@ class PropertyDetailFragment : Fragment() {
                 } else {
                     binding.progressBar.gone()
                     showPropertyDetails(state.property)
+                }
+            }
+        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.propertyListingState.collect { state ->
+                if (state.isLoading) {
+                    binding.progressBar.visible()
+                } else {
+                    binding.progressBar.gone()
+                    Log.i("TAG", "observeViewState: ${state.propertyListing}")
                 }
             }
         }

@@ -4,6 +4,7 @@ import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.core.util.safeApiCall
 import com.example.guryihii.feature_properties.data.remote.PropertyAPI
 import com.example.guryihii.feature_properties.domain.model.Property
+import com.example.guryihii.feature_properties.domain.model.PropertyListing
 import com.example.guryihii.feature_properties.domain.repository.PropertyRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -132,5 +133,10 @@ class PropertyRepositoryImpl @Inject constructor(
     override suspend fun deleteProperty(slug: String): Flow<ResultWrapper<Property>> =
         safeApiCall(ioDispatcher) {
         apiService.deleteProperty(slug).toProperty()
+    }
+
+    override suspend fun postPropertyListing(property: String): Flow<ResultWrapper<PropertyListing>>
+    = safeApiCall(ioDispatcher){
+        apiService.postPropertyListing(property).toPropertyListing()
     }
 }

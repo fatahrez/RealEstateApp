@@ -68,10 +68,18 @@ object PropertyModule {
 
     @Provides
     @Singleton
-    fun providesUpdateProperty(
+    fun providesUpdatePropertyUseCase(
         repository: PropertyRepository
     ): UpdateProperty {
         return UpdateProperty(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesPostPropertyListingUseCase(
+        repository: PropertyRepository
+    ): PostPropertyListing {
+        return PostPropertyListing(repository)
     }
 
     @Provides

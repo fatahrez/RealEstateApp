@@ -2,9 +2,12 @@ package com.example.guryihii.feature_properties.data.remote
 
 import com.example.guryihii.feature_properties.data.remote.dto.PropertiesWrapper
 import com.example.guryihii.feature_properties.data.remote.dto.PropertyDTO
+import com.example.guryihii.feature_properties.data.remote.dto.PropertyListingDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.DELETE
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -79,4 +82,9 @@ interface PropertyAPI {
         @Path("slug") slug: String
     ): PropertyDTO
 
+    @FormUrlEncoded
+    @POST("propertylisting/create/")
+    suspend fun postPropertyListing(
+        @Field("property") property: String
+    ): PropertyListingDTO
 }
