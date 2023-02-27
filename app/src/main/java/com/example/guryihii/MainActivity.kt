@@ -51,6 +51,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.sign_up -> {
                 navController.navigate(R.id.signUpFragment, null)
             }
+            R.id.request_property -> {
+                navController.navigate(R.id.requestPropertyFragment, null)
+            }
             R.id.logout -> {
                 logout()
             }
@@ -62,9 +65,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
         if (token != null) {
             val tokenDecoder = Jwt(token)
-            Log.i("TAG", "onCreate: $token")
-            Log.i("TAG", "onCreate: ${tokenDecoder.getUserData()}")
-            val navGraphId = when(tokenDecoder.getUserData().role) {
+            val userRole = tokenDecoder.getUserData().role
+            val navGraphId = when(userRole) {
                 Constants.INDIVIDUAL_SIGN_UP -> R.navigation.nav_graph
                 Constants.AGENT_SIGN_UP -> R.navigation.agent_nav_graph
                 Constants.SELLER_SIGN_UP -> R.navigation.seller_nav_graph
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 else -> R.navigation.nav_graph
             }
 
-            val menuResId = when(tokenDecoder.getUserData().role) {
+            val menuResId = when(userRole) {
                 Constants.INDIVIDUAL_SIGN_UP -> R.menu.bottom_navigation_menu
                 Constants.AGENT_SIGN_UP -> R.menu.agent_bottom_navigation_menu
                 Constants.SELLER_SIGN_UP -> R.menu.seller_bottom_navigation_menu
@@ -130,6 +132,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         navController.navigate(R.id.allPropertyListingsFragment, null)
                         true
                     }
+                    R.id.buyer_request -> {
+                        navController.navigate(R.id.propertyRequestsFragment)
+                        true
+                    }
                     else -> {
                         false
                     }
@@ -139,6 +145,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             binding.navView.menu.findItem(R.id.logout).isVisible = true
             binding.navView.menu.findItem(R.id.sign_in).isVisible = false
             binding.navView.menu.findItem(R.id.sign_up).isVisible = false
+            binding.navView.menu.findItem(R.id.request_property).isVisible =
+                !(userRole == Constants.AGENT_SIGN_UP ||
+                    userRole == Constants.SELLER_SIGN_UP ||
+                    userRole == Constants.PROJECTBUILDER_SIGN_UP)
         } else {
             val navGraphId = R.navigation.nav_graph
             val menuResId = R.menu.bottom_navigation_menu
@@ -182,6 +192,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             binding.navView.menu.findItem(R.id.logout).isVisible = false
             binding.navView.menu.findItem(R.id.sign_in).isVisible = true
             binding.navView.menu.findItem(R.id.sign_up).isVisible = true
+            binding.navView.menu.findItem(R.id.request_property).isVisible = true
         }
     }
 

@@ -46,4 +46,9 @@
             android:id="@+id/action_propertyListingDetailsFragment_to_myListingsFragment"
             app:destination="@id/myListingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/propertyRequestsFragment"
+        android:name="com.example.guryihii.feature_requests.presentation.request_list.PropertyRequestsFragment"
+        android:label="fragment_property_requests"
+        tools:layout="@layout/fragment_property_requests" />
 </navigation>
