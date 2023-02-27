@@ -118,6 +118,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         navController.navigate(R.id.sellerPropertiesFragment, null)
                         true
                     }
+                    R.id.my_listings -> {
+                        navController.navigate(R.id.myListingsFragment, null)
+                        true
+                    }
+                    R.id.agent_listings -> {
+                        navController.navigate(R.id.agentListingsFragment, null)
+                        true
+                    }
+                    R.id.all_properties -> {
+                        navController.navigate(R.id.allPropertyListingsFragment, null)
+                        true
+                    }
                     else -> {
                         false
                     }
@@ -141,8 +153,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             bottomNavigationView.setOnNavigationItemSelectedListener { item ->
                 when(item.itemId) {
-                    R.id.properties -> {
-                        navController.navigate(R.id.propertyFragment, null)
+                    R.id.all_properties -> {
+                        navController.navigate(R.id.allPropertyListingsFragment, null)
                         true
                     }
                     R.id.agents -> {

@@ -1,4 +1,4 @@
-package com.example.guryihii.feature_properties.presentation.agent_listings
+package com.example.guryihii.feature_properties.presentation.seller_agent_listings
 
 import android.os.Bundle
 import android.util.Log
@@ -8,22 +8,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.guryihii.databinding.FragmentMyListingsBinding
+import com.example.guryihii.R
+import com.example.guryihii.databinding.FragmentAgentListingsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyListingsFragment : Fragment() {
+class AgentListingsFragment : Fragment() {
 
-    private var _binding: FragmentMyListingsBinding? = null
-    private val binding: FragmentMyListingsBinding get() = _binding!!
+    private var _binding: FragmentAgentListingsBinding? = null
+    private val binding: FragmentAgentListingsBinding get() = _binding!!
 
-    private val viewModel: MyListingsViewModel by viewModels()
+    private val viewModel: AgentListingsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMyListingsBinding.inflate(inflater, container, false)
+        _binding = FragmentAgentListingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

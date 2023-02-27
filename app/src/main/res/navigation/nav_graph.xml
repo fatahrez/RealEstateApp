@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/propertyFragment">
+    app:startDestination="@id/allPropertyListingsFragment">
 
     <fragment
         android:id="@+id/propertyFragment"
@@ -101,4 +101,9 @@
             android:id="@+id/action_updateProfileFragment_to_profileFragment2"
             app:destination="@id/profileFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/allPropertyListingsFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.all_property_listings.AllPropertyListingsFragment"
+        android:label="fragment_all_property_listings"
+        tools:layout="@layout/fragment_all_property_listings" />
 </navigation>

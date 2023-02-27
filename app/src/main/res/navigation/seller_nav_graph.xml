@@ -66,4 +66,9 @@
         android:name="com.example.guryihii.feature_properties.presentation.update_property.SellerPropertyUpdateFragment"
         android:label="fragment_seller_property_update"
         tools:layout="@layout/fragment_seller_property_update" />
+    <fragment
+        android:id="@+id/agentListingsFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.seller_agent_listings.AgentListingsFragment"
+        android:label="fragment_agent_listings"
+        tools:layout="@layout/fragment_agent_listings" />
 </navigation>
