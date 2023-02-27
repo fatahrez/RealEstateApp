@@ -20,7 +20,7 @@ class PropertyRequestsViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _state = MutableStateFlow(PropertyRequestsState())
-    private val state: StateFlow<PropertyRequestsState> get() = _state
+    val state: StateFlow<PropertyRequestsState> get() = _state
 
     init {
         showAllPropertyRequests()
