@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.usecases.GetAgentPropertyListing
+import com.example.guryihii.feature_properties.domain.usecases.GetSellerPropertyListing
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AgentListingsViewModel @Inject constructor(
-    private val getAgentPropertyListing: GetAgentPropertyListing
+    private val getSellerPropertyListing: GetSellerPropertyListing
 ): ViewModel() {
 
     private val _state = MutableStateFlow(AgentListingsState())
@@ -27,7 +28,7 @@ class AgentListingsViewModel @Inject constructor(
 
     private fun showAgentPropertyListing() {
         viewModelScope.launch {
-            getAgentPropertyListing().onEach { result ->
+            getSellerPropertyListing().onEach { result ->
                 when(result) {
                     is ResultWrapper.Success -> {
                         _state.value = state.value.copy(
