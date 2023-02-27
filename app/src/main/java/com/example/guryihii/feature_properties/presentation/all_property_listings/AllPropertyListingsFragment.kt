@@ -1,16 +1,18 @@
 package com.example.guryihii.feature_properties.presentation.all_property_listings
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentAllPropertyListingsBinding
+import com.example.guryihii.feature_properties.domain.model.PropertyListing
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,12 +55,17 @@ class AllPropertyListingsFragment : Fragment() {
 
     private fun createAdapter(): AllPropertyListingAdapter {
         return AllPropertyListingAdapter {
-            navToPropertyListingDetails()
+            navToPropertyListingDetails(it)
         }
     }
 
-    private fun navToPropertyListingDetails() {
-        TODO("Not yet implemented")
+    private fun navToPropertyListingDetails(propertyListing: PropertyListing) {
+        val bundle = Bundle()
+        bundle.putInt("id", propertyListing.id)
+        findNavController().navigate(
+            R.id.action_allPropertyListingsFragment_to_propertyListDetailsFragment,
+            bundle
+        )
     }
 
     private fun observeViewState(adapter: AllPropertyListingAdapter) {

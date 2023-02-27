@@ -55,6 +55,7 @@
     <string name="list_property">List Property</string>
     <string name="my_listings">My Listings</string>
     <string name="agent_listings">Agent Listings</string>
+    <string name="property_image">Property Image</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

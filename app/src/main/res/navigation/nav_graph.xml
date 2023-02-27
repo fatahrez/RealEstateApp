@@ -105,5 +105,18 @@
         android:id="@+id/allPropertyListingsFragment"
         android:name="com.example.guryihii.feature_properties.presentation.all_property_listings.AllPropertyListingsFragment"
         android:label="fragment_all_property_listings"
-        tools:layout="@layout/fragment_all_property_listings" />
+        tools:layout="@layout/fragment_all_property_listings" >
+        <action
+            android:id="@+id/action_allPropertyListingsFragment_to_propertyListDetailsFragment"
+            app:destination="@id/propertyListDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyListDetailsFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.property_listing_details.PropertyListingDetailsFragment"
+        android:label="fragment_property_list_details"
+        tools:layout="@layout/fragment_property_list_details" >
+        <action
+            android:id="@+id/action_propertyListDetailsFragment_to_allPropertyListingsFragment"
+            app:destination="@id/allPropertyListingsFragment" />
+    </fragment>
 </navigation>
