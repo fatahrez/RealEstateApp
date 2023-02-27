@@ -87,4 +87,19 @@ interface PropertyAPI {
     suspend fun postPropertyListing(
         @Field("property") property: String
     ): PropertyListingDTO
+
+    @GET("propertylisting/agents/all/")
+    suspend fun getAgentPropertyListing(): List<PropertyListingDTO>
+
+    @GET("propertylisting/seller/all/")
+    suspend fun getSellerPropertyListing(): List<PropertyListingDTO>
+
+    @GET("propertylisting/all/")
+    suspend fun getAllPropertyListing(): List<PropertyListingDTO>
+
+    @GET("propertylisting/details/{id}/")
+    suspend fun getPropertyListingDetails(@Path("id") id: Int): PropertyListingDTO
+
+    @DELETE("propertylisting/delete/{id}/")
+    suspend fun deletePropertyListing(@Path("id") id: Int): PropertyListingDTO
 }
