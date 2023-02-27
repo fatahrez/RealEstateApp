@@ -139,4 +139,35 @@ class PropertyRepositoryImpl @Inject constructor(
     = safeApiCall(ioDispatcher){
         apiService.postPropertyListing(property).toPropertyListing()
     }
+
+    override suspend fun getAgentPropertyListing(): Flow<ResultWrapper<List<PropertyListing>>>
+    = safeApiCall(ioDispatcher){
+        apiService.getAgentPropertyListing().map {
+            it.toPropertyListing()
+        }
+    }
+
+    override suspend fun getSellerPropertyListing(): Flow<ResultWrapper<List<PropertyListing>>>
+    = safeApiCall(ioDispatcher){
+        apiService.getSellerPropertyListing().map {
+            it.toPropertyListing()
+        }
+    }
+
+    override suspend fun getAllPropertyListing(): Flow<ResultWrapper<List<PropertyListing>>>
+    = safeApiCall(ioDispatcher){
+        apiService.getAllPropertyListing().map {
+            it.toPropertyListing()
+        }
+    }
+
+    override suspend fun getPropertyListingDetails(id: Int): Flow<ResultWrapper<PropertyListing>>
+    = safeApiCall(ioDispatcher){
+        apiService.getPropertyListingDetails(id).toPropertyListing()
+    }
+
+    override suspend fun deletePropertyListing(id: Int): Flow<ResultWrapper<PropertyListing>>
+    = safeApiCall(ioDispatcher){
+        apiService.deletePropertyListing(id).toPropertyListing()
+    }
 }
