@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import coil.load
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.jwt.Jwt
@@ -94,9 +93,9 @@ class PropertyDetailFragment : Fragment() {
 
     private fun showPropertyDetails(property: Property?) {
         if (property != null) {
-            with(binding) {
-                propertyImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
-            }
+           val controller = PropertyDetailController()
+            binding.epoxyRecyclerView.setController(controller)
+            controller.setData(PropertyDetailState(property))
         }
     }
 
