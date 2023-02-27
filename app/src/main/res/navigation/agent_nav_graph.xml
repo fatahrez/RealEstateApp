@@ -32,5 +32,18 @@
         android:id="@+id/myListingsFragment"
         android:name="com.example.guryihii.feature_properties.presentation.agent_listings.MyListingsFragment"
         android:label="fragment_my_listings"
-        tools:layout="@layout/fragment_my_listings" />
+        tools:layout="@layout/fragment_my_listings" >
+        <action
+            android:id="@+id/action_myListingsFragment_to_propertyListingDetailsFragment"
+            app:destination="@id/propertyListingDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyListingDetailsFragment"
+        android:name="com.example.guryihii.feature_properties.presentation.property_listing_details.PropertyListingDetailsFragment"
+        android:label="fragment_property_list_details"
+        tools:layout="@layout/fragment_property_list_details" >
+        <action
+            android:id="@+id/action_propertyListingDetailsFragment_to_myListingsFragment"
+            app:destination="@id/myListingsFragment" />
+    </fragment>
 </navigation>

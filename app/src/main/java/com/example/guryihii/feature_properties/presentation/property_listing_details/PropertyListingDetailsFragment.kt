@@ -1,6 +1,8 @@
 package com.example.guryihii.feature_properties.presentation.property_listing_details
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyListDetailsBinding
 import com.example.guryihii.feature_properties.domain.model.PropertyListing
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -23,7 +27,9 @@ class PropertyListingDetailsFragment : Fragment() {
     private val binding: FragmentPropertyListDetailsBinding get() = _binding!!
 
     private val viewModel: PropertyListingDetailsViewModel by viewModels()
+    @Inject lateinit var sharedPreferences: SharedPreferences
 
+    private var id: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +49,27 @@ class PropertyListingDetailsFragment : Fragment() {
 
     private fun setupUI() {
         fetchData()
+        initViews()
+        initListeners()
         observeViewState()
+    }
+
+    private fun initListeners() {
+        with(binding) {
+            deletePropertyListingButton.setOnClickListener {
+                viewModel.deleteAgentPropertyListing(id)
+            }
+        }
+    }
+
+    private fun initViews() {
+        val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
+        if (token != null) {
+            val user = Jwt(token).getUserData().role
+            if (user == Constants.AGENT_SIGN_UP) {
+                binding.deletePropertyListingButton.visible()
+            }
+        }
     }
 
     private fun observeViewState() {
@@ -54,6 +80,17 @@ class PropertyListingDetailsFragment : Fragment() {
                 } else {
                     binding.progressBar.gone()
                     showPropertyDetails(state.propertyListing)
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            viewModel.deleteState.collect { state ->
+                if (state.isLoading) {
+                    binding.progressBar.visible()
+                } else {
+                    binding.progressBar.gone()
+                    Log.i("TAG", "observeViewState: ${state.propertyListing}")
                 }
             }
         }
@@ -68,8 +105,8 @@ class PropertyListingDetailsFragment : Fragment() {
     }
 
     private fun fetchData() {
-        val id = arguments?.getInt("id")
-        if (id != null) {
+        id = arguments?.getInt("id") ?: 0
+        if (id != 0) {
             viewModel.showPropertyListingDetails(id)
         }
     }
