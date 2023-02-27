@@ -57,6 +57,7 @@
     <string name="agent_listings">Agent Listings</string>
     <string name="property_image">Property Image</string>
     <string name="delete">Delete</string>
+    <string name="request_property">Request Property</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
