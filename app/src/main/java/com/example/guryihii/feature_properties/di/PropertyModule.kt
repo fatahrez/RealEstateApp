@@ -84,6 +84,46 @@ object PropertyModule {
 
     @Provides
     @Singleton
+    fun providesGetAgentPropertyListingUseCase(
+        repository: PropertyRepository
+    ): GetAgentPropertyListing {
+        return GetAgentPropertyListing(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetSellerPropertyListingUseCase(
+        repository: PropertyRepository
+    ): GetSellerPropertyListing {
+        return GetSellerPropertyListing(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetAllPropertyListingUseCase(
+        repository: PropertyRepository
+    ): GetAllPropertyListing {
+        return GetAllPropertyListing(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetPropertyListingDetailsUseCase(
+        repository: PropertyRepository
+    ): GetPropertyListingDetails {
+        return GetPropertyListingDetails(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeletePropertyListingUseCase(
+        repository: PropertyRepository
+    ): DeletePropertyListing {
+        return DeletePropertyListing(repository)
+    }
+
+    @Provides
+    @Singleton
     fun providesPropertyRepository(
         propertyAPI: PropertyAPI
     ): PropertyRepository {
