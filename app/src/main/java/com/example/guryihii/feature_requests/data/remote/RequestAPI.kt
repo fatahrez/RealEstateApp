@@ -9,11 +9,11 @@ import retrofit2.http.POST
 interface RequestAPI {
 
     @GET("enquiry/all/")
-    fun getAllRequests(): List<RequestPropertyDTO>
+    suspend fun getAllRequests(): List<RequestPropertyDTO>
 
     @FormUrlEncoded
     @POST("enquiry/create/")
-    fun postRequest(
+    suspend fun postRequest(
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("phone_number") phoneNumber: String,

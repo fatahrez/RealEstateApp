@@ -132,6 +132,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         navController.navigate(R.id.allPropertyListingsFragment, null)
                         true
                     }
+                    R.id.buyer_request -> {
+                        navController.navigate(R.id.propertyRequestsFragment)
+                        true
+                    }
                     else -> {
                         false
                     }
