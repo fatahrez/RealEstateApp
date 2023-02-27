@@ -14,6 +14,12 @@
         android:icon="@drawable/home"/>
 
     <item
+        android:id="@+id/agent_listings"
+        android:title="@string/agent_listings"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
+
+    <item
         android:id="@+id/profile"
         android:title="@string/profile"
         android:enabled="true"

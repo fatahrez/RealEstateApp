@@ -48,7 +48,7 @@ class PropertiesAdapter(
         fun bindItem(property: Property) {
             with(binding) {
                 propertyTitle.text = property.title
-                propertyImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
+                propertyImageView.load(Constants.BASE_URL_IMAGE+property.photo1)
             }
         }
     }

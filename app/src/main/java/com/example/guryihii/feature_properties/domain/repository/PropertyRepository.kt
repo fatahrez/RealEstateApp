@@ -64,8 +64,17 @@ interface PropertyRepository {
         slug: String
     ): Flow<ResultWrapper<Property>>
 
-
     suspend fun postPropertyListing(
         property: String
     ): Flow<ResultWrapper<PropertyListing>>
+
+    suspend fun getAgentPropertyListing(): Flow<ResultWrapper<List<PropertyListing>>>
+
+    suspend fun getSellerPropertyListing(): Flow<ResultWrapper<List<PropertyListing>>>
+
+    suspend fun getAllPropertyListing(): Flow<ResultWrapper<List<PropertyListing>>>
+
+    suspend fun getPropertyListingDetails(id: Int): Flow<ResultWrapper<PropertyListing>>
+
+    suspend fun deletePropertyListing(id: Int): Flow<ResultWrapper<PropertyListing>>
 }

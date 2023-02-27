@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/properties"
-        android:title="@string/properties"
-        android:enabled="true"
-        android:icon="@drawable/home"/>
-    <item
         android:id="@+id/seller_posts"
         android:title="@string/seller_posts"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/my_listings"
+        android:title="@string/my_listings"
         android:enabled="true"
         android:icon="@drawable/home"/>
 
