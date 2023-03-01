@@ -9,7 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     
-    <color name="green_light">#E3E8DA</color>
+<!--    <color name="green_light">#E3E8DA</color>-->
+    <color name="green_light">#89c7a8</color>
     <color name="green_dark">#5DAC89</color>
     <color name="whitesmoke">#F2F2F2</color>
 </resources>
