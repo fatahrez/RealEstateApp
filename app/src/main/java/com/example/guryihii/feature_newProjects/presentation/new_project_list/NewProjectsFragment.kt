@@ -59,9 +59,12 @@ class NewProjectsFragment : Fragment() {
     }
 
     private fun createAdapter(): NewProjectListAdapter {
-        return NewProjectListAdapter {
-            navToNewProjectDetails(it)
-        }
+        return NewProjectListAdapter (
+            clickListener = {
+                navToNewProjectDetails(it)
+            },
+            requireContext()
+        )
     }
 
     private fun navToNewProjectDetails(newProject: NewProject) {
