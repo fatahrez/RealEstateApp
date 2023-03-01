@@ -70,9 +70,12 @@ class SellerPropertiesFragment : Fragment() {
     }
 
     private fun createAdapter(): SellerPropertiesAdapter {
-        return SellerPropertiesAdapter {
-            navToSellerPropertiesAdapter(it)
-        }
+        return SellerPropertiesAdapter (
+            clickListener = {
+                navToSellerPropertiesAdapter(it)
+            },
+            requireContext()
+        )
     }
 
     private fun navToSellerPropertiesAdapter(property: Property) {

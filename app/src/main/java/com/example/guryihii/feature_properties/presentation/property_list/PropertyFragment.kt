@@ -100,9 +100,12 @@ class PropertyFragment : Fragment() {
     }
 
     private fun  createAdapter(): PropertiesAdapter {
-        return PropertiesAdapter {
+        return PropertiesAdapter(
+            clickListener = {
             navToPropertyDetail(it)
-        }
+            },
+            requireContext()
+        )
     }
 
     private fun navToPropertyDetail(property: Property) {
