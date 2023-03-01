@@ -21,6 +21,7 @@
         android:layout_marginStart="16dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:fontFamily="@font/lato_bold"
         android:textColor="@color/black"
         tools:text="Agent Name" />
 
@@ -31,6 +32,7 @@
         android:layout_below="@id/agent_name"
         android:layout_toEndOf="@id/profile_photo"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/lato_regular"
         android:textSize="14sp"
         tools:text="Email: agent_email@example.com" />
 
@@ -42,6 +44,7 @@
         android:layout_toEndOf="@id/profile_photo"
         android:layout_marginStart="16dp"
         android:textSize="14sp"
+        android:fontFamily="@font/lato_regular"
         tools:text="Phone: +1-123-456-7890" />
 
     <TextView
@@ -52,6 +55,7 @@
         android:layout_toEndOf="@id/profile_photo"
         android:layout_marginStart="16dp"
         android:textSize="14sp"
+        android:fontFamily="@font/lato_regular"
         android:textColor="@color/black"
         tools:text="About Me: Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
 
