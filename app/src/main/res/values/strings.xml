@@ -62,6 +62,9 @@
     <string name="subject">Subject</string>
     <string name="looking_for">Looking for ...</string>
     <string name="make_request">Make Request</string>
+    <string name="not_signed_in_title">You are not signed in</string>
+    <string name="not_signed_in_message">Please sign in to access your profile</string>
+    <string name="username">username</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
