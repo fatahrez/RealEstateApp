@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class UpdateProfileFragment : Fragment() {
 
@@ -35,7 +34,7 @@ class UpdateProfileFragment : Fragment() {
     private var gender: String? = "Male"
 
     private val viewModel: UpdateProfileViewModel by viewModels()
-    private val getProfileViewModel: ProfileViewModel by viewModels()
+    var username = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,34 +55,25 @@ class UpdateProfileFragment : Fragment() {
     }
 
     private fun fetchData() {
-        getProfileViewModel.showProfile()
+//        getProfileViewModel.showProfile()
+        val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
+        if (token != null) {
+            username = Jwt(token).getUserData().username
+        }
     }
 
     private fun observeViewState() {
-        lifecycleScope.launchWhenCreated {
-            getProfileViewModel.state.collect { state ->
-                if (state.isLoading) {
-                    binding.progressBar.visible()
-                } else {
-                    binding.progressBar.gone()
-                    if (state.profile != null) {
-                        updateProfile(state.profile.username)
-                    }
-                }
-            }
-        }
-
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
                     binding.progressBar.visible()
                 } else {
                     binding.progressBar.gone()
-                    if (sharedPreferences.getString(Constants.ACCESS_TOKEN, null) != null) {
+                    if (!state.profileResponse.isNullOrEmpty()) {
                         val mainActivity = requireActivity() as MainActivity
                         mainActivity.updateNavigation()
+                        findNavController().navigate(R.id.propertyFragment, null)
                     }
-                    findNavController().navigate(R.id.propertyFragment, null)
                 }
             }
         }
@@ -127,7 +117,11 @@ class UpdateProfileFragment : Fragment() {
     }
 
     private fun initListeners() {
-
+        with(binding) {
+            updateProfileButton.setOnClickListener {
+                updateProfile(username)
+            }
+        }
     }
 
     companion object {

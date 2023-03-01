@@ -17,6 +17,12 @@
             android:visible="true"/>
 
         <item
+            android:id="@+id/request_property"
+            android:title="@string/request_property"
+            android:visible="true"
+            />
+
+        <item
             android:id="@+id/logout"
             android:icon="@drawable/account_circle"
             android:title="@string/log_out"
