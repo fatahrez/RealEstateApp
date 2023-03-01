@@ -1,17 +1,23 @@
 package com.example.guryihii.feature_properties.presentation.property_list
 
+import android.content.Context
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.databinding.ListItemPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 
 class PropertiesAdapter(
-    private val clickListener: (Property) -> Unit
+    private val clickListener: (Property) -> Unit,
+    private val context: Context
 ): ListAdapter<Property, PropertiesAdapter.ViewHolder>(COMPARATOR) {
 
     private object COMPARATOR: DiffUtil.ItemCallback<Property>() {
@@ -47,8 +53,20 @@ class PropertiesAdapter(
 
         fun bindItem(property: Property) {
             with(binding) {
-                propertyTitle.text = property.title
-                propertyImageView.load(Constants.BASE_URL_IMAGE+property.photo1)
+                propertyImageView.load(Constants.BASE_URL_IMAGE+ property.coverPhoto)
+                val priceString = "$ " + property.price
+                val spannable = SpannableString(priceString)
+                spannable.setSpan(
+                    BackgroundColorSpan(context
+                        .resources.getColor(R.color.green_dark, context.theme)),
+                    0,
+                    priceString.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                priceTextView.text = spannable
+                val propertyDetails = property.propertyType + "  |  " + property.city + "  |  " +
+                        property.bedrooms + " Bedroom" + "  |  " + property.streetAddress
+                propertyDetailTextView.text = propertyDetails
             }
         }
     }
