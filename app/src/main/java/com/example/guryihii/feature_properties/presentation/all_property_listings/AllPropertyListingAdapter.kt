@@ -57,8 +57,9 @@ class AllPropertyListingAdapter(
 
         fun bindItem(propertyListing: PropertyListing) {
             with(binding) {
-                propertyImageView.load(Constants.BASE_URL_IMAGE+propertyListing.property.coverPhoto)
-                val priceString = "$ " + propertyListing.property.price
+                val property = propertyListing.property
+                propertyImageView.load(Constants.BASE_URL_IMAGE+ property.coverPhoto)
+                val priceString = "$ " + property.price
                 val spannable = SpannableString(priceString)
                 spannable.setSpan(
                     BackgroundColorSpan(context.resources.getColor(R.color.green_dark)),
@@ -67,6 +68,9 @@ class AllPropertyListingAdapter(
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
                 priceTextView.text = spannable
+                val propertyDetails = property.propertyType + "  |  " + property.city + "  |  " +
+                        property.bedrooms + " Bedroom" + "  |  " + property.streetAddress
+                propertyDetailTextView.text = propertyDetails
             }
         }
 
