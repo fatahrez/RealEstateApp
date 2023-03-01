@@ -1,17 +1,25 @@
 package com.example.guryihii.feature_properties.presentation.all_property_listings
 
+import android.content.Context
+import android.content.res.Resources.Theme
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.databinding.ListItemPropertyListingBinding
 import com.example.guryihii.feature_properties.domain.model.PropertyListing
+import com.google.android.material.imageview.ShapeableImageView
 
 class AllPropertyListingAdapter(
-    private val clickListener: (PropertyListing) -> Unit
+    private val clickListener: (PropertyListing) -> Unit,
+    private val context: Context
 ): ListAdapter<PropertyListing, AllPropertyListingAdapter.ViewHolder>(COMPARATOR) {
 
     private object COMPARATOR: DiffUtil.ItemCallback<PropertyListing>() {
@@ -50,6 +58,15 @@ class AllPropertyListingAdapter(
         fun bindItem(propertyListing: PropertyListing) {
             with(binding) {
                 propertyImageView.load(Constants.BASE_URL_IMAGE+propertyListing.property.coverPhoto)
+                val priceString = "$ " + propertyListing.property.price
+                val spannable = SpannableString(priceString)
+                spannable.setSpan(
+                    BackgroundColorSpan(context.resources.getColor(R.color.green_dark)),
+                    0,
+                    priceString.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                priceTextView.text = spannable
             }
         }
 
