@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import coil.load
+import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
@@ -43,11 +46,24 @@ class ProfileFragment : Fragment() {
     private fun setupUI() {
         val token = sharedPreferences.getString(Constants.ACCESS_TOKEN, null)
         if (token != null) {
+            binding.fragmentLoggedIn.visible()
+            binding.fragmentNotSignedIn.gone()
             fetchData()
             observeViewState()
+        } else {
+            binding.fragmentNotSignedIn.visible()
+            binding.fragmentLoggedIn.gone()
         }
         initViews()
+        initListeners()
+    }
 
+    private fun initListeners() {
+        with(binding) {
+            buttonSignIn.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment2_to_signInFragment, null)
+            }
+        }
     }
 
     private fun fetchData() {
@@ -74,7 +90,20 @@ class ProfileFragment : Fragment() {
     private fun showProfile(profile: Profile?) {
         with(binding) {
             if (profile != null) {
-                textView.text = profile.email
+                fragmentNotSignedIn.gone()
+                fragmentLoggedIn.visible()
+                profilePhoto.load(profile.profilePhoto)
+                username.text = profile.username
+                name.text = profile.firstName
+                email.text = profile.email
+                phone.text = profile.phoneNumber
+                aboutMe.text = profile.aboutMe
+                gender.text = profile.gender
+                country.text = profile.country
+                city.text = profile.city
+            } else {
+                fragmentNotSignedIn.visible()
+                fragmentLoggedIn.gone()
             }
         }
     }

@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_profileFragment2_to_updateProfileFragment"
             app:destination="@id/updateProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment2"
