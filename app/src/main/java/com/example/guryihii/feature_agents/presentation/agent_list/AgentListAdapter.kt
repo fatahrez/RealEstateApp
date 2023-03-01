@@ -45,8 +45,11 @@ class AgentListAdapter(
     ): RecyclerView.ViewHolder(binding.root) {
         fun bindItem(agent: Agent) {
             with(binding) {
-                agentNameTextView.text = agent.firstName
-                profilePhotoImageView.load(agent.profilePhoto)
+                agentName.text = agent.firstName
+                profilePhoto.load(agent.profilePhoto)
+                agentEmail.text ="Email: " + agent.email
+                agentPhoneNumber.text = "Phone: " + agent.phoneNumber
+                agentAboutMe.text = "About Me: " + agent.aboutMe
             }
         }
     }

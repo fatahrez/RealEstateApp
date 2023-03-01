@@ -32,7 +32,7 @@
         android:paddingTop="0dp"
         android:text="@string/no_available_data"
         android:textAlignment="center"
-        android:textColor="@color/design_default_color_on_primary"
+        android:textColor="@color/design_default_color_on_secondary"
         android:textSize="13sp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
