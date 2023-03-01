@@ -52,9 +52,12 @@ class MyListingsFragment : Fragment() {
     }
 
     private fun createAdapter(): AllPropertyListingAdapter {
-        return AllPropertyListingAdapter {
-            navToPropertyListingDetails(it)
-        }
+        return AllPropertyListingAdapter(
+            clickListener = {
+                navToPropertyListingDetails(it)
+            },
+            requireContext()
+        )
     }
 
     private fun navToPropertyListingDetails(propertyListing: PropertyListing) {

@@ -54,9 +54,9 @@ class AllPropertyListingsFragment : Fragment() {
     }
 
     private fun createAdapter(): AllPropertyListingAdapter {
-        return AllPropertyListingAdapter {
+        return AllPropertyListingAdapter(clickListener = {
             navToPropertyListingDetails(it)
-        }
+        },context = requireContext())
     }
 
     private fun navToPropertyListingDetails(propertyListing: PropertyListing) {
