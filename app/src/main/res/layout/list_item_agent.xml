@@ -1,34 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_photo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        tools:src="@drawable/account_circle"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerRound"/>
+
+    <TextView
+        android:id="@+id/agent_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_toEndOf="@id/profile_photo"
+        android:layout_marginStart="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        tools:text="Agent Name" />
 
-        <ImageView
-            android:id="@+id/profilePhotoImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="16dp"
-            android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars" />
-        <TextView
-            android:id="@+id/agentNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Agent"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/agent_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/agent_name"
+        android:layout_toEndOf="@id/profile_photo"
+        android:layout_marginStart="16dp"
+        android:textSize="14sp"
+        tools:text="Email: agent_email@example.com" />
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/agent_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/agent_email"
+        android:layout_toEndOf="@id/profile_photo"
+        android:layout_marginStart="16dp"
+        android:textSize="14sp"
+        tools:text="Phone: +1-123-456-7890" />
+
+    <TextView
+        android:id="@+id/agent_about_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/agent_phone_number"
+        android:layout_toEndOf="@id/profile_photo"
+        android:layout_marginStart="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        tools:text="About Me: Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+
+</RelativeLayout>

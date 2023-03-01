@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import coil.load
+import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentAgentDetailBinding
@@ -63,7 +65,14 @@ class AgentDetailFragment : Fragment() {
     private fun showAgentDetails(agent: Agent?) {
         if (agent != null) {
             with(binding) {
-                agentNameTextView.text = agent.firstName
+                agentProfilePhoto.load(agent.profilePhoto)
+                agentName.text = agent.firstName
+                agentEmail.text = "Email: " + agent.email
+                agentPhoneNumber.text = "Phone: " + agent.phoneNumber
+                agentAboutMe.text = "About Me: " + agent.aboutMe
+                agentLicense.text = "License: " + agent.license
+                agentGender.text = "Gender: " + agent.gender
+                agentLocation.text = "Location: " + agent.city + ", " + agent.country
             }
         }
     }
