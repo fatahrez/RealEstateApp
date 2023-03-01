@@ -6,18 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".feature_properties.presentation.property_detail.PropertyDetailFragment">
 
-    <ImageView
-        android:id="@+id/propertyImageView"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic" />
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/epoxyRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:paddingBottom="24dp"
+        app:itemSpacing="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="12"
+        tools:listitem="@layout/list_property_detail" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -39,5 +37,5 @@
         android:text="@string/list_property"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/propertyImageView" />
+        app:layout_constraintTop_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
