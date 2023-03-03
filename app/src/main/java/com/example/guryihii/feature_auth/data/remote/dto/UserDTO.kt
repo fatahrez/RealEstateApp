@@ -13,7 +13,8 @@ data class UserDTO(
     val refreshToken: String? = null,
     @SerializedName("first_name")
     val firstName: String? = null,
-    val type: String? = null
+    val type: String? = null,
+    val detail: String? = null
 ) {
     fun toUser(): User {
         return User(
@@ -23,7 +24,8 @@ data class UserDTO(
             accessToken = accessToken,
             refreshToken = refreshToken,
             firstName = firstName,
-            type = type
+            type = type,
+            detail = detail
         )
     }
 }

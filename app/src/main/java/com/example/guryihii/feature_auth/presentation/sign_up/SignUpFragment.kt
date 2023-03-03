@@ -1,22 +1,27 @@
 package com.example.guryihii.feature_auth.presentation.sign_up
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.guryihii.MainActivity
 import com.example.guryihii.R
-import com.example.guryihii.core.util.gone
-import com.example.guryihii.core.util.visible
+import com.example.guryihii.core.util.*
 import com.example.guryihii.databinding.FragmentSignUpBinding
 import com.example.guryihii.feature_auth.domain.model.User
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
@@ -25,6 +30,9 @@ class SignUpFragment : Fragment() {
     private val binding: FragmentSignUpBinding get() = _binding!!
 
     private val viewModel: SignUpViewModel by viewModels()
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +53,29 @@ class SignUpFragment : Fragment() {
     }
 
     private fun observeViewState() {
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 if(state.isLoading) {
                     binding.progressBar.visible()
-                } else {
+                } else if(!state.error.isNullOrEmpty()) {
+                    hideKeyboard()
                     binding.progressBar.gone()
-                    Log.i("TAG", "observeViewState: ${state.user}")
+                    Snackbar.make(
+                        requireView(),
+                        state.error.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                } else {
+                    hideKeyboard()
+                    binding.progressBar.gone()
+                    if (state.user != null) {
+                        sharedPreferences.edit {
+                            putString(Constants.ACCESS_TOKEN, state.user.accessToken)
+                            putString(Constants.REFRESH_TOKEN, state.user.refreshToken)
+                        }
+                        val mainActivity = requireActivity() as MainActivity
+                        mainActivity.updateNavigation()
+                    }
                 }
             }
         }
@@ -66,18 +90,57 @@ class SignUpFragment : Fragment() {
                 val firstName = firstNameEditText.text.toString()
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
+                val confirmPassword = confirmPasswordEditText.text.toString()
 
-                val user = User(
-                    firstName = firstName,
-                    email = email,
-                    password = password,
-                    type = "INDIVIDUAL"
-                )
-                viewModel.signUpUser(user)
+                if (validateInputs(firstName, email, password, confirmPassword)) {
+                    val user = User(
+                        firstName = firstName,
+                        email = email,
+                        password = password,
+                        type = Constants.INDIVIDUAL_SIGN_UP
+                    )
+                    viewModel.signUpUser(user)
+                }
             }
         }
     }
 
+    private fun validateInputs(
+        firstName: String,
+        email: String,
+        password: String,
+        confirmPassword: String
+    ): Boolean {
+        with(binding) {
+            return when {
+                firstName.isEmpty() -> {
+                    firstNameEditText.error = getString(R.string.empty_first_name)
+                    return false
+                }
+                email.isEmpty() -> {
+                    emailEditText.error = getString(R.string.emptyEmail)
+                    false
+                }
+                password.isEmpty() -> {
+                    passwordEditText.error = getString(R.string.emptyPassword)
+                    false
+                }
+                !email.isValidEmail() -> {
+                    emailEditText.error = getString(R.string.invalid_email_error)
+                    false
+                }
+                password.length < 6 -> {
+                    passwordEditText.error = getString(R.string.passwordInvalidLength)
+                    false
+                }
+                confirmPassword != password -> {
+                    confirmPasswordEditText.error = getString(R.string.passwords_not_matching)
+                    false
+                }
+                else -> true
+            }
+        }
+    }
     companion object {
 
     }

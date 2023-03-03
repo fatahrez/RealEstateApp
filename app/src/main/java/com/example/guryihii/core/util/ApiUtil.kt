@@ -55,8 +55,19 @@ fun convertErrorBody(throwable: HttpException): ErrorResponse? = try {
         err = err.replace("{", "")
         err = err.replace("}", "")
         err.split()
-    } else {
+    } else if(jsonObj.has("detail")){
+        jsonObj.getString("detail")
+    }else if (jsonObj.has("message")){
         jsonObj.getString("message")
+    }else {
+        val cleanJson = jsonObj.toString().replace("null", "\"\"")
+        var err: String = cleanJson.replace("[", "")
+        err = err.replace("]", "")
+        err = err.replace("\"", "")
+        err = err.replace(",", "\n")
+        err = err.replace("{", "")
+        err = err.replace("}", "")
+        err
     }
 
     message.append(messageToAppend)

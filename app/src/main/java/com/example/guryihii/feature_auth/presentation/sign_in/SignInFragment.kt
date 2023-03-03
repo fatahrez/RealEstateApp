@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.MainActivity
-import com.example.guryihii.core.util.Constants
-import com.example.guryihii.core.util.gone
-import com.example.guryihii.core.util.visible
+import com.example.guryihii.R
+import com.example.guryihii.core.util.*
 import com.example.guryihii.databinding.FragmentSignInBinding
 import com.example.guryihii.feature_auth.domain.model.User
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -54,8 +54,10 @@ class SignInFragment() : Fragment() {
             signInButton.setOnClickListener {
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
-                val user = User(email, password)
-                viewModel.signIn(user)
+                if(validateInputs(email, password)) {
+                    val user = User(email, password)
+                    viewModel.signIn(user)
+                }
             }
         }
     }
@@ -65,7 +67,16 @@ class SignInFragment() : Fragment() {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
                     binding.progressBar.visible()
-                } else {
+                } else if (!state.errors.isNullOrEmpty()) {
+                    hideKeyboard()
+                    binding.progressBar.gone()
+                    Snackbar.make(
+                        requireView(),
+                        state.errors.toString(),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }else {
+                    hideKeyboard()
                     binding.progressBar.gone()
                     sharedPreferences.edit {
                         putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
@@ -76,6 +87,37 @@ class SignInFragment() : Fragment() {
                         mainActivity.updateNavigation()
                     }
                 }
+            }
+        }
+    }
+
+    private fun validateInputs(email: String, password: String): Boolean {
+        with(binding) {
+            return when {
+                email.isEmpty() -> {
+                    emailEditText.error = getString(R.string.emptyEmail)
+                    false
+                }
+                password.isEmpty() -> {
+                    passwordEditText.error = getString(R.string.emptyPassword)
+                    false
+                }
+                password.length < 6 -> {
+                    passwordEditText.error = getString(R.string.passwordInvalidLength)
+                    false
+                }
+                !email.contains("@") -> {
+                    emailEditText.error = getString(R.string.invalid_email_error)
+                    false
+                }
+                email.contains("@") -> {
+                    if (!email.isValidEmail()) {
+                        emailEditText.error = getString(R.string.invalid_email_error)
+                        false
+                    } else true
+                }
+
+                else -> true
             }
         }
     }
