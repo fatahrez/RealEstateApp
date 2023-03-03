@@ -29,13 +29,16 @@ class SignInViewModel @Inject constructor(
                     when(result) {
                         is ResultWrapper.Loading -> {
                             _state.value = state.value.copy(
-                                isLoading = true
+                                isLoading = true,
+                                errors = null,
+                                user = null
                             )
                         }
                         is ResultWrapper.Success -> {
                             _state.value = state.value.copy(
                                 isLoading = false,
-                                user = result.value ?: null
+                                user = result.value ?: null,
+                                errors = null
                             )
                         }
                         is ResultWrapper.GenericError -> {

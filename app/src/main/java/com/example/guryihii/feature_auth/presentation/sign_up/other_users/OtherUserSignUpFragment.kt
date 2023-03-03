@@ -85,9 +85,10 @@ class OtherUserSignUpFragment : Fragment() {
                 val firstName = firstNameEditText.text.toString()
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
+                val confirmPassword = confirmPasswordEditText.text.toString()
                 val userType = userTypeSpinners.selectedItem.toString()
 
-                if (validateInputs(firstName, email, password)) {
+                if (validateInputs(firstName, email, password, confirmPassword)) {
                     val user = User(
                         firstName = firstName,
                         email = email,
@@ -100,7 +101,12 @@ class OtherUserSignUpFragment : Fragment() {
         }
     }
 
-    private fun validateInputs(firstName: String, email: String, password: String): Boolean {
+    private fun validateInputs(
+        firstName: String,
+        email: String,
+        password: String,
+        confirmPassword: String
+    ): Boolean {
         with(binding) {
             return when {
                 firstName.isEmpty() -> {
@@ -121,6 +127,11 @@ class OtherUserSignUpFragment : Fragment() {
                 }
                 password.length < 6 -> {
                     passwordEditText.error = getString(R.string.passwordInvalidLength)
+                    false
+                }
+                confirmPassword != password -> {
+                    confirmPasswordEditText.error = getString(R.string.passwords_not_matching)
+                    confirmPasswordEditText.isTextInputLayoutFocusedRectEnabled = true
                     false
                 }
                 else -> true

@@ -75,10 +75,6 @@ class SignUpFragment : Fragment() {
                         }
                         val mainActivity = requireActivity() as MainActivity
                         mainActivity.updateNavigation()
-//                        findNavController().navigate(
-//                            R.id.action_signUpFragment_to_allPropertyListingsFragment,
-//                            null
-//                        )
                     }
                 }
             }
@@ -94,8 +90,9 @@ class SignUpFragment : Fragment() {
                 val firstName = firstNameEditText.text.toString()
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
+                val confirmPassword = confirmPasswordEditText.text.toString()
 
-                if (validateInputs(firstName, email, password)) {
+                if (validateInputs(firstName, email, password, confirmPassword)) {
                     val user = User(
                         firstName = firstName,
                         email = email,
@@ -108,7 +105,12 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    private fun validateInputs(firstName: String, email: String, password: String): Boolean {
+    private fun validateInputs(
+        firstName: String,
+        email: String,
+        password: String,
+        confirmPassword: String
+    ): Boolean {
         with(binding) {
             return when {
                 firstName.isEmpty() -> {
@@ -129,6 +131,10 @@ class SignUpFragment : Fragment() {
                 }
                 password.length < 6 -> {
                     passwordEditText.error = getString(R.string.passwordInvalidLength)
+                    false
+                }
+                confirmPassword != password -> {
+                    confirmPasswordEditText.error = getString(R.string.passwords_not_matching)
                     false
                 }
                 else -> true
