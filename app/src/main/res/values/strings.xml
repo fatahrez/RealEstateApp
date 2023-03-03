@@ -65,6 +65,12 @@
     <string name="not_signed_in_title">You are not signed in</string>
     <string name="not_signed_in_message">Please sign in to access your profile</string>
     <string name="username">username</string>
+    <string name="emptyPassword">Password cannot be empty</string>
+    <string name="emptyEmail">Email cannot be empty</string>
+    <string name="passwordInvalidLength">Password  must be greater than 6</string>
+    <string name="invalid_email_error">Invalid email</string>
+
+
 
     <string-array name="userTypes">
         <item>SELLER</item>

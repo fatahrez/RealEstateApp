@@ -1,7 +1,6 @@
 package com.example.guryihii.core.shared.remote
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.feature_refresh_token.data.repository.RefreshTokenRepositoryImpl
 import com.example.guryihii.feature_refresh_token.domain.model.Token
@@ -22,6 +21,9 @@ class TokenAuthenticator @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
+        if (response.request.url.toString() == Constants.LOGIN_URL) {
+            return null
+        }
         return runBlocking {
             if (response.code == 401) {
                 val refreshToken = sharedPreferences.getString(Constants.REFRESH_TOKEN, "")
@@ -35,7 +37,6 @@ class TokenAuthenticator @Inject constructor(
         }
 
     }
-
     private suspend fun refreshAccessToken(refreshToken: String): Token
     = withContext(ioDispatcher){
         val repository = repositoryProvider.get()

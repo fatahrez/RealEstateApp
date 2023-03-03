@@ -9,4 +9,5 @@ object Constants {
     const val AGENT_SIGN_UP = "AGENT"
     const val SELLER_SIGN_UP = "SELLER"
     const val PROJECTBUILDER_SIGN_UP = "PROJECTBUILDER"
+    const val LOGIN_URL = "http://165.232.134.198/api/users/login/"
 }

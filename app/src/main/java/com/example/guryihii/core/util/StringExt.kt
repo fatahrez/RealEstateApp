@@ -1,5 +1,7 @@
 package com.example.guryihii.core.util
 
+import android.util.Patterns
+
 fun String.split(): String {
     return try {
         val index = this.lastIndexOf(":")
@@ -8,4 +10,8 @@ fun String.split(): String {
         e.printStackTrace()
         this
     }
+}
+
+fun String.isValidEmail(): Boolean {
+    return Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }

@@ -55,7 +55,9 @@ fun convertErrorBody(throwable: HttpException): ErrorResponse? = try {
         err = err.replace("{", "")
         err = err.replace("}", "")
         err.split()
-    } else {
+    } else if(jsonObj.has("detail")){
+        jsonObj.getString("detail")
+    }else {
         jsonObj.getString("message")
     }
 
