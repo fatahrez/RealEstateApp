@@ -12,10 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.guryihii.MainActivity
 import com.example.guryihii.R
-import com.example.guryihii.core.util.Constants
-import com.example.guryihii.core.util.gone
-import com.example.guryihii.core.util.isValidEmail
-import com.example.guryihii.core.util.visible
+import com.example.guryihii.core.util.*
 import com.example.guryihii.databinding.FragmentSignInBinding
 import com.example.guryihii.feature_auth.domain.model.User
 import com.google.android.material.snackbar.Snackbar
@@ -71,6 +68,7 @@ class SignInFragment() : Fragment() {
                 if (state.isLoading) {
                     binding.progressBar.visible()
                 } else if (!state.errors.isNullOrEmpty()) {
+                    hideKeyboard()
                     binding.progressBar.gone()
                     Snackbar.make(
                         requireView(),
@@ -78,16 +76,15 @@ class SignInFragment() : Fragment() {
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }else {
+                    hideKeyboard()
                     binding.progressBar.gone()
-                    if (state.user?.detail.isNullOrEmpty() || state.user?.refreshToken.isNullOrEmpty()) {
-                        sharedPreferences.edit {
-                            putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
-                            putString(Constants.REFRESH_TOKEN, state.user?.refreshToken)
-                        }
-                        if (sharedPreferences.getString(Constants.ACCESS_TOKEN, null) != null) {
-                            val mainActivity = requireActivity() as MainActivity
-                            mainActivity.updateNavigation()
-                        }
+                    sharedPreferences.edit {
+                        putString(Constants.ACCESS_TOKEN, state.user?.accessToken)
+                        putString(Constants.REFRESH_TOKEN, state.user?.refreshToken)
+                    }
+                    if (sharedPreferences.getString(Constants.ACCESS_TOKEN, null) != null) {
+                        val mainActivity = requireActivity() as MainActivity
+                        mainActivity.updateNavigation()
                     }
                 }
             }
