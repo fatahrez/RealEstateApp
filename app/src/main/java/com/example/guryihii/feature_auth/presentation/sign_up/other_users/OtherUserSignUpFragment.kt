@@ -13,12 +13,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
-import com.example.guryihii.core.util.Constants
-import com.example.guryihii.core.util.gone
-import com.example.guryihii.core.util.visible
+import com.example.guryihii.core.util.*
 import com.example.guryihii.databinding.FragmentOtherUserSignUpBinding
 import com.example.guryihii.feature_auth.domain.model.User
 import com.example.guryihii.feature_auth.presentation.sign_up.SignUpViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -57,7 +56,16 @@ class OtherUserSignUpFragment : Fragment() {
             viewModel.state.collect { state ->
                 if(state.isLoading) {
                     binding.progressBar.visible()
+                } else if(!state.error.isNullOrEmpty()) {
+                    hideKeyboard()
+                    binding.progressBar.gone()
+                    Snackbar.make(
+                        requireView(),
+                        state.error.toString(),
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 } else {
+                    hideKeyboard()
                     binding.progressBar.gone()
                     if (state.user != null) {
                         sharedPreferences.edit {
@@ -79,17 +87,47 @@ class OtherUserSignUpFragment : Fragment() {
                 val password = passwordEditText.text.toString()
                 val userType = userTypeSpinners.selectedItem.toString()
 
-                Log.i("TAG", "initListeners: $userType")
-                val user = User(
-                    firstName = firstName,
-                    email = email,
-                    password = password,
-                    type = userType
-                )
-                viewModel.signUpUser(user)
+                if (validateInputs(firstName, email, password)) {
+                    val user = User(
+                        firstName = firstName,
+                        email = email,
+                        password = password,
+                        type = userType
+                    )
+                    viewModel.signUpUser(user)
+                }
             }
         }
     }
+
+    private fun validateInputs(firstName: String, email: String, password: String): Boolean {
+        with(binding) {
+            return when {
+                firstName.isEmpty() -> {
+                    firstNameEditText.error = getString(R.string.empty_first_name)
+                    return false
+                }
+                email.isEmpty() -> {
+                    emailEditText.error = getString(R.string.emptyEmail)
+                    false
+                }
+                password.isEmpty() -> {
+                    passwordEditText.error = getString(R.string.emptyPassword)
+                    false
+                }
+                !email.isValidEmail() -> {
+                    emailEditText.error = getString(R.string.invalid_email_error)
+                    false
+                }
+                password.length < 6 -> {
+                    passwordEditText.error = getString(R.string.passwordInvalidLength)
+                    false
+                }
+                else -> true
+            }
+        }
+    }
+
 
     private fun initViews() {
         with(binding) {

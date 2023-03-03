@@ -69,6 +69,7 @@
     <string name="emptyEmail">Email cannot be empty</string>
     <string name="passwordInvalidLength">Password  must be greater than 6</string>
     <string name="invalid_email_error">Invalid email</string>
+    <string name="empty_first_name">First Name cannot be empty</string>
 
 
 

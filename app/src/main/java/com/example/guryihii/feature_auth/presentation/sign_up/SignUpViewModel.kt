@@ -42,14 +42,16 @@ class SignUpViewModel @Inject constructor(
                             Log.e("TAG", "signUpUser: network error")
                             _state.value = state.value.copy(
                                 isLoading = false,
-                                user = null
+                                user = null,
+                                error = "Network Error, Check your internet"
                             )
                         }
                         is ResultWrapper.GenericError -> {
                             Log.i("TAG", "signUpUser: ${result.error}")
                             _state.value = state.value.copy(
                                 isLoading = false,
-                                user = null
+                                user = null,
+                                error = result.error?.message
                             )
                         }
                     }
