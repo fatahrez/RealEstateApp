@@ -29,13 +29,16 @@ class SignUpViewModel @Inject constructor(
                     when(result) {
                         is ResultWrapper.Loading -> {
                             _state.value = state.value.copy(
-                                isLoading = true
+                                isLoading = true,
+                                error = null,
+                                user = null
                             )
                         }
                         is ResultWrapper.Success -> {
                             _state.value = state.value.copy(
                                 isLoading = false,
-                                user = result.value
+                                user = result.value,
+                                error = null
                             )
                         }
                         is ResultWrapper.NetworkError -> {

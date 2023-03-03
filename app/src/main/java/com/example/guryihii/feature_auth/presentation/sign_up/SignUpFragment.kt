@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.guryihii.MainActivity
 import com.example.guryihii.R
 import com.example.guryihii.core.util.*
 import com.example.guryihii.databinding.FragmentSignUpBinding
@@ -19,6 +20,7 @@ import com.example.guryihii.feature_auth.domain.model.User
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,7 +53,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun observeViewState() {
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 if(state.isLoading) {
                     binding.progressBar.visible()
@@ -71,10 +73,12 @@ class SignUpFragment : Fragment() {
                             putString(Constants.ACCESS_TOKEN, state.user.accessToken)
                             putString(Constants.REFRESH_TOKEN, state.user.refreshToken)
                         }
-                        findNavController().navigate(
-                            R.id.action_signUpFragment_to_allPropertyListingsFragment,
-                            null
-                        )
+                        val mainActivity = requireActivity() as MainActivity
+                        mainActivity.updateNavigation()
+//                        findNavController().navigate(
+//                            R.id.action_signUpFragment_to_allPropertyListingsFragment,
+//                            null
+//                        )
                     }
                 }
             }
