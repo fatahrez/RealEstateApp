@@ -9,7 +9,8 @@ data class User(
     val accessToken: String? = null,
     val refreshToken: String? = null,
     val firstName: String? = null,
-    val type: String? = null
+    val type: String? = null,
+    val detail: String? = null
 ) {
     fun toUserDTO(): UserDTO {
         return UserDTO(
@@ -19,7 +20,8 @@ data class User(
             accessToken = accessToken,
             refreshToken = refreshToken,
             firstName = firstName,
-            type = type
+            type = type,
+            detail = detail
         )
     }
 }
