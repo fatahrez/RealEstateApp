@@ -4,6 +4,7 @@ import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.core.util.safeApiCall
 import com.example.guryihii.feature_requests.data.remote.RequestAPI
 import com.example.guryihii.feature_requests.domain.model.RequestProperty
+import com.example.guryihii.feature_requests.domain.model.RequestPropertyResponse
 import com.example.guryihii.feature_requests.domain.repository.RequestRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +25,7 @@ class RequestRepositoryImpl(
         phoneNumber: String,
         subject: String,
         message: String
-    ): Flow<ResultWrapper<RequestProperty>> = safeApiCall(ioDispatcher){
-        api.postRequest(name, email, phoneNumber, subject, message).toRequestProperty()
+    ): Flow<ResultWrapper<RequestPropertyResponse>> = safeApiCall(ioDispatcher){
+        api.postRequest(name, email, phoneNumber, subject, message).toRequestPropertyResponse()
     }
 }
