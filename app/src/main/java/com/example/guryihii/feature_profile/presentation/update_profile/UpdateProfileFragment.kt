@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.guryihii.MainActivity
 import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
+import com.example.guryihii.core.util.MultiPartUtil
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.core.util.visible
@@ -27,6 +28,9 @@ import com.example.guryihii.feature_properties.presentation.post_property.PostPr
 import com.example.guryihii.feature_properties.presentation.post_property.PostPropertyFragment.Companion.REQUEST_CODE_READ_EXTERNAL_STORAGE
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -130,17 +134,87 @@ class UpdateProfileFragment : Fragment() {
                 }
                 val country = countryEditText.textView_selectedCountry.text.toString()
                 val city = cityEditText.text.toString()
-                if (validateInputs(phoneNumber.toString(), aboutMe, license, country, city)) {
-                    val profile = Profile(
-                        phoneNumber = phoneNumber.toString(),
-                        aboutMe = aboutMe,
-                        license = license,
-                        gender = userGender,
-                        country = country.lowercase(),
-                        city = city
+                if (validateInputs(phoneNumber, aboutMe, license, country, city)) {
+//                    val profile = Profile(
+//                        phoneNumber = phoneNumber.toString(),
+//                        aboutMe = aboutMe,
+//                        license = license,
+//                        gender = userGender,
+//                        country = country.lowercase(),
+//                        city = city
+//                    )
+                    val phoneRequestBody = RequestBody
+                        .create("text/plain".toMediaTypeOrNull(), phoneNumber)
+                    val phoneNumberPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "phone_number",
+                        null,
+                        phoneRequestBody
                     )
-                    if (username != null) {
-                        viewModel.updateUserProfile(username, profile)
+
+                    val aboutMeRequestBody = RequestBody
+                        .create("text/plain".toMediaTypeOrNull(), aboutMe)
+                    val aboutMePart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "about_me",
+                        null,
+                        aboutMeRequestBody
+                    )
+
+                    val licenseRequestBody = RequestBody
+                        .create("text/plain".toMediaTypeOrNull(), license)
+                    val licensePart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "license",
+                        null,
+                        licenseRequestBody
+                    )
+
+                    val genderRequestBody = RequestBody
+                        .create("text/plain".toMediaTypeOrNull(), gender.toString())
+                    val genderPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "gender",
+                        null,
+                        genderRequestBody
+                    )
+
+                    val countryRequestBody = RequestBody
+                        .create("text/plain".toMediaTypeOrNull(), country)
+                    val countryPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "country",
+                        null,
+                        countryRequestBody
+                    )
+
+                    val cityRequestBody = RequestBody
+                        .create("text/plain".toMediaTypeOrNull(), city)
+                    val cityPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "city",
+                        null,
+                        cityRequestBody
+                    )
+
+                    val profilePhoto = imageUri?.let { it1 ->
+                        MultiPartUtil.loadFileFromContentResolver(
+                            requireContext(),
+                            it1,
+                            "profile_photo"
+                        )
+                    }
+                    if (username != null && profilePhoto != null) {
+                        viewModel.updateUserProfile(
+                            username,
+                            phoneNumberPart,
+                            aboutMePart,
+                            licensePart,
+                            genderPart,
+                            countryPart,
+                            cityPart,
+                            profilePhoto
+                        )
+                    } else {
+                       Snackbar.make(
+                           requireView(),
+                           "Pick Profile Image",
+                           Snackbar.LENGTH_SHORT
+                       ).show()
                     }
                 }
             }

@@ -8,6 +8,7 @@ import com.example.guryihii.feature_profile.domain.repository.ProfileRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
 
 class ProfileRepositoryImpl(
     private val profileAPI: ProfileAPI,
@@ -20,8 +21,24 @@ class ProfileRepositoryImpl(
 
     override suspend fun updateProfile(
         username: String,
-        profile: Profile
+        phoneNumber: MultipartBody.Part,
+        aboutMe: MultipartBody.Part,
+        license: MultipartBody.Part,
+        gender: MultipartBody.Part,
+        country: MultipartBody.Part,
+        city: MultipartBody.Part,
+        profilePhoto: MultipartBody.Part
     ): Flow<ResultWrapper<Profile>> = safeApiCall(ioDispatchers) {
-        profileAPI.updateProfile(username, profile.toProfileDTO()).profile.toProfile()
+        profileAPI.updateProfile(
+            username,
+            phoneNumber,
+            aboutMe,
+            license,
+            gender,
+            country,
+            city,
+            profilePhoto
+        ).profile.toProfile()
     }
+
 }

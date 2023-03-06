@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,9 +21,27 @@ class UpdateProfileViewModel @Inject constructor(
     private val _state = MutableStateFlow(UpdateProfileState())
     val state: StateFlow<UpdateProfileState> get() = _state
 
-    fun updateUserProfile(username: String, profile: Profile) {
+    fun updateUserProfile(
+        username: String,
+        phoneNumber: MultipartBody.Part,
+        aboutMe: MultipartBody.Part,
+        license: MultipartBody.Part,
+        gender: MultipartBody.Part,
+        country: MultipartBody.Part,
+        city: MultipartBody.Part,
+        profilePhoto: MultipartBody.Part
+    ) {
         viewModelScope.launch {
-            updateProfile(username, profile).collect { result ->
+            updateProfile(
+                username,
+                phoneNumber,
+                aboutMe,
+                license,
+                gender,
+                country,
+                city,
+                profilePhoto
+            ).collect { result ->
                 when(result) {
                     is ResultWrapper.Success -> {
                         _state.value = state.value.copy(
