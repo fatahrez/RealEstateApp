@@ -27,24 +27,26 @@ class UpdateProfileViewModel @Inject constructor(
                     is ResultWrapper.Success -> {
                         _state.value = state.value.copy(
                             isLoading = false,
-                            profileResponse = result.value ?: ""
+                            profileResponse = result.value ?: null,
+                            error = null
                         )
                     }
                     is ResultWrapper.Loading -> {
                         _state.value = state.value.copy(
-                            isLoading = true
+                            isLoading = true,
+                            error = null
                         )
                     }
                     is ResultWrapper.NetworkError -> {
-                        Log.e("TAG", "updateUserProfile: network error")
                         _state.value = state.value.copy(
-                            isLoading = false
+                            isLoading = false,
+                            error = "Network error, Please check your internet."
                         )
                     }
                     is ResultWrapper.GenericError -> {
-                        Log.e("TAG", "updateUserProfile: ${result.error}")
                         _state.value = state.value.copy(
-                            isLoading = false
+                            isLoading = false,
+                            error = result.error?.message
                         )
                     }
                 }

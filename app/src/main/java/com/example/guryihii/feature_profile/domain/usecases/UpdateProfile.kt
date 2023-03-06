@@ -9,7 +9,7 @@ class UpdateProfile(
     private val repository: ProfileRepository
 ) {
 
-    suspend operator fun invoke(username: String, profile: Profile): Flow<ResultWrapper<String>> {
+    suspend operator fun invoke(username: String, profile: Profile): Flow<ResultWrapper<Profile>> {
         return repository.updateProfile(username, profile)
     }
 

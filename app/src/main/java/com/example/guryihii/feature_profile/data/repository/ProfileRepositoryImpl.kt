@@ -21,7 +21,7 @@ class ProfileRepositoryImpl(
     override suspend fun updateProfile(
         username: String,
         profile: Profile
-    ): Flow<ResultWrapper<String>> = safeApiCall(ioDispatchers) {
-        profileAPI.updateProfile(username, profile.toProfileDTO())
+    ): Flow<ResultWrapper<Profile>> = safeApiCall(ioDispatchers) {
+        profileAPI.updateProfile(username, profile.toProfileDTO()).profile.toProfile()
     }
 }

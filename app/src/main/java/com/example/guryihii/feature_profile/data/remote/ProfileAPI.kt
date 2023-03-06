@@ -16,5 +16,5 @@ interface ProfileAPI {
     suspend fun updateProfile(
         @Path("username") username: String,
         @Body profile: ProfileDTO
-    ): String
+    ): ProfileResponseWrapper
 }
