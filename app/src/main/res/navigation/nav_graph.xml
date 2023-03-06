@@ -130,5 +130,9 @@
         android:id="@+id/requestPropertyFragment"
         android:name="com.example.guryihii.feature_requests.presentation.post_request.RequestPropertyFragment"
         android:label="fragment_request_property"
-        tools:layout="@layout/fragment_request_property" />
+        tools:layout="@layout/fragment_request_property" >
+        <action
+            android:id="@+id/action_requestPropertyFragment_to_allPropertyListingsFragment"
+            app:destination="@id/allPropertyListingsFragment" />
+    </fragment>
 </navigation>

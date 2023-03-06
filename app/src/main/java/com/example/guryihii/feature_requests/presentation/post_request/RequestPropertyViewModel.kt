@@ -38,27 +38,29 @@ class RequestPropertyViewModel @Inject constructor(
                     is ResultWrapper.Success -> {
                         _state.value = state.value.copy(
                             isLoading = false,
-                            requestProperty = result.value
+                            requestPropertyResponse = result.value,
+                            error = null
                         )
                     }
                     is ResultWrapper.Loading -> {
                         _state.value = state.value.copy(
                             isLoading = true,
-                            requestProperty = null
+                            requestPropertyResponse = null,
+                            error = null
                         )
                     }
                     is ResultWrapper.NetworkError -> {
-                        Log.e("TAG", "postRequestProperty: network error")
                         _state.value = state.value.copy(
                             isLoading = false,
-                            requestProperty = null
+                            requestPropertyResponse = null,
+                            error = "Network Error. Please Check Internet Connection"
                         )
                     }
                     is ResultWrapper.GenericError -> {
-                        Log.e("TAG", "postRequestProperty: ${result.error}")
                         _state.value = state.value.copy(
                             isLoading = false,
-                            requestProperty = null
+                            requestPropertyResponse = null,
+                            error = result.error?.message
                         )
                     }
                 }

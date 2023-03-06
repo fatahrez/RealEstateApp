@@ -1,6 +1,7 @@
 package com.example.guryihii.feature_requests.data.remote
 
 import com.example.guryihii.feature_requests.data.remote.dto.RequestPropertyDTO
+import com.example.guryihii.feature_requests.data.remote.dto.RequestPropertyResponseDTO
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -19,6 +20,6 @@ interface RequestAPI {
         @Field("phone_number") phoneNumber: String,
         @Field("subject") subject: String,
         @Field("message") message: String
-    ): RequestPropertyDTO
+    ): RequestPropertyResponseDTO
 
 }

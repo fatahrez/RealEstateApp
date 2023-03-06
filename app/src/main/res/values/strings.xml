@@ -87,7 +87,9 @@
         Phone number has to be at least 9 digits
     </string>
     <string name="profile_picture">Profile Picture</string>
-
+    <string name="empty_name">Name cannot be empty</string>
+    <string name="empty_subject">Subject cannot be empty</string>
+    <string name="empty_message">Message cannot be empty</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

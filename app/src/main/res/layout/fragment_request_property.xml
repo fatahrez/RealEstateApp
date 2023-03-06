@@ -45,24 +45,41 @@
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout16"
+    <LinearLayout
+        android:id="@+id/phoneLinearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:weightSum="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout15">
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/countryCodePicker"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            app:ccp_showNameCode="false"
+            app:ccp_autoDetectCountry="true"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneNumberEditText"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout16"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/phone_number"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneNumberEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout17"
@@ -73,7 +90,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout16">
+        app:layout_constraintTop_toBottomOf="@+id/phoneLinearLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/subjectEditText"

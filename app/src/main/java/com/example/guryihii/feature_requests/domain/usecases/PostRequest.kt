@@ -2,6 +2,7 @@ package com.example.guryihii.feature_requests.domain.usecases
 
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_requests.domain.model.RequestProperty
+import com.example.guryihii.feature_requests.domain.model.RequestPropertyResponse
 import com.example.guryihii.feature_requests.domain.repository.RequestRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +16,7 @@ class PostRequest(
         phoneNumber: String,
         subject: String,
         message: String
-    ) : Flow<ResultWrapper<RequestProperty>> {
+    ) : Flow<ResultWrapper<RequestPropertyResponse>> {
         return requestRepository.postRequest(name, email, phoneNumber, subject, message)
     }
 

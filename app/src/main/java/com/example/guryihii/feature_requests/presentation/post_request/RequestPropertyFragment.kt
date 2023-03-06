@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.isValidEmail
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentRequestPropertyBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,11 +46,27 @@ class RequestPropertyFragment : Fragment() {
     private fun observeViewState() {
         lifecycleScope.launchWhenCreated {
             viewModel.state.collect { state ->
-                if (state.isLoading) {
-                    binding.progressBar.visible()
-                } else {
-                    binding.progressBar.gone()
-                    Log.i("TAG", "observeViewState: ${state.requestProperty}")
+                if (state.requestPropertyResponse != null) {
+                    if (state.isLoading) {
+                        binding.progressBar.visible()
+                    } else if (!state.error.isNullOrEmpty()) {
+                        Snackbar.make(
+                            requireView(),
+                            state.error,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }else {
+                        binding.progressBar.gone()
+                        Snackbar.make(
+                            requireView(),
+                            "Property Request successfully Posted",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        findNavController().navigate(
+                            R.id.action_requestPropertyFragment_to_allPropertyListingsFragment,
+                            null
+                        )
+                    }
                 }
             }
         }
@@ -56,15 +75,68 @@ class RequestPropertyFragment : Fragment() {
     private fun initListeners() {
         with(binding) {
             makeRequestButton.setOnClickListener {
+                countryCodePicker.registerCarrierNumberEditText(phoneNumberEditText)
                 val name = nameEditText.text.toString()
                 val email = emailEditText.text.toString()
-                val phoneNumber = phoneNumberEditText.text.toString()
+                val phoneNumber = countryCodePicker.fullNumberWithPlus
                 val subject = subjectEditText.text.toString()
                 val message = messageEditText.text.toString()
 
-                viewModel.postRequestProperty(
-                    name, email, phoneNumber, subject, message
-                )
+                if (
+                    validInputs(
+                        name,
+                        email,
+                        phoneNumberEditText.text.toString(),
+                        subject,
+                        message
+                    )
+                ) {
+                    viewModel.postRequestProperty(
+                        name, email, phoneNumber, subject, message
+                    )
+                }
+            }
+        }
+    }
+
+    private fun validInputs(
+        name: String,
+        email: String,
+        phoneNumber: String,
+        subject: String,
+        message: String
+    ): Boolean {
+        with(binding) {
+            return when {
+                name.isEmpty() -> {
+                    nameEditText.error = getString(R.string.empty_name)
+                    false
+                }
+                email.isEmpty() -> {
+                    emailEditText.error = getString(R.string.emptyEmail)
+                    false
+                }
+                !email.isValidEmail() -> {
+                    emailEditText.error = getString(R.string.invalid_email_error)
+                    false
+                }
+                phoneNumber.isEmpty() -> {
+                    phoneNumberEditText.error = getString(R.string.empty_phone_number)
+                    false
+                }
+                phoneNumber.length < 9 -> {
+                    phoneNumberEditText.error = getString(R.string.invalid_phone_length)
+                    false
+                }
+                subject.isEmpty() -> {
+                    subjectEditText.error = getString(R.string.empty_subject)
+                    false
+                }
+                message.isEmpty() -> {
+                    messageEditText.error = getString(R.string.empty_message)
+                    false
+                }
+                else -> true
             }
         }
     }
