@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentRequestPropertyBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,9 +47,23 @@ class RequestPropertyFragment : Fragment() {
             viewModel.state.collect { state ->
                 if (state.isLoading) {
                     binding.progressBar.visible()
-                } else {
+                } else if (!state.error.isNullOrEmpty()) {
+                    Snackbar.make(
+                        requireView(),
+                        state.error,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }else {
                     binding.progressBar.gone()
-                    Log.i("TAG", "observeViewState: ${state.requestProperty}")
+                    Snackbar.make(
+                        requireView(),
+                        "Property Request successfully Posted",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    findNavController().navigate(
+                        R.id.action_requestPropertyFragment_to_allPropertyListingsFragment,
+                        null
+                    )
                 }
             }
         }

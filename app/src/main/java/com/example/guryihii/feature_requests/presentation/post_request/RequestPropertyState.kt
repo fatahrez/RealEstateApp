@@ -4,5 +4,6 @@ import com.example.guryihii.feature_requests.domain.model.RequestProperty
 
 data class RequestPropertyState(
     val requestProperty: RequestProperty? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val error: String? = null
 )
