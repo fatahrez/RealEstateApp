@@ -18,6 +18,7 @@
     <string name="other_sign_up">Other Sign Up</string>
     <string name="log_out">Log out</string>
     <string name="phone_number">Phone Number</string>
+    <string name="phone_number_hint">7XXXXXXXX</string>
     <string name="about_me">About Me</string>
     <string name="real_estate_license">Real Estate License</string>
     <string name="gender">Gender</string>
@@ -72,6 +73,20 @@
     <string name="empty_first_name">First Name cannot be empty</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="passwords_not_matching">Password and Confirm Password are not the same</string>
+    <string name="empty_phone_number">Phone Number cannot be empty</string>
+    <string name="empty_about_me">About me cannot be empty</string>
+    <string name="empty_realestate_license">
+        Real Estate license cannot be empty
+    </string>
+    <string name="empty_country">Country field cannot be empty</string>
+    <string name="empty_city">City field cannot be empty</string>
+    <string name="invalid_license_length">
+        Real estate license cannot be more than 20 characters
+    </string>
+    <string name="invalid_phone_length">
+        Phone number has to be at least 9 digits
+    </string>
+    <string name="profile_picture">Profile Picture</string>
 
 
     <string-array name="userTypes">
