@@ -1,18 +1,28 @@
 package com.example.guryihii.feature_properties.presentation.property_listing_details
 
+import android.content.ComponentName
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.content.pm.PackageManager.NameNotFoundException
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.jwt.Jwt
+import com.example.guryihii.core.util.setResizableText
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyListDetailsBinding
 import com.example.guryihii.feature_properties.domain.model.PropertyListing
@@ -99,7 +109,75 @@ class PropertyListingDetailsFragment : Fragment() {
     private fun showPropertyDetails(propertyListing: PropertyListing?) {
         if (propertyListing != null) {
             with(binding) {
-                propertyImageView.load(Constants.BASE_URL_IMAGE+propertyListing.property.coverPhoto)
+                val property = propertyListing.property
+                val agent = propertyListing.agent
+
+                val displayMetrics = DisplayMetrics()
+                requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+                val width = displayMetrics.widthPixels
+                val height = displayMetrics.heightPixels
+
+                imageCarouselScrollView.layoutParams.height = height/3
+
+                coverPhotoImageView.layoutParams.width = (width/1.2).toInt()
+                coverPhotoImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
+
+                photo1ImageView.layoutParams.width = (width/1.2).toInt()
+                photo1ImageView.load(Constants.BASE_URL_IMAGE+property.photo1)
+
+                photo2ImageView.layoutParams.width = (width/1.2).toInt()
+                photo2ImageView.load(Constants.BASE_URL_IMAGE+property.photo2)
+
+                photo3ImageView.layoutParams.width = (width/1.2).toInt()
+                photo3ImageView.load(Constants.BASE_URL_IMAGE+property.photo3)
+
+                photo4ImageView.layoutParams.width = (width/1.2).toInt()
+                photo4ImageView.load(Constants.BASE_URL_IMAGE+property.photo4)
+
+                tvApartmentTitle.text = property.title
+                tvStreetAddress.text = property.streetAddress
+                tvPropertyPrice.text = "$ " + property.price
+                tvCountry.text = property.city + ", " + property.country
+//                tvPropertyDescription.text = property.description
+
+                tvPropertyDescription.setResizableText(property.description, 4, true)
+
+                val plotAreaDouble = property.plotArea.toDouble()
+                val bathroomsDouble = property.bathrooms.toDouble()
+                bedroomsTextView.text = property.bedrooms.toString() + " beds"
+                bathroomTextView.text = String.format("%.1f", bathroomsDouble) + " bath"
+                squareFeetTextView.text = String.format("%.1f", plotAreaDouble) + " m"
+                floorsTextView.text = property.totalFloors.toString() + " floor"
+
+                agentProfileImageView.load(agent.profilePhoto)
+                agentNameTextView.text = agent.firstName
+
+                emailImageView.setOnClickListener {
+                    val pm: PackageManager = requireActivity().packageManager
+                    try {
+                        val intent = Intent("android.intent.action.MAIN")
+                        intent.component = ComponentName(
+                            "com.whatsapp",
+                            "com.whatsapp.Conversation"
+                        )
+                        intent.putExtra(
+                            "jid",
+                            PhoneNumberUtils.stripSeparators(agent.phoneNumber.replaceFirstChar { "" }) +
+                                    "@s.whatsapp.net"
+                        )
+                        val text = getString(R.string.enquiry_whatsapp) + property.title
+                        intent.putExtra(Intent.EXTRA_TEXT, text)
+                        startActivity(Intent.createChooser(intent, "Share with"))
+                    } catch (e: NameNotFoundException) {
+                        Toast.makeText(
+                            requireContext(),
+                            "WhatsApp not Installed",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
             }
         }
     }
