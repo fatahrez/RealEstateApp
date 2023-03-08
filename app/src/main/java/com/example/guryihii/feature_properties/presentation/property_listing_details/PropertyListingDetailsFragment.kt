@@ -141,6 +141,9 @@ class PropertyListingDetailsFragment : Fragment() {
                 bathroomTextView.text = String.format("%.1f", bathroomsDouble) + " bath"
                 squareFeetTextView.text = String.format("%.1f", plotAreaDouble) + " m"
                 floorsTextView.text = property.totalFloors.toString() + " floor"
+
+                agentProfileImageView.load(agent.profilePhoto)
+                agentNameTextView.text = agent.firstName
             }
         }
     }

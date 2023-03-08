@@ -29,7 +29,7 @@ fun String.isValidEmail(): Boolean {
 open class NoUnderlineClickSpan(val context: Context) : ClickableSpan() {
     override fun updateDrawState(textPaint: TextPaint) {
         textPaint.isUnderlineText = false
-        textPaint.color = ContextCompat.getColor(context, R.color.green_light)
+        textPaint.color = ContextCompat.getColor(context, R.color.green_dark)
     }
 
     override fun onClick(widget: View) {}

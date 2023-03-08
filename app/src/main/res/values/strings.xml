@@ -91,6 +91,7 @@
     <string name="empty_message">Message cannot be empty</string>
     <string name="resizable_text_read_less">… less</string>
     <string name="resizable_text_read_more">… more</string>
+    <string name="realtor">Realtor</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

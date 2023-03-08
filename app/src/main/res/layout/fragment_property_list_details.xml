@@ -279,7 +279,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPropertyDescription"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/tvPropertyDescription"
@@ -295,7 +295,77 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             tools:text="The villa is an incredible opportunity to own a stunning home within the prestigious vipingo ridge. the design of the villa is influenced by arabic and swahili contemporary themes that combines a sociable neighbourhood atmosphere with superior lifestyle facilities. it features a fully furnished large open plan living area and lounge which looks out to the beautiful scenery of the garden. adjoining the living room is dining room which is accompanied by an open-plan kitchen with built-in modern appliances. also on the ground floor is a 2 large ensuite bedrooms with balconies." />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/agentInfoView"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/tablet_dark_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPropertyDescription">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/agentProfileImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    tools:src="@drawable/account_circle" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/agentNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:text="Jane Doe" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="@string/realtor"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/phoneCallImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    app:srcCompat="@drawable/telephonecall2" />
+
+                <ImageView
+                    android:id="@+id/emailImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    app:srcCompat="@drawable/email2" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
