@@ -166,6 +166,8 @@ class PropertyListingDetailsFragment : Fragment() {
                             PhoneNumberUtils.stripSeparators(agent.phoneNumber.replaceFirstChar { "" }) +
                                     "@s.whatsapp.net"
                         )
+                        val text = getString(R.string.enquiry_whatsapp) + property.title
+                        intent.putExtra(Intent.EXTRA_TEXT, text)
                         startActivity(Intent.createChooser(intent, "Share with"))
                     } catch (e: NameNotFoundException) {
                         Toast.makeText(
