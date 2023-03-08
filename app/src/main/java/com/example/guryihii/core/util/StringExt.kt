@@ -26,7 +26,6 @@ fun String.split(): String {
 fun String.isValidEmail(): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
-
 open class NoUnderlineClickSpan(val context: Context) : ClickableSpan() {
     override fun updateDrawState(textPaint: TextPaint) {
         textPaint.isUnderlineText = false
@@ -185,7 +184,7 @@ private fun TextView.addClickablePartTextResizable(
     val builder = SpannableStringBuilder(shortenedText)
     if (clickableText != null) {
         builder.append(clickableText)
-        val startIndexOffset = if (viewMore) 4 else 0 // Do not highlight the 3 dots and the space
+        val startIndexOffset = 0 // Do not highlight the 3 dots and the space
         builder.setSpan(object : NoUnderlineClickSpan(context) {
             override fun onClick(widget: View) {
                 if (viewMore) {

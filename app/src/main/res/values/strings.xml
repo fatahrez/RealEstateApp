@@ -89,8 +89,8 @@
     <string name="empty_name">Name cannot be empty</string>
     <string name="empty_subject">Subject cannot be empty</string>
     <string name="empty_message">Message cannot be empty</string>
-    <string name="resizable_text_read_less">…less</string>
-    <string name="resizable_text_read_more">more…</string>
+    <string name="resizable_text_read_less">… less</string>
+    <string name="resizable_text_read_more">… more</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

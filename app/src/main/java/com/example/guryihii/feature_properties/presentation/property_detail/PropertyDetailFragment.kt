@@ -126,7 +126,7 @@ class PropertyDetailFragment : Fragment() {
                 tvCountry.text = property.city + ", " + property.country
 //                tvPropertyDescription.text = property.description
 
-                tvPropertyDescription.setResizableText(property.description, 3, true)
+                tvPropertyDescription.setResizableText(property.description, 4, true)
 
                 val plotAreaDouble = property.plotArea.toDouble()
                 val bathroomsDouble = property.bathrooms.toDouble()
