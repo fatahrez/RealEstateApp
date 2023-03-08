@@ -5,5 +5,6 @@ data class Agent(
     val email: String,
     val firstName: String,
     val username: String,
-    val profilePhoto: String
+    val profilePhoto: String,
+    val phoneNumber: String
 )

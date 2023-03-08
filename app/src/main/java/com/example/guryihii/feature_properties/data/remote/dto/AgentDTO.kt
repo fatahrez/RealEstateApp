@@ -10,7 +10,9 @@ data class AgentDTO(
     val firstName: String,
     val username: String,
     @SerializedName("profile_photo")
-    val profilePhoto: String
+    val profilePhoto: String,
+    @SerializedName("phone_number")
+    val phoneNumber: String
 ) {
     fun toAgent(): Agent {
         return Agent(
@@ -18,7 +20,8 @@ data class AgentDTO(
             email = email,
             firstName = firstName,
             username = firstName,
-            profilePhoto = profilePhoto
+            profilePhoto = profilePhoto,
+            phoneNumber = phoneNumber
         )
     }
 }
