@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
+import android.net.Uri
 import android.os.Bundle
 import android.telephony.PhoneNumberUtils
 import android.util.DisplayMetrics
@@ -14,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +29,7 @@ import com.example.guryihii.core.util.setResizableText
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyListDetailsBinding
 import com.example.guryihii.feature_properties.domain.model.PropertyListing
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -154,20 +158,21 @@ class PropertyListingDetailsFragment : Fragment() {
                 agentNameTextView.text = agent.firstName
 
                 emailImageView.setOnClickListener {
-                    val pm: PackageManager = requireActivity().packageManager
                     try {
-                        val intent = Intent("android.intent.action.MAIN")
-                        intent.component = ComponentName(
-                            "com.whatsapp",
-                            "com.whatsapp.Conversation"
-                        )
+                        val intent = Intent(Intent.ACTION_SEND)
+                        val text = getString(R.string.enquiry_whatsapp) + property.title + " in " +
+                                property.streetAddress + "referred by " +
+                                getString(R.string.app_name) + " App"
+                        intent.putExtra(Intent.EXTRA_TEXT, text)
+
                         intent.putExtra(
                             "jid",
                             PhoneNumberUtils.stripSeparators(agent.phoneNumber.replaceFirstChar { "" }) +
                                     "@s.whatsapp.net"
                         )
-                        val text = getString(R.string.enquiry_whatsapp) + property.title
-                        intent.putExtra(Intent.EXTRA_TEXT, text)
+
+                        intent.type = "text/plain"
+                        intent.`package` = "com.whatsapp"
                         startActivity(Intent.createChooser(intent, "Share with"))
                     } catch (e: NameNotFoundException) {
                         Toast.makeText(
@@ -178,6 +183,14 @@ class PropertyListingDetailsFragment : Fragment() {
                     }
 
                 }
+
+                phoneCallImageView.setOnClickListener {
+
+                    val callIntent = Intent(Intent.ACTION_DIAL)
+                    callIntent.data = Uri.parse("tel:${agent.phoneNumber}")
+                    startActivity(callIntent)
+                }
+
             }
         }
     }
@@ -190,6 +203,6 @@ class PropertyListingDetailsFragment : Fragment() {
     }
 
     companion object {
-
+        const val REQUEST_CODE = 1
     }
 }
