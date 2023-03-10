@@ -6,6 +6,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface RequestAPI {
 
@@ -21,5 +22,8 @@ interface RequestAPI {
         @Field("subject") subject: String,
         @Field("message") message: String
     ): RequestPropertyResponseDTO
+
+    @GET("enquiry/details/{id}/")
+    suspend fun getRequestDetails(@Path("id") id: Int): RequestPropertyDTO
 
 }

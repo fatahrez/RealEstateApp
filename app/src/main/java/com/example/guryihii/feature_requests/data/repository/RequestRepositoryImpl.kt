@@ -28,4 +28,11 @@ class RequestRepositoryImpl(
     ): Flow<ResultWrapper<RequestPropertyResponse>> = safeApiCall(ioDispatcher){
         api.postRequest(name, email, phoneNumber, subject, message).toRequestPropertyResponse()
     }
+
+    override suspend fun getRequestPropertyDetails(id: Int): Flow<ResultWrapper<RequestProperty>>
+    = safeApiCall(ioDispatcher) {
+        api.getRequestDetails(id).toRequestProperty()
+    }
+
+
 }
