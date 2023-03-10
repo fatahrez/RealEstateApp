@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.guryihii.R
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyRequestsBinding
@@ -52,7 +54,12 @@ class PropertyRequestsFragment : Fragment() {
     }
 
     private fun navToDetails(requestProperty: RequestProperty) {
-
+        val bundle = Bundle()
+        bundle.putInt("id", requestProperty.id)
+        findNavController().navigate(
+            R.id.action_propertyRequestsFragment_to_propertyRequestDetailsFragment,
+            bundle
+        )
     }
 
     private fun observeViewState(adapter: PropertyRequestAdapter) {

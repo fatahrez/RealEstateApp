@@ -17,4 +17,5 @@ interface RequestRepository {
         message: String
     ): Flow<ResultWrapper<RequestPropertyResponse>>
 
+    suspend fun getRequestPropertyDetails(id: Int): Flow<ResultWrapper<RequestProperty>>
 }

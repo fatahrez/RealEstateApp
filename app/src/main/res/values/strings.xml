@@ -93,6 +93,11 @@
     <string name="resizable_text_read_more">… more</string>
     <string name="realtor">Realtor</string>
     <string name="enquiry_whatsapp">I want to enquire about: </string>
+    <string name="name_label">Name:</string>
+    <string name="phone_number_label">Phone Number:</string>
+    <string name="email_label">Email:</string>
+    <string name="subject_label">Subject:</string>
+    <string name="message_label">Message:</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>

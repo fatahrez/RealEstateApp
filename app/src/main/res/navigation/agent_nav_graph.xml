@@ -50,5 +50,14 @@
         android:id="@+id/propertyRequestsFragment"
         android:name="com.example.guryihii.feature_requests.presentation.request_list.PropertyRequestsFragment"
         android:label="fragment_property_requests"
-        tools:layout="@layout/fragment_property_requests" />
+        tools:layout="@layout/fragment_property_requests" >
+        <action
+            android:id="@+id/action_propertyRequestsFragment_to_propertyRequestDetailsFragment"
+            app:destination="@id/propertyRequestDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyRequestDetailsFragment"
+        android:name="com.example.guryihii.feature_requests.presentation.property_request_details.PropertyRequestDetailsFragment"
+        android:label="fragment_property_request_details"
+        tools:layout="@layout/fragment_property_request_details" />
 </navigation>
