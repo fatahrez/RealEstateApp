@@ -1,6 +1,7 @@
 package com.example.guryihii.feature_properties.presentation.seller_property_detail
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import coil.load
 import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
+import com.example.guryihii.core.util.setResizableText
 import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentSellerPropertyDetailBinding
 import com.example.guryihii.feature_properties.domain.model.Property
@@ -46,6 +48,7 @@ class SellerPropertyDetailFragment : Fragment() {
 
     private fun initListeners() {
         with(binding) {
+
             updatePropertyButton.setOnClickListener {
                 val bundle = Bundle()
                 val property = viewModel.state.value.property
@@ -88,7 +91,43 @@ class SellerPropertyDetailFragment : Fragment() {
     private fun showPropertyDetails(property: Property?) {
         if (property != null) {
             with(binding) {
-                propertyImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
+                val displayMetrics = DisplayMetrics()
+                requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+                val width = displayMetrics.widthPixels
+                val height = displayMetrics.heightPixels
+
+                imageCarouselScrollView.layoutParams.height = height/3
+
+                coverPhotoImageView.layoutParams.width = (width/1.2).toInt()
+                coverPhotoImageView.load(Constants.BASE_URL_IMAGE+property.coverPhoto)
+
+                photo1ImageView.layoutParams.width = (width/1.2).toInt()
+                photo1ImageView.load(Constants.BASE_URL_IMAGE+property.photo1)
+
+                photo2ImageView.layoutParams.width = (width/1.2).toInt()
+                photo2ImageView.load(Constants.BASE_URL_IMAGE+property.photo2)
+
+                photo3ImageView.layoutParams.width = (width/1.2).toInt()
+                photo3ImageView.load(Constants.BASE_URL_IMAGE+property.photo3)
+
+                photo4ImageView.layoutParams.width = (width/1.2).toInt()
+                photo4ImageView.load(Constants.BASE_URL_IMAGE+property.photo4)
+
+                tvApartmentTitle.text = property.title
+                tvStreetAddress.text = property.streetAddress
+                tvPropertyPrice.text = "$ " + property.price
+                tvCountry.text = property.city + ", " + property.country
+//                tvPropertyDescription.text = property.description
+
+                tvPropertyDescription.setResizableText(property.description, 4, true)
+
+                val plotAreaDouble = property.plotArea.toDouble()
+                val bathroomsDouble = property.bathrooms.toDouble()
+                bedroomsTextView.text = property.bedrooms.toString() + " beds"
+                bathroomTextView.text = String.format("%.1f", bathroomsDouble) + " bath"
+                squareFeetTextView.text = String.format("%.1f", plotAreaDouble) + " m"
+                floorsTextView.text = property.totalFloors.toString() + " floor"
             }
         }
     }

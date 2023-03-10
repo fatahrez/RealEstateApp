@@ -3,6 +3,7 @@ package com.example.guryihii.feature_properties.data.remote
 import com.example.guryihii.feature_properties.data.remote.dto.PropertiesWrapper
 import com.example.guryihii.feature_properties.data.remote.dto.PropertyDTO
 import com.example.guryihii.feature_properties.data.remote.dto.PropertyListingDTO
+import com.example.guryihii.feature_properties.data.remote.dto.PropertyResponseDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.DELETE
@@ -18,7 +19,7 @@ import retrofit2.http.Path
 interface PropertyAPI {
 
     @GET("properties/all/")
-    suspend fun getAllProperties(): PropertiesWrapper
+    suspend fun getAllProperties(): List<PropertyDTO>
 
     @GET("properties/details/{slug}")
     suspend fun getPropertyDetail(@Path("slug") slug: String): PropertyDTO
@@ -30,26 +31,26 @@ interface PropertyAPI {
         @Part advertType: MultipartBody.Part,
         @Part("bathrooms") bathrooms: Int,
         @Part("bedrooms") bedrooms: Int,
-        @Part("city") city: String,
+        @Part city: MultipartBody.Part,
         @Part country: MultipartBody.Part,
         @Part cover_photo: MultipartBody.Part,
-        @Part("description") description: String,
+        @Part description: MultipartBody.Part,
         @Part photo1: MultipartBody.Part,
         @Part photo2: MultipartBody.Part,
         @Part photo3: MultipartBody.Part,
         @Part photo4: MultipartBody.Part,
         @Part("plot_area") plotArea: Int,
-        @Part("postal_code") postalCode: String,
+        @Part postalCode: MultipartBody.Part,
         @Part("price") price: Int,
         @Part("property_number") propertyNumber: Int,
         @Part propertyType: MultipartBody.Part,
-        @Part("street_address") streetAddress: String,
-        @Part("title") title: String,
+        @Part streetAddress: MultipartBody.Part,
+        @Part title: MultipartBody.Part,
         @Part("total_floors") totalFloors: Int
-    ): PropertyDTO
+    ): PropertyResponseDTO
 
     @GET("properties/agents/")
-    suspend fun getSellerProperties(): PropertiesWrapper
+    suspend fun getSellerProperties(): List<PropertyDTO>
 
     @PUT("properties/update/{slug}/")
     @Multipart

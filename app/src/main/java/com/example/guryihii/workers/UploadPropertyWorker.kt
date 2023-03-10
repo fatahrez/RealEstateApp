@@ -3,6 +3,7 @@ package com.example.guryihii.workers
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Worker
@@ -10,6 +11,7 @@ import androidx.work.WorkerParameters
 import com.example.guryihii.core.util.MultiPartUtil
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.usecases.PostProperty
+import com.google.android.material.snackbar.Snackbar
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import okhttp3.MediaType.Companion.parse
@@ -101,41 +103,89 @@ class UploadPropertyWorker @AssistedInject constructor(
             propertyTypeRequestBody
         )
 
+        val propertyTitleRequestBody = RequestBody.create(
+            "text/plain".toMediaTypeOrNull(),
+            title!!
+        )
+        val propertyTitlePart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "title",
+            null,
+            propertyTitleRequestBody
+        )
+
+        val descriptionRequestBody = RequestBody.create(
+            "text/plain".toMediaTypeOrNull(),
+            description!!
+        )
+        val descriptionPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "description",
+            null,
+            descriptionRequestBody
+        )
+
+        val cityRequestBody = RequestBody.create(
+            "text/plain".toMediaTypeOrNull(),
+            city!!
+        )
+        val cityPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "city",
+            null,
+            cityRequestBody
+        )
+
+        val postalCodeRequestBody = RequestBody.create(
+            "text/plain".toMediaTypeOrNull(),
+            postalCode!!
+        )
+        val postalCodePart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "postal_code",
+            null,
+            postalCodeRequestBody
+        )
+
+        val streetAddressRequestBody = RequestBody.create(
+            "text/plain".toMediaTypeOrNull(),
+            streetAddress!!
+        )
+        val streetAddressPart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "street_address",
+            null,
+            streetAddressRequestBody
+        )
 
         postProperty(
             advertTypePart,
             bathrooms,
             bedrooms,
-            city!!,
+            cityPart,
             countryPart,
             coverPhoto,
-            description!!,
+            descriptionPart,
             photo1,
             photo2,
             photo3,
             photo4,
             plotArea,
-            postalCode!!,
+            postalCodePart,
             price,
             propertyNumber,
             propertyTypePart,
-            streetAddress!!,
-            title!!,
+            streetAddressPart,
+            propertyTitlePart,
             totalFloors
         ).collect { result ->
-            Log.i("TAG", "result $result")
             when(result) {
                 is ResultWrapper.Success -> {
-                    Log.i("TAG", "doWork: upload ${result.value}")
+
                 }
                 is ResultWrapper.Loading -> {
-                    Log.i("TAG", "doWork: loading ...")
+
                 }
                 is ResultWrapper.NetworkError -> {
-                    Log.e("TAG", "doWork: network error")
+
                 }
                 is ResultWrapper.GenericError -> {
-                    Log.e("TAG", "doWork: ${result.error}", )
+
                 }
             }
         }
