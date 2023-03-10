@@ -5,6 +5,7 @@ import com.example.guryihii.feature_requests.data.remote.RequestAPI
 import com.example.guryihii.feature_requests.data.repository.RequestRepositoryImpl
 import com.example.guryihii.feature_requests.domain.repository.RequestRepository
 import com.example.guryihii.feature_requests.domain.usecases.GetAllRequests
+import com.example.guryihii.feature_requests.domain.usecases.GetRequestPropertyDetails
 import com.example.guryihii.feature_requests.domain.usecases.PostRequest
 import dagger.Module
 import dagger.Provides
@@ -33,6 +34,14 @@ object RequestModule {
         repository: RequestRepository
     ): PostRequest {
         return PostRequest(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetRequestPropertyDetailsUseCase(
+        repository: RequestRepository
+    ): GetRequestPropertyDetails {
+        return GetRequestPropertyDetails(repository)
     }
 
     @Provides
