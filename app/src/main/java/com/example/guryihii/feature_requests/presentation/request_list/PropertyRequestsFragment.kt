@@ -52,6 +52,8 @@ class PropertyRequestsFragment : Fragment() {
     }
 
     private fun navToDetails(requestProperty: RequestProperty) {
+        val bundle = Bundle()
+        bundle.putInt("id", requestProperty.id)
 
     }
 

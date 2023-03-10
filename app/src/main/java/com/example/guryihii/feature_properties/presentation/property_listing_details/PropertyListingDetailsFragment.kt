@@ -82,6 +82,7 @@ class PropertyListingDetailsFragment : Fragment() {
             val user = Jwt(token).getUserData().role
             if (user == Constants.AGENT_SIGN_UP) {
                 binding.deletePropertyListingButton.visible()
+                binding.agentInfoView.gone()
             }
         }
     }
