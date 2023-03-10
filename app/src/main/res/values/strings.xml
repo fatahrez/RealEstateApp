@@ -48,13 +48,13 @@
     <string name="bedrooms">Bedrooms</string>
     <string name="bathrooms">Bathrooms</string>
     <string name="advert_type">Advert Type</string>
-    <string name="my_properties">My Properties</string>
+    <string name="my_properties">My Property</string>
     <string name="update_property">Update Property</string>
     <string name="update">Update</string>
     <string name="delete_property">Delete Property</string>
     <string name="list_property">List Property</string>
     <string name="my_listings">My Listings</string>
-    <string name="agent_listings">Agent Listings</string>
+    <string name="agent_listings">Agent Listing</string>
     <string name="property_image">Property Image</string>
     <string name="delete">Delete</string>
     <string name="request_property">Request Property</string>
