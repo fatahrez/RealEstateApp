@@ -49,6 +49,9 @@ class PropertyRequestAdapter(
 
         fun bindItem(requestProperty: RequestProperty) {
             binding.nameTextView.text = requestProperty.name
+            binding.phoneNumberTextView.text = requestProperty.phoneNumber
+            binding.emailTextView.text = requestProperty.email
+            binding.subjectTextView.text = requestProperty.subject
         }
     }
 
