@@ -3,6 +3,7 @@ package com.example.guryihii.feature_properties.data.remote
 import com.example.guryihii.feature_properties.data.remote.dto.PropertiesWrapper
 import com.example.guryihii.feature_properties.data.remote.dto.PropertyDTO
 import com.example.guryihii.feature_properties.data.remote.dto.PropertyListingDTO
+import com.example.guryihii.feature_properties.data.remote.dto.PropertyResponseDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.DELETE
@@ -18,7 +19,7 @@ import retrofit2.http.Path
 interface PropertyAPI {
 
     @GET("properties/all/")
-    suspend fun getAllProperties(): PropertiesWrapper
+    suspend fun getAllProperties(): List<PropertyDTO>
 
     @GET("properties/details/{slug}")
     suspend fun getPropertyDetail(@Path("slug") slug: String): PropertyDTO
@@ -46,10 +47,10 @@ interface PropertyAPI {
         @Part streetAddress: MultipartBody.Part,
         @Part title: MultipartBody.Part,
         @Part("total_floors") totalFloors: Int
-    ): PropertyDTO
+    ): PropertyResponseDTO
 
     @GET("properties/agents/")
-    suspend fun getSellerProperties(): PropertiesWrapper
+    suspend fun getSellerProperties(): List<PropertyDTO>
 
     @PUT("properties/update/{slug}/")
     @Multipart

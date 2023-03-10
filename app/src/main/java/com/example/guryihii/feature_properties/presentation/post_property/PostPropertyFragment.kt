@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.work.*
 import com.example.guryihii.R
 import com.example.guryihii.workers.UploadPropertyWorker
@@ -174,6 +175,11 @@ class PostPropertyFragment : Fragment() {
                     .build()
 
                 WorkManager.getInstance(requireContext()).enqueue(uploadRequest)
+
+                findNavController().navigate(
+                    R.id.action_postPropertyFragment_to_propertyFragment,
+                    null
+                )
             }
 
         }

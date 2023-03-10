@@ -174,31 +174,18 @@ class UploadPropertyWorker @AssistedInject constructor(
             propertyTitlePart,
             totalFloors
         ).collect { result ->
-            Log.i("TAG", "result $result")
             when(result) {
                 is ResultWrapper.Success -> {
-                    Toast.makeText(
-                        applicationContext,
-                        "Property Successfully uploaded",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 }
                 is ResultWrapper.Loading -> {
 
                 }
                 is ResultWrapper.NetworkError -> {
-                    Toast.makeText(
-                        applicationContext,
-                        "Error Uploading property: Network Error check internet connection.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 }
                 is ResultWrapper.GenericError -> {
-                    Toast.makeText(
-                        applicationContext,
-                        "Error uploading property: ${result.error}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 }
             }
         }
