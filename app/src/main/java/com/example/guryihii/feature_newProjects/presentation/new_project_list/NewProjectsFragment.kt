@@ -15,7 +15,6 @@ import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentNewProjectsBinding
 import com.example.guryihii.feature_newProjects.domain.model.NewProject
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class NewProjectsFragment : Fragment() {

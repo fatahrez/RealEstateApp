@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/project_builder_nav_graph"
-    app:startDestination="@id/propertyFragment">
+    app:startDestination="@id/newProjectsFragment2">
 
     <fragment
         android:id="@+id/propertyFragment"
@@ -27,5 +27,23 @@
         <action
             android:id="@+id/action_propertyDetailFragment_to_propertyFragment"
             app:destination="@id/propertyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newProjectsFragment2"
+        android:name="com.example.guryihii.feature_newProjects.presentation.new_project_list.NewProjectsFragment"
+        android:label="fragment_new_projects"
+        tools:layout="@layout/fragment_new_projects" >
+        <action
+            android:id="@+id/action_newProjectsFragment2_to_newProjectDetailsFragment"
+            app:destination="@id/newProjectDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newProjectDetailsFragment"
+        android:name="com.example.guryihii.feature_newProjects.presentation.new_project_details.NewProjectDetailsFragment"
+        android:label="fragment_new_project_details"
+        tools:layout="@layout/fragment_new_project_details" >
+        <action
+            android:id="@+id/action_newProjectDetailsFragment_to_newProjects2Fragment"
+            app:destination="@id/newProjectsFragment2" />
     </fragment>
 </navigation>

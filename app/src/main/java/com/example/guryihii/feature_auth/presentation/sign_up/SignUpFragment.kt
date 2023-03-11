@@ -2,7 +2,6 @@ package com.example.guryihii.feature_auth.presentation.sign_up
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.guryihii.MainActivity
 import com.example.guryihii.R
@@ -19,7 +17,6 @@ import com.example.guryihii.databinding.FragmentSignUpBinding
 import com.example.guryihii.feature_auth.domain.model.User
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -2,24 +2,17 @@ package com.example.guryihii.workers
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
-import android.widget.Toast
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
-import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.guryihii.core.util.MultiPartUtil
 import com.example.guryihii.core.util.ResultWrapper
 import com.example.guryihii.feature_properties.domain.usecases.PostProperty
-import com.google.android.material.snackbar.Snackbar
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import okhttp3.MediaType.Companion.parse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.FileNotFoundException
-import javax.inject.Inject
 
 @HiltWorker
 class UploadPropertyWorker @AssistedInject constructor(

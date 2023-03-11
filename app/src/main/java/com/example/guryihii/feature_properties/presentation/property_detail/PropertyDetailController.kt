@@ -1,5 +1,6 @@
 package com.example.guryihii.feature_properties.presentation.property_detail
 
+
 import coil.load
 import com.airbnb.epoxy.TypedEpoxyController
 import com.example.garissaestore.epoxy.ViewBindingKotlinModel

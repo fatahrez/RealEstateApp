@@ -2,7 +2,6 @@ package com.example.guryihii.feature_newProjects.presentation.new_project_detail
 
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.core.util.gone
 import com.example.guryihii.core.util.setResizableText
@@ -18,7 +16,6 @@ import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentNewProjectDetailsBinding
 import com.example.guryihii.feature_newProjects.domain.model.NewProject
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class NewProjectDetailsFragment : Fragment() {

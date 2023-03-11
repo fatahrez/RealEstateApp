@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/properties"
-        android:title="@string/properties"
+        android:id="@+id/newProjects"
+        android:title="@string/new_projects"
         android:enabled="true"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/construction"/>
 
     <item
         android:id="@+id/profile"

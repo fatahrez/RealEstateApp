@@ -1,7 +1,6 @@
 package com.example.guryihii.feature_requests.presentation.post_request
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

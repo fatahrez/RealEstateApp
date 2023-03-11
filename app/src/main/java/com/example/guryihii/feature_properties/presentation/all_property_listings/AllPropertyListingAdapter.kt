@@ -15,7 +15,6 @@ import com.example.guryihii.R
 import com.example.guryihii.core.util.Constants
 import com.example.guryihii.databinding.ListItemPropertyListingBinding
 import com.example.guryihii.feature_properties.domain.model.PropertyListing
-import com.google.android.material.imageview.ShapeableImageView
 
 class AllPropertyListingAdapter(
     private val clickListener: (PropertyListing) -> Unit,

@@ -2,7 +2,6 @@ package com.example.guryihii.feature_properties.presentation.property_list
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,6 @@ import com.example.guryihii.core.util.visible
 import com.example.guryihii.databinding.FragmentPropertyBinding
 import com.example.guryihii.feature_properties.domain.model.Property
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.count
 import javax.inject.Inject
 
 

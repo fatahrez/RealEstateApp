@@ -1,20 +1,14 @@
 package com.example.guryihii.feature_properties.presentation.update_property
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.work.*
-import com.example.guryihii.R
-import com.example.guryihii.core.util.Constants
-import com.example.guryihii.core.util.jwt.Jwt
 import com.example.guryihii.databinding.FragmentSellerPropertyUpdateBinding
 import com.example.guryihii.workers.UpdatePropertyWorker
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
