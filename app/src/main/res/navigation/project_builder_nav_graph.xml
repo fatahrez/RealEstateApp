@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/propertyFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_list.PropertyFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_list.PropertyFragment"
         android:label="fragment_property"
         tools:layout="@layout/fragment_property" >
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
+        android:name="app.sodeg.sodeg.feature_profile.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/propertyDetailFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_detail.PropertyDetailFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_detail.PropertyDetailFragment"
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/newProjectsFragment2"
-        android:name="com.example.guryihii.feature_newProjects.presentation.new_project_list.NewProjectsFragment"
+        android:name="app.sodeg.sodeg.feature_newProjects.presentation.new_project_list.NewProjectsFragment"
         android:label="fragment_new_projects"
         tools:layout="@layout/fragment_new_projects" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/newProjectDetailsFragment"
-        android:name="com.example.guryihii.feature_newProjects.presentation.new_project_details.NewProjectDetailsFragment"
+        android:name="app.sodeg.sodeg.feature_newProjects.presentation.new_project_details.NewProjectDetailsFragment"
         android:label="fragment_new_project_details"
         tools:layout="@layout/fragment_new_project_details" >
         <action

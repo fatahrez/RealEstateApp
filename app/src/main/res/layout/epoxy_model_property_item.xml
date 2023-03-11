@@ -40,7 +40,6 @@
                 tools:ignore="ImageContrastCheck"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/productImageViewLoadingProgressBar"
                 style="?android:attr/progressBarStyleSmall"

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.guryihii'
+    namespace 'app.sodeg.sodeg'
     compileSdk 33
 
     defaultConfig {

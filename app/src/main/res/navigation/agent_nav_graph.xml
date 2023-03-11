@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/propertyFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_list.PropertyFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_list.PropertyFragment"
         android:label="fragment_property"
         tools:layout="@layout/fragment_property" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyDetailFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_detail.PropertyDetailFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_detail.PropertyDetailFragment"
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail" >
         <action
@@ -25,12 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
+        android:name="app.sodeg.sodeg.feature_profile.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/myListingsFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.agent_listings.MyListingsFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.agent_listings.MyListingsFragment"
         android:label="fragment_my_listings"
         tools:layout="@layout/fragment_my_listings" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyListingDetailsFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_listing_details.PropertyListingDetailsFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_listing_details.PropertyListingDetailsFragment"
         android:label="fragment_property_list_details"
         tools:layout="@layout/fragment_property_list_details" >
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyRequestsFragment"
-        android:name="com.example.guryihii.feature_requests.presentation.request_list.PropertyRequestsFragment"
+        android:name="app.sodeg.sodeg.feature_requests.presentation.request_list.PropertyRequestsFragment"
         android:label="fragment_property_requests"
         tools:layout="@layout/fragment_property_requests" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyRequestDetailsFragment"
-        android:name="com.example.guryihii.feature_requests.presentation.property_request_details.PropertyRequestDetailsFragment"
+        android:name="app.sodeg.sodeg.feature_requests.presentation.property_request_details.PropertyRequestDetailsFragment"
         android:label="fragment_property_request_details"
         tools:layout="@layout/fragment_property_request_details" />
 </navigation>

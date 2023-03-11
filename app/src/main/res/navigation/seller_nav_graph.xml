@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/propertyFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_list.PropertyFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_list.PropertyFragment"
         android:label="fragment_property"
         tools:layout="@layout/fragment_property" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyDetailFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.property_detail.PropertyDetailFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_detail.PropertyDetailFragment"
         android:label="fragment_property_detail"
         tools:layout="@layout/fragment_property_detail" >
         <action
@@ -28,12 +28,12 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
-        android:name="com.example.guryihii.feature_profile.presentation.profile.ProfileFragment"
+        android:name="app.sodeg.sodeg.feature_profile.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/postPropertyFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.post_property.PostPropertyFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.post_property.PostPropertyFragment"
         android:label="fragment_post_property"
         tools:layout="@layout/fragment_post_property" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/sellerPropertiesFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.seller_properties.SellerPropertiesFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.seller_properties.SellerPropertiesFragment"
         android:label="fragment_seller_properties"
         tools:layout="@layout/fragment_seller_properties" >
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/sellerPropertyDetailFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.seller_property_detail.SellerPropertyDetailFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.seller_property_detail.SellerPropertyDetailFragment"
         android:label="fragment_seller_property_detail"
         tools:layout="@layout/fragment_seller_property_detail" >
         <action
@@ -63,12 +63,12 @@
     </fragment>
     <fragment
         android:id="@+id/sellerPropertyUpdateFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.update_property.SellerPropertyUpdateFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.update_property.SellerPropertyUpdateFragment"
         android:label="fragment_seller_property_update"
         tools:layout="@layout/fragment_seller_property_update" />
     <fragment
         android:id="@+id/agentListingsFragment"
-        android:name="com.example.guryihii.feature_properties.presentation.seller_agent_listings.AgentListingsFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.seller_agent_listings.AgentListingsFragment"
         android:label="fragment_agent_listings"
         tools:layout="@layout/fragment_agent_listings" >
         <action
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyListingDetailsFragment2"
-        android:name="com.example.guryihii.feature_properties.presentation.property_listing_details.PropertyListingDetailsFragment"
+        android:name="app.sodeg.sodeg.feature_properties.presentation.property_listing_details.PropertyListingDetailsFragment"
         android:label="fragment_property_list_details"
         tools:layout="@layout/fragment_property_list_details" >
         <action
