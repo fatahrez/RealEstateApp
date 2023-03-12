@@ -14,10 +14,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.work.*
 import app.sodeg.sodeg.R
-import app.sodeg.sodeg.databinding.FragmentNewProjectsBinding
 import app.sodeg.sodeg.databinding.FragmentPostNewProjectBinding
 import app.sodeg.sodeg.feature_properties.presentation.post_property.PostPropertyFragment.Companion.PICK_IMAGE_REQUEST_CODE
 import app.sodeg.sodeg.feature_properties.presentation.post_property.PostPropertyFragment.Companion.REQUEST_CODE_READ_EXTERNAL_STORAGE
+import app.sodeg.sodeg.workers.UploadNewProjectWorker
 
 
 class PostNewProjectFragment : Fragment() {
@@ -95,13 +95,16 @@ class PostNewProjectFragment : Fragment() {
                     .putString("constructionStatus", constructionStatus)
                     .putString("completionDate", completionDate)
                     .putString("propertyType", propertyType)
+                    .putString("coverPhoto", selectedUris[0].toString())
+                    .putString("photo1", selectedUris[1].toString())
+                    .putString("photo2", selectedUris[2].toString())
                     .build()
 
                 val constraints = Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build()
 
-                val uploadRequest = OneTimeWorkRequestBuilder<>()
+                val uploadRequest = OneTimeWorkRequestBuilder<UploadNewProjectWorker>()
                     .setConstraints(constraints)
                     .setInputData(inputData)
                     .addTag("upload_new_project")
