@@ -15,11 +15,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Spinner
-            android:id="@+id/advertTypeSpinner"
+        <RelativeLayout
+            android:id="@+id/advertTypeSpinnerLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextInputEditTextStyle"/>
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight=".28"
+            android:background="@drawable/text_input_layout_background"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Spinner
+                android:id="@+id/advertTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/expand_more" />
+
+        </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout12"
@@ -169,10 +191,33 @@
                 android:hint="@string/property_number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/propertyTypeSpinner"
+        <RelativeLayout
+            android:id="@+id/propertyTypeSpinnerLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_weight=".28"
+            android:background="@drawable/text_input_layout_background"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Spinner
+                android:id="@+id/propertyTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/expand_more" />
+
+        </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
