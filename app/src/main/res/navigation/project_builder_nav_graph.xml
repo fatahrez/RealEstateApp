@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_newProjectsFragment2_to_newProjectDetailsFragment"
             app:destination="@id/newProjectDetailsFragment" />
+        <action
+            android:id="@+id/action_newProjectsFragment2_to_postNewProjectFragment"
+            app:destination="@id/postNewProjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/newProjectDetailsFragment"
@@ -45,5 +48,18 @@
         <action
             android:id="@+id/action_newProjectDetailsFragment_to_newProjects2Fragment"
             app:destination="@id/newProjectsFragment2" />
+        <action
+            android:id="@+id/action_newProjectDetailsFragment_to_updateNewProjectFragment"
+            app:destination="@id/updateNewProjectFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/postNewProjectFragment"
+        android:name="app.sodeg.sodeg.feature_newProjects.presentation.post_new_project.PostNewProjectFragment"
+        android:label="fragment_post_new_project"
+        tools:layout="@layout/fragment_post_new_project" />
+    <fragment
+        android:id="@+id/updateNewProjectFragment"
+        android:name="app.sodeg.sodeg.feature_newProjects.presentation.update_new_project.UpdateNewProjectFragment"
+        android:label="fragment_update_new_project"
+        tools:layout="@layout/fragment_update_new_project" />
 </navigation>

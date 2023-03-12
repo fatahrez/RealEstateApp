@@ -9,6 +9,7 @@ import app.sodeg.sodeg.feature_newProjects.domain.repository.NewProjectRepositor
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
 
 class NewProjectRepositoryImpl(
     private val apiService: NewProjectAPI,
@@ -24,6 +25,85 @@ class NewProjectRepositoryImpl(
     override suspend fun getNewProjectDetails(slug: String):
             Flow<ResultWrapper<NewProject>> = safeApiCall(ioDispatcher) {
         apiService.getNewProjectDetailsDTO(slug).toNewProject()
+    }
+
+    override suspend fun postNewProject(
+        name: MultipartBody.Part,
+        location: MultipartBody.Part,
+        description: MultipartBody.Part,
+        price: MultipartBody.Part,
+        bedrooms: Int,
+        bathrooms: Int,
+        squareFeet: Int,
+        country: MultipartBody.Part,
+        city: MultipartBody.Part,
+        constructionStatus: MultipartBody.Part,
+        completionDate: MultipartBody.Part,
+        propertyType: MultipartBody.Part,
+        coverPhoto: MultipartBody.Part,
+        photo1: MultipartBody.Part,
+        photo2: MultipartBody.Part
+    ): Flow<ResultWrapper<NewProject>> = safeApiCall(ioDispatcher){
+        apiService.postNewProject(
+            name,
+            location,
+            description,
+            price,
+            bedrooms,
+            bathrooms,
+            squareFeet,
+            country,
+            city,
+            constructionStatus,
+            completionDate,
+            propertyType,
+            coverPhoto,
+            photo1,
+            photo2
+        ).toNewProject()
+    }
+
+    override suspend fun updateNewProject(
+        slug: String,
+        name: MultipartBody.Part,
+        location: MultipartBody.Part,
+        description: MultipartBody.Part,
+        price: MultipartBody.Part,
+        bedrooms: Int,
+        bathrooms: Int,
+        squareFeet: Int,
+        country: MultipartBody.Part,
+        city: MultipartBody.Part,
+        constructionStatus: MultipartBody.Part,
+        completionDate: MultipartBody.Part,
+        propertyType: MultipartBody.Part,
+        coverPhoto: MultipartBody.Part,
+        photo1: MultipartBody.Part,
+        photo2: MultipartBody.Part
+    ): Flow<ResultWrapper<NewProject>> = safeApiCall(ioDispatcher) {
+        apiService.updateNewProject(
+            slug,
+            name,
+            location,
+            description,
+            price,
+            bedrooms,
+            bathrooms,
+            squareFeet,
+            country,
+            city,
+            constructionStatus,
+            completionDate,
+            propertyType,
+            coverPhoto,
+            photo1,
+            photo2
+        ).toNewProject()
+    }
+
+    override suspend fun deleteNewProject(slug: String): Flow<ResultWrapper<String>> =
+        safeApiCall(ioDispatcher) {
+        apiService.deleteNewProject(slug)
     }
 
 }
