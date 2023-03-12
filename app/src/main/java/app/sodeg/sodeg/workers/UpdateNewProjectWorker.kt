@@ -134,7 +134,7 @@ class UpdateNewProjectWorker @AssistedInject constructor(
         )
 
         updateNewProject(
-            slug,
+            slug!!,
             namePart,
             locationPart,
             descriptionPart,
