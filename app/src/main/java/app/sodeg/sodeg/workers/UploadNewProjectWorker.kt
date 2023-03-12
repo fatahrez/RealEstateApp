@@ -166,6 +166,8 @@ class UploadNewProjectWorker @AssistedInject constructor(
                 }
             }
         }
+
+        return Result.success()
     }
 
 }
