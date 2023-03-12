@@ -4,8 +4,7 @@ import app.sodeg.sodeg.core.util.Constants
 import app.sodeg.sodeg.feature_newProjects.data.remote.NewProjectAPI
 import app.sodeg.sodeg.feature_newProjects.data.repository.NewProjectRepositoryImpl
 import app.sodeg.sodeg.feature_newProjects.domain.repository.NewProjectRepository
-import app.sodeg.sodeg.feature_newProjects.domain.usecases.GetAllNewProjects
-import app.sodeg.sodeg.feature_newProjects.domain.usecases.GetNewProjectDetails
+import app.sodeg.sodeg.feature_newProjects.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,6 +32,30 @@ object NewProjectModule {
         repository: NewProjectRepository
     ): GetNewProjectDetails {
         return GetNewProjectDetails(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesPostNewProjectUseCase(
+        repository: NewProjectRepository
+    ): PostNewProject {
+        return PostNewProject(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesUpdateNewProjectUseCase(
+        repository: NewProjectRepository
+    ): UpdateNewProject {
+        return UpdateNewProject(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeleteNewProjectUseCase(
+        repository: NewProjectRepository
+    ): DeleteNewProject {
+        return DeleteNewProject(repository)
     }
 
     @Provides
