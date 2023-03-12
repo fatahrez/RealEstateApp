@@ -100,7 +100,10 @@
             android:id="@+id/coverPhotoImageView"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:contentDescription="@string/cover_photo" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="@string/cover_photo"
+            app:srcCompat="@drawable/add_image" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -119,25 +122,37 @@
             android:id="@+id/photo1ImageView"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:contentDescription="@string/cover_photo" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="@string/cover_photo"
+            app:srcCompat="@drawable/add_image" />
 
         <ImageView
             android:id="@+id/photo2ImageView"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:contentDescription="@string/cover_photo" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="@string/cover_photo"
+            app:srcCompat="@drawable/add_image" />
 
         <ImageView
             android:id="@+id/photo3ImageView"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:contentDescription="@string/cover_photo" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="@string/cover_photo"
+            app:srcCompat="@drawable/add_image" />
 
         <ImageView
             android:id="@+id/photo4ImageView"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:contentDescription="@string/cover_photo" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="@string/cover_photo"
+            app:srcCompat="@drawable/add_image" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

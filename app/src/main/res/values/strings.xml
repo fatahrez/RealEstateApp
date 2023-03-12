@@ -122,4 +122,10 @@
         <item>Commercial</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="constructionStatus">
+        <item>Not Started</item>
+        <item>Under Construction</item>
+        <item>Completed</item>
+    </string-array>
 </resources>
