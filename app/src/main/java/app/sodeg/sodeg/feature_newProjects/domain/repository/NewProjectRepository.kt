@@ -49,4 +49,8 @@ interface NewProjectRepository {
         photo2: MultipartBody.Part
     ): Flow<ResultWrapper<NewProject>>
 
+    suspend fun deleteNewProject(
+        slug: String
+    ): Flow<ResultWrapper<String>>
+
 }
