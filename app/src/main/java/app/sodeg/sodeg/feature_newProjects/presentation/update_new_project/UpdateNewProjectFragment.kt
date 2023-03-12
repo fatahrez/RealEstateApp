@@ -37,7 +37,7 @@ class UpdateNewProjectFragment : Fragment() {
 
     private val viewModel: NewProjectDetailsViewModel by viewModels()
     private val selectedUris = mutableListOf<Uri>()
-
+    var slug = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (ContextCompat.checkSelfPermission(requireContext(),
@@ -107,8 +107,8 @@ class UpdateNewProjectFragment : Fragment() {
     }
 
     private fun fetchData() {
-        val slug = arguments?.getString("slug")
-        if (slug != null) {
+        slug = arguments?.getString("slug") ?: ""
+        if (slug.isNotEmpty()) {
             viewModel.showNewProjectDetails(slug)
         }
     }
@@ -142,6 +142,7 @@ class UpdateNewProjectFragment : Fragment() {
                 val propertyType = propertyTypeSpinner.selectedItem.toString()
 
                 val inputData = Data.Builder()
+                    .putString("slug", slug)
                     .putString("name", name)
                     .putString("location", location)
                     .putString("description", description)
