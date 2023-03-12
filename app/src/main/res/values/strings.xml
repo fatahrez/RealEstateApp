@@ -98,6 +98,11 @@
     <string name="email_label">Email:</string>
     <string name="subject_label">Subject:</string>
     <string name="message_label">Message:</string>
+    <string name="location">Location</string>
+    <string name="square_feet">Square Feet</string>
+    <string name="construction_status">Construction Status</string>
+    <string name="completion_date">Completion Date</string>
+    <string name="post_newproject">Post NewProject</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
