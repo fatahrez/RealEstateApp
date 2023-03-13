@@ -37,16 +37,8 @@ class UpdateNewProjectFragment : Fragment() {
     private val binding: FragmentUpdateNewProjectBinding get() = _binding!!
 
     private val viewModel: NewProjectDetailsViewModel by viewModels()
-    private val selectedUris = mutableListOf<Uri?>()
     var slug = ""
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                REQUEST_CODE_READ_EXTERNAL_STORAGE)
-        }
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -100,9 +92,6 @@ class UpdateNewProjectFragment : Fragment() {
                 propertyTypeSpinner.setSelection(
                     propertyTypeArray.find { it.equals(newProject.propertyType) } ?: 0
                 )
-                coverPhotoImageView.load(Constants.BASE_URL_IMAGE+newProject.coverPhoto)
-                photo1ImageView.load(Constants.BASE_URL_IMAGE+newProject.photo1)
-                photo2ImageView.load(Constants.BASE_URL_IMAGE+newProject.photo2)
             }
         }
     }
@@ -116,18 +105,6 @@ class UpdateNewProjectFragment : Fragment() {
 
     private fun initListeners() {
         with(binding) {
-            coverPhotoImageView.setOnClickListener {
-                pickPhoto()
-            }
-
-            photo1ImageView.setOnClickListener {
-                pickPhoto()
-            }
-
-            photo2ImageView.setOnClickListener {
-                pickPhoto()
-            }
-
             postNewProjectButton.setOnClickListener {
                 val name = nameEditText.text.toString()
                 val location = locationEditText.text.toString()
@@ -156,12 +133,6 @@ class UpdateNewProjectFragment : Fragment() {
                     .putString("constructionStatus", constructionStatus)
                     .putString("completionDate", completionDate)
                     .putString("propertyType", propertyType)
-                    .putString("coverPhoto", if(selectedUris[0] == null) null else
-                        selectedUris[0].toString())
-                    .putString("photo1", if(selectedUris[1] == null) null else
-                        selectedUris[1].toString())
-                    .putString("photo2", if(selectedUris[2] == null) null else
-                        selectedUris[2].toString())
                     .putInt("user", arguments?.
                         getInt("user", 0) ?: 0)
                     .build()
@@ -204,31 +175,6 @@ class UpdateNewProjectFragment : Fragment() {
         }
     }
 
-    private fun pickPhoto() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        startActivityForResult(
-            Intent.createChooser(intent, "Select Picture"),
-            PICK_IMAGE_REQUEST_CODE
-        )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val uri = data?.data
-            if (uri != null) {
-                selectedUris.add(uri)
-
-                when(selectedUris.size) {
-                    1 -> binding.coverPhotoImageView.setImageURI(uri)
-                    2 -> binding.photo1ImageView.setImageURI(uri)
-                    3 -> binding.photo2ImageView.setImageURI(uri)
-                }
-            }
-        }
-    }
 
     companion object {
 

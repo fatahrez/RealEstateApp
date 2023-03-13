@@ -96,6 +96,7 @@ class NewProjectsFragment : Fragment() {
     private fun navToNewProjectDetails(newProject: NewProject) {
         val bundle = Bundle()
         bundle.putString("slug", newProject.slug)
+        bundle.putInt("user", newProject.user)
         view?.let {
             Navigation.findNavController(it)
                 .navigate(R.id.action_newProjectsFragment2_to_newProjectDetailsFragment, bundle)

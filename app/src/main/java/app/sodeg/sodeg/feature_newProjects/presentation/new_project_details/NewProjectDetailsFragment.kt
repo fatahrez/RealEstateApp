@@ -83,6 +83,7 @@ class NewProjectDetailsFragment : Fragment() {
 
     private fun fetchData() {
         slug = arguments?.getString("slug") ?: ""
+        user = arguments?.getInt("user") ?: 0
         if (slug.isNotEmpty()) {
             viewModel.showNewProjectDetails(slug)
         }
@@ -104,7 +105,6 @@ class NewProjectDetailsFragment : Fragment() {
     private fun showNewProjectDetails(newProject: NewProject?) {
         with(binding) {
             if (newProject != null) {
-                user = newProject.user
                 with(binding) {
                     val displayMetrics = DisplayMetrics()
                     requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)

@@ -41,23 +41,23 @@ class UpdateNewProjectWorker @AssistedInject constructor(
         val photo2Uri = inputData.getString("photo2")
         val user = inputData.getInt("user", 0)
 
-        val coverPhoto = MultiPartUtil.loadFileFromContentResolver(
-            applicationContext,
-            Uri.parse(coverPhotoUri),
-            "cover_photo"
-        )
-
-        val photo1 = MultiPartUtil.loadFileFromContentResolver(
-            applicationContext,
-            Uri.parse(photo1Uri),
-            "photo1"
-        )
-
-        val photo2 = MultiPartUtil.loadFileFromContentResolver(
-            applicationContext,
-            Uri.parse(photo2Uri),
-            "photo2"
-        )
+//        val coverPhoto = MultiPartUtil.loadFileFromContentResolver(
+//            applicationContext,
+//            Uri.parse(coverPhotoUri),
+//            "cover_photo"
+//        )
+//
+//        val photo1 = MultiPartUtil.loadFileFromContentResolver(
+//            applicationContext,
+//            Uri.parse(photo1Uri),
+//            "photo1"
+//        )
+//
+//        val photo2 = MultiPartUtil.loadFileFromContentResolver(
+//            applicationContext,
+//            Uri.parse(photo2Uri),
+//            "photo2"
+//        )
 
         val nameRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), name!!)
         val namePart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -148,9 +148,12 @@ class UpdateNewProjectWorker @AssistedInject constructor(
             constructionStatusPart,
             completionDatePart,
             propertyTypePart,
-            if (coverPhotoUri.isNullOrEmpty()) null else coverPhoto,
-            if(photo1Uri.isNullOrEmpty()) null else photo1,
-            if(photo2Uri.isNullOrEmpty()) null else photo2,
+//            if (coverPhotoUri.isNullOrEmpty()) null else coverPhoto,
+//            if(photo1Uri.isNullOrEmpty()) null else photo1,
+//            if(photo2Uri.isNullOrEmpty()) null else photo2,
+            null,
+            null,
+            null,
             user
         ).collect { result ->
             when(result) {
