@@ -33,6 +33,7 @@ class NewProjectDetailsFragment : Fragment() {
 
 
     var slug = ""
+    var user = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +59,7 @@ class NewProjectDetailsFragment : Fragment() {
         with(binding) {
             val bundle = Bundle()
             bundle.putString("slug", slug)
+            bundle.putInt("user", user)
             updateNewProjectBtn.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_newProjectDetailsFragment_to_updateNewProjectFragment,
@@ -102,6 +104,7 @@ class NewProjectDetailsFragment : Fragment() {
     private fun showNewProjectDetails(newProject: NewProject?) {
         with(binding) {
             if (newProject != null) {
+                user = newProject.user
                 with(binding) {
                     val displayMetrics = DisplayMetrics()
                     requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)

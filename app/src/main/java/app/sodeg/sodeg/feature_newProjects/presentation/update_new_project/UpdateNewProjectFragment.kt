@@ -27,16 +27,17 @@ import app.sodeg.sodeg.feature_properties.presentation.post_property.PostPropert
 import app.sodeg.sodeg.workers.UpdateNewProjectWorker
 import app.sodeg.sodeg.workers.UploadNewProjectWorker
 import coil.load
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class UpdateNewProjectFragment : Fragment() {
 
     private var _binding: FragmentUpdateNewProjectBinding? = null
     private val binding: FragmentUpdateNewProjectBinding get() = _binding!!
 
     private val viewModel: NewProjectDetailsViewModel by viewModels()
-    private val selectedUris = mutableListOf<Uri>()
+    private val selectedUris = mutableListOf<Uri?>()
     var slug = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,9 +87,9 @@ class UpdateNewProjectFragment : Fragment() {
                 locationEditText.setText(newProject.location)
                 descriptionEditText.setText(newProject.description)
                 priceEditText.setText(newProject.price)
-                bedroomsEditText.setText(newProject.bedrooms)
-                bathroomsEditText.setText(newProject.price)
-                squareFeetEditText.setText(newProject.squareFeet)
+                bedroomsEditText.setText(newProject.bedrooms.toString())
+                bathroomsEditText.setText(newProject.bathrooms.toString())
+                squareFeetEditText.setText(newProject.squareFeet.toString())
                 cityEditText.setText(newProject.city)
                 val constructionArray = arrayOf(R.array.constructionStatus)
                 constructionStatusSpinner.setSelection(
@@ -155,9 +156,14 @@ class UpdateNewProjectFragment : Fragment() {
                     .putString("constructionStatus", constructionStatus)
                     .putString("completionDate", completionDate)
                     .putString("propertyType", propertyType)
-                    .putString("coverPhoto", selectedUris[0].toString())
-                    .putString("photo1", selectedUris[1].toString())
-                    .putString("photo2", selectedUris[2].toString())
+                    .putString("coverPhoto", if(selectedUris[0] == null) null else
+                        selectedUris[0].toString())
+                    .putString("photo1", if(selectedUris[1] == null) null else
+                        selectedUris[1].toString())
+                    .putString("photo2", if(selectedUris[2] == null) null else
+                        selectedUris[2].toString())
+                    .putInt("user", arguments?.
+                        getInt("user", 0) ?: 0)
                     .build()
 
                 val constraints = Constraints.Builder()

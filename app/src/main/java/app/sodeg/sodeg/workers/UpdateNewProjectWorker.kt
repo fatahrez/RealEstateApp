@@ -39,6 +39,7 @@ class UpdateNewProjectWorker @AssistedInject constructor(
         val coverPhotoUri = inputData.getString("coverPhoto")
         val photo1Uri = inputData.getString("photo1")
         val photo2Uri = inputData.getString("photo2")
+        val user = inputData.getInt("user", 0)
 
         val coverPhoto = MultiPartUtil.loadFileFromContentResolver(
             applicationContext,
@@ -147,9 +148,10 @@ class UpdateNewProjectWorker @AssistedInject constructor(
             constructionStatusPart,
             completionDatePart,
             propertyTypePart,
-            coverPhoto,
-            photo1,
-            photo2
+            if (coverPhotoUri.isNullOrEmpty()) null else coverPhoto,
+            if(photo1Uri.isNullOrEmpty()) null else photo1,
+            if(photo2Uri.isNullOrEmpty()) null else photo2,
+            user
         ).collect { result ->
             when(result) {
                 is ResultWrapper.Success -> {

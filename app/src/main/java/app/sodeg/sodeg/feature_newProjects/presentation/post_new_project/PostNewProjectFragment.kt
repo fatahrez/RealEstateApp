@@ -25,7 +25,7 @@ class PostNewProjectFragment : Fragment() {
     private var _binding: FragmentPostNewProjectBinding? = null
     private val binding: FragmentPostNewProjectBinding get() = _binding!!
 
-    private val selectedUris = mutableListOf<Uri>()
+    private val selectedUris = mutableListOf<Uri?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
