@@ -2,12 +2,7 @@ package app.sodeg.sodeg.feature_newProjects.data.remote
 
 import app.sodeg.sodeg.feature_newProjects.data.remote.dto.NewProjectDTO
 import okhttp3.MultipartBody
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface NewProjectAPI {
 
@@ -15,7 +10,9 @@ interface NewProjectAPI {
     suspend fun getAllNewProjectsDTO(): List<NewProjectDTO>
 
     @GET("properties/new_projects/details/{slug}")
-    suspend fun getNewProjectDetailsDTO(@Path("slug") slug: String): NewProjectDTO
+    suspend fun getNewProjectDetailsDTO(
+        @Path("slug") slug: String
+    ): NewProjectDTO
 
     @Multipart
     @POST("properties/new_projects/create/")
@@ -38,7 +35,7 @@ interface NewProjectAPI {
     ): NewProjectDTO
 
     @Multipart
-    @POST("properties/new_projects/update/{slug}/")
+    @PUT("properties/new_projects/update/{slug}/")
     suspend fun updateNewProject(
         @Path("slug") slug: String,
         @Part name: MultipartBody.Part,
@@ -53,13 +50,15 @@ interface NewProjectAPI {
         @Part constructionStatus: MultipartBody.Part,
         @Part completionDate: MultipartBody.Part,
         @Part propertyType: MultipartBody.Part,
-        @Part coverPhoto: MultipartBody.Part,
-        @Part photo1: MultipartBody.Part,
-        @Part photo2: MultipartBody.Part
+        @Part coverPhoto: MultipartBody.Part?,
+        @Part photo1: MultipartBody.Part?,
+        @Part photo2: MultipartBody.Part?,
+        @Part("user") user: Int
     ): NewProjectDTO
 
     @DELETE("properties/new_projects/delete/{slug}/")
     suspend fun deleteNewProject(
         @Path("slug") slug: String
     ): String
+
 }

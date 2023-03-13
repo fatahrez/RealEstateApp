@@ -24,9 +24,10 @@ class UpdateNewProject(
         constructionStatus: MultipartBody.Part,
         completionDate: MultipartBody.Part,
         propertyType: MultipartBody.Part,
-        coverPhoto: MultipartBody.Part,
-        photo1: MultipartBody.Part,
-        photo2: MultipartBody.Part
+        coverPhoto: MultipartBody.Part?,
+        photo1: MultipartBody.Part?,
+        photo2: MultipartBody.Part?,
+        user: Int
     ) : Flow<ResultWrapper<NewProject>> {
         return repository.updateNewProject(
             slug,
@@ -44,7 +45,8 @@ class UpdateNewProject(
             propertyType,
             coverPhoto,
             photo1,
-            photo2
+            photo2,
+            user
         )
     }
 

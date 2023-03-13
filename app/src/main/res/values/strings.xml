@@ -103,6 +103,7 @@
     <string name="construction_status">Construction Status</string>
     <string name="completion_date">Completion Date</string>
     <string name="post_newproject">Post NewProject</string>
+    <string name="update_newproject">Update NewProject</string>
 
     <string-array name="userTypes">
         <item>SELLER</item>
