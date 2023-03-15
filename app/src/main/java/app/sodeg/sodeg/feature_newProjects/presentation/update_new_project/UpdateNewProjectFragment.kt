@@ -164,6 +164,7 @@ class UpdateNewProjectFragment : Fragment() {
                 propertyTypeSpinner.adapter = adapter
             }
 
+
             ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.constructionStatus,
