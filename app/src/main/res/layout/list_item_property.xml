@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,70 +10,67 @@
         android:id="@+id/materialCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:contentPadding="8dp"
-        app:cardCornerRadius="10dp"
-        android:elevation="15dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardUseCompatPadding="true">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
 
+            <!-- Property Image -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/propertyImageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:contentDescription="@string/property_image"
                 android:scaleType="centerCrop"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.ImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                android:contentDescription="@string/property_image"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.ImageView"
+                tools:srcCompat="@tools:sample/backgrounds/scenic"/>
 
+            <!-- Price + Favorite -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:id="@+id/priceTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="viewStart"
-                    android:layout_gravity="start"
-                    android:gravity="start"
-                    tools:text="$ 10,000"
-                    android:padding="4dp"/>
-
-                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/lato_regular"
-                    android:textSize="16sp"
-                    app:drawableEndCompat="@drawable/fav" />
+                    android:textSize="18sp"
+                    android:textColor="@color/md_theme_primary"
+                    android:fontFamily="@font/lato_bold"
+                    tools:text="$ 10,000"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="end"
+                    android:src="@drawable/fav"
+                    android:tint="@color/md_theme_secondary"/>
             </LinearLayout>
 
+            <!-- Property Details -->
             <TextView
                 android:id="@+id/propertyDetailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_regular"
                 android:textSize="16sp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginVertical="4dp"
-                android:textColor="@color/black"
-                tools:text="House | Nairobi | 3 Bedroom | Westlands Estate"
-                android:gravity="start"/>
-
+                android:layout_marginTop="4dp"
+                android:textColor="@color/md_theme_onSurface"
+                android:fontFamily="@font/lato_regular"
+                tools:text="House | Nairobi | 3 Bedroom | Westlands Estate"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +35,7 @@ class PropertyDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentPropertyDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -124,6 +125,11 @@ class PropertyDetailFragment : Fragment() {
                 tvStreetAddress.text = property.streetAddress
                 tvPropertyPrice.text = "$ " + property.price
                 tvCountry.text = property.city + ", " + property.country
+
+                // Inside showPropertyDetails()
+                featuredBadgeImageView.visibility = View.VISIBLE
+                verifiedBadgeImageView.visibility = View.VISIBLE
+
 //                tvPropertyDescription.text = property.description
 
                 tvPropertyDescription.setResizableText(property.description, 4, true)

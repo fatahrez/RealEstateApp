@@ -72,6 +72,35 @@
             </LinearLayout>
 
         </HorizontalScrollView>
+        <LinearLayout
+            android:id="@+id/badgeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageCarouselScrollView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <!-- Featured Badge -->
+            <ImageView
+                android:id="@+id/featuredBadgeImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_featured"
+                android:visibility="visible"/>
+
+            <!-- Verified Badge -->
+            <ImageView
+                android:id="@+id/verifiedBadgeImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                android:tint="@color/green_light"
+                android:src="@drawable/ic_verified"
+                android:visibility="visible"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvApartmentTitle"
@@ -82,7 +111,7 @@
             android:textSize="18sp"
             android:fontFamily="@font/lato_regular"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageCarouselScrollView"
+            app:layout_constraintTop_toBottomOf="@+id/badgeView"
             tools:text="Big Fish Apartments" />
 
         <LinearLayout
